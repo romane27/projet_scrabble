@@ -1,8 +1,10 @@
 package projet_scrabble;
 
+import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Graphics;
 
-public class plateau {
+public class plateau extends Canvas{
 	int[][] plateau;
 	Color [] couleur  = {Color.red,Color.blue,Color.CYAN,Color.green,Color.pink}; 
 
@@ -17,7 +19,7 @@ public class plateau {
 		//couleur rouge = 1
 		// couleur bleu ==2
 		// couleur cyan =3
-		//couleur vert = 4 
+		//couleur vert = 0
 		// couleur rose =5
 		plateau[0][0]=1;
 
@@ -97,12 +99,62 @@ public class plateau {
 		}
 
 	}
+	//couleur rouge = 1
+	// couleur bleu ==2
+	// couleur cyan =3
+	//couleur vert = 4 
+	// couleur rose =5
+	public void paint(Graphics g) {
+
+		for (int i = 0; i < 15; i++) {
+			for( int j = 0; j < 15; j++) {
 
 
 
-	public static void main(String[] args) {
+				// couleur bleu
+				if (plateau[i][j]==2) {
+					g.setColor(new Color (13,52,225));
+					g.fillRect(j*40,i*40,40,40);
+				}
+				// couleur rouge
+				if (plateau[i][j]==1) {
+					g.setColor(new Color (225,13,13));
+					g.fillRect(j*40,i*40,40,40);
+
+				}
+				// couleur cyan
+				if (plateau[i][j]==3) {
+					g.setColor(new Color (31,174,238));
+					g.fillRect(j*40,i*40,40,40);
+
+				}
+				// couleur beige
+				if (plateau[i][j]==5) {
+					g.setColor(new Color (230,216,171));
+					g.fillRect(j*40,i*40,40,40);
+					// couleur vert  
+				}
+				if (plateau[i][j]==0) {
+					g.setColor(new Color(10,173,153));
+					g.fillRect(j*40,i*40,40,40);
+
+				}
+				g.setColor(Color.white);
+				g.drawRect(j * 40, i * 40, 40, 40);
+
+
+
+
+			}
+		}
+		System.out.println(g);
+	}
+
+
+
+	/*public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		new plateau();
-	}
+	}*/
 }
 
