@@ -10,9 +10,8 @@ import java.util.HashMap;
 public class Classe_test {
 	HashMap<String, ArrayList<String>> h = new HashMap<String, ArrayList<String>>();
 
-	public Classe_test() throws IOException {
+	public Classe_test() throws IOException  {
 		this.h = new HashMap<String, ArrayList<String>>();
-		ArrayList<String> list = new ArrayList<String>();
 
 		BufferedReader lecteurAvecBuffer = null;
 		String ligne;

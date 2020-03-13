@@ -5,47 +5,43 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Random;
 
 public class Modele {
-	public String[] pupitre;
 	public String[][] tableau;
 	File fichier = new File("images.dat");
 
-	public Modele() {
+	public Modele() throws IOException {
 		this.tableau = new String[15][15];
-		this.pupitre = new String[7];
-		Hashtable<String, String> dico = new Hashtable<String, String>();
-	}
+		
+		
+		//initialisation du dico
+		Hashtable<String, ArrayList<String>> dico = new Hashtable<String, ArrayList<String>>();
+		BufferedReader lecteurAvecBuffer = null;
+		String ligne;
 
-	public void affiche() throws IOException {
-		String ligne = "";
-		String fichier = "dictionnaire.txt";
-
-		BufferedReader ficTexte;
 		try {
-			ficTexte = new BufferedReader(new FileReader(new File(fichier)));
-			if (ficTexte == null) {
-				throw new FileNotFoundException("Fichier non trouvé: " + fichier);
-			}
-			do {
-				ligne = ficTexte.readLine();
-				if (ligne != null) {
-					System.out.println(ligne);
-				}
-			} while (ficTexte != null);
-			ficTexte.close();
-			System.out.println("\n");
-		} catch (FileNotFoundException e) {
-			System.out.println(e.getMessage());
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
+			lecteurAvecBuffer = new BufferedReader(new FileReader("dictionnaire.txt"));
+		} catch (FileNotFoundException exc) {
+			System.out.println("Erreur d'ouverture");
 		}
+		while ((ligne = lecteurAvecBuffer.readLine()) != null) {
+			String cle = ligne.substring(0, 2);
+			if (dico.containsKey(cle)) {
+				ArrayList<String> liste = dico.get(cle);
+				liste.add(ligne);
+				dico.put(cle, liste);
+			} else {
+				ArrayList<String> l = new ArrayList<String>();
+				l.add(ligne);
+				dico.put(cle, l);
 
+			}
+
+		}
+		lecteurAvecBuffer.close();
 	}
-
-	
 
 }
