@@ -21,6 +21,7 @@ public class Classe_test {
 		} catch (FileNotFoundException exc) {
 			System.out.println("Erreur d'ouverture");
 		}
+		
 		while ((ligne = lecteurAvecBuffer.readLine()) != null) {
 			String cle = ligne.substring(0, 2);
 			if (h.containsKey(cle)) {
@@ -31,15 +32,39 @@ public class Classe_test {
 				ArrayList<String> l = new ArrayList<String>();
 				l.add(ligne);
 				h.put(cle,l);
-
 			}
-
 		}
+		
 		lecteurAvecBuffer.close();
+		
+		long debut = System.currentTimeMillis();
+		System.out.println(verifier_mot("abnegations"));
+		System.out.println(System.currentTimeMillis()-debut);
+		
+		long debut2 = System.currentTimeMillis();
+		System.out.println(verifier_mot("abyssins"));
+		System.out.println(System.currentTimeMillis()-debut2);
+		
+		long debut3 = System.currentTimeMillis();
+		System.out.println(verifier_mot("abykjevkbev"));
+		System.out.println(System.currentTimeMillis()-debut3);
+		
 
 	}
 
 	public static void main(String[] argv) throws IOException {
 		Classe_test c = new Classe_test();
+	}
+	
+	public boolean verifier_mot(String a) {
+		String cle = a.substring(0,2);
+		ArrayList<String> l = h.get(cle);
+		for (int i=0; i<l.size(); i++) {
+			if (l.get(i).equals(a)) {
+				return true;
+			}
+		}
+		return false;		
+		
 	}
 }

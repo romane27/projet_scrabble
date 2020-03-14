@@ -5,7 +5,9 @@ package projet_scrabble;
 import java.awt.event.MouseEvent;
 import java.beans.EventHandler;
 
+import javafx.event.ActionEvent;
 import javafx.scene.Parent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -15,9 +17,10 @@ public class lettre extends Parent {
 	public String lettre;//lettre de la touche, c'est une variable public pour qu'elle puisse être lue depuis les autres classes
     private int positionX = 0;//abscisse
     private int positionY = 0;//ordonnée de la touche
-   
+    int Selectionne = 0;
     Rectangle fond_touche;
     Text lettre_touche;
+    
     
     public lettre(String l, int posX, int posY){
         lettre =  new String(l);
@@ -45,23 +48,44 @@ public class lettre extends Parent {
         this.setTranslateY(positionY);
      
         this.setOnMousePressed(mouseEvent -> chgmcouleurclic(lettre_touche));
-       
-       
-    }
-    public void chgmcouleurclic(Text l){
-        fond_touche.setFill(Color.GRAY);
-        
-        l.setFont(new Font(25));
-        l.setFill(Color.BLACK);
-        l.setX(20);
-        l.setY(35);
-        if (fond_touche.isPressed()) {
+        this.setOnMouseDragged( e -> {
+        	double x = e.getX();
+        	double y = e.getY();
+        	Selectionne =3;
+        	fond_touche.setX(x);
+        	fond_touche.setY(y);
         	fond_touche.setFill(Color.WHITE);
+        	lettre_touche.setX(x+20);
+        	lettre_touche.setY(y+35);
+
+        	
+
+
+        });
+    }
+    
+   
+   	
+    public void chgmcouleurclic(Text l){
+        
+        if (fond_touche.isPressed() && Selectionne ==1) {
+        	fond_touche.setFill(Color.WHITE);
+        	Selectionne=0;
+        	System.out.println("on deselectionne le bouton");
         }
-      //  this.setTranslateY(positionY+2);
+        else if (Selectionne==0){
+        	fond_touche.setFill(Color.GRAY);
+            System.out.println("on selectionne le bouton");
+            l.setFont(new Font(25));
+            l.setFill(Color.BLACK);
+            l.setX(20);
+            l.setY(35);
+            Selectionne=1;
+        	
+        }
+     
     }
         
    
 
 }
-	
