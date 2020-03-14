@@ -16,7 +16,6 @@ public class Modele {
 	public Modele() throws IOException {
 		this.tableau = new String[15][15];
 		
-		
 		//initialisation du dico
 		Hashtable<String, ArrayList<String>> dico = new Hashtable<String, ArrayList<String>>();
 		BufferedReader lecteurAvecBuffer = null;

@@ -36,7 +36,7 @@ public class lettre extends Parent {
         lettre_touche = new Text(lettre);
         lettre_touche.setFont(new Font(25));
         lettre_touche.setFill(Color.BLACK);
-        lettre_touche.setX(20);
+        lettre_touche.setX(15);
         lettre_touche.setY(35);
         this.getChildren().add(lettre_touche);//ajout de la lettre de la touche
         
@@ -71,11 +71,11 @@ public class lettre extends Parent {
         if (fond_touche.isPressed() && Selectionne ==1) {
         	fond_touche.setFill(Color.WHITE);
         	Selectionne=0;
-        	System.out.println("on deselectionne le bouton");
+        	System.out.println("on deselectionne le bouton"+this.lettre);
         }
         else if (Selectionne==0){
         	fond_touche.setFill(Color.GRAY);
-            System.out.println("on selectionne le bouton");
+            System.out.println("on selectionne le bouton"+this.lettre);
             l.setFont(new Font(25));
             l.setFill(Color.BLACK);
             l.setX(20);
