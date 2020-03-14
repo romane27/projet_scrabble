@@ -21,48 +21,48 @@ public class lettre extends Parent {
     Text lettre_touche;
     
     public lettre(String l, int posX, int posY){
-        lettre =  new String(l);
-        positionX = posX;
-        positionY = posY;
+        this.lettre =  new String(l);
+        this.positionX = posX;
+        this.positionY = posY;
        
         
-        fond_touche = new Rectangle(50,50,Color.WHITE);
-        fond_touche.setArcHeight(10);
-        fond_touche.setArcWidth(10);
-        this.getChildren().add(fond_touche);//ajout du rectangle de fond de la touche
+        this.fond_touche = new Rectangle(50,50,Color.WHITE);
+        this.fond_touche.setArcHeight(10);
+        this.fond_touche.setArcWidth(10);
+        this.getChildren().add(this.fond_touche);//ajout du rectangle de fond de la touche
         
-        lettre_touche = new Text(lettre);
-        lettre_touche.setFont(new Font(25));
-        lettre_touche.setFill(Color.BLACK);
-        lettre_touche.setX(20);
-        lettre_touche.setY(35);
-        this.getChildren().add(lettre_touche);//ajout de la lettre de la touche
+        this.lettre_touche = new Text(this.lettre);
+        this.lettre_touche.setFont(new Font(25));
+        this.lettre_touche.setFill(Color.BLACK);
+        this.lettre_touche.setX(20);
+        this.lettre_touche.setY(35);
+        this.getChildren().add(this.lettre_touche);//ajout de la lettre de la touche
         
         // changement de couleur au clic de la lettre
         
         
         
-        this.setTranslateX(positionX);//positionnement de la touche sur le clavier
-        this.setTranslateY(positionY);
+        this.setTranslateX(this.positionX);//positionnement de la touche sur le clavier
+        this.setTranslateY(this.positionY);
      
         this.setOnMousePressed(mouseEvent -> chgmcouleurclic(lettre_touche));
      
     }
     public void chgmcouleurclic(Text l){
         
-        if (fond_touche.isPressed() && Selectionne ==1) {
-        	fond_touche.setFill(Color.WHITE);
-        	Selectionne=0;
+        if (this.fond_touche.isPressed() && this.Selectionne ==1) {
+        	this.fond_touche.setFill(Color.WHITE);
+        	this.Selectionne=0;
         	System.out.println("on deselectionne le bouton");
         }
-        else if (Selectionne==0){
-        	fond_touche.setFill(Color.GRAY);
+        else if (this.Selectionne==0){
+        	this.fond_touche.setFill(Color.GRAY);
             System.out.println("on selectionne le bouton");
             l.setFont(new Font(25));
             l.setFill(Color.BLACK);
             l.setX(20);
             l.setY(35);
-            Selectionne=1;
+            this.Selectionne=1;
         	
         }
      
