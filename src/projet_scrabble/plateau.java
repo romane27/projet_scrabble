@@ -1,24 +1,21 @@
 package projet_scrabble;
 
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
+import javafx.application.Application;
+import javafx.scene.Parent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
-import javax.swing.JButton;
-
-public class plateau extends Canvas implements MouseListener{
+public class plateau extends Parent {
 	int[][] plateau;
-	Color [] couleur  = {Color.red,Color.blue,Color.CYAN,Color.green,Color.pink}; 
+	//Color [] couleur  = {Color.RED,Color.BLUE,Color.CYAN,Color.GREEN,Color.pink}; 
 	int taille=50;
 	int espace = 40;
 	String [] name;
-	ArrayList<Integer> placement_bouton = new ArrayList<>();
-	public plateau (String [] nom) {
-		this.name=nom;
+
+	//ArrayList<Integer> placement_bouton = new ArrayList<>();
+	public plateau() {
+
+		//this.name=nom;
 		plateau = new int [15][15];
 		for (int i=0 ; i<14 ; i++) {
 
@@ -98,7 +95,7 @@ public class plateau extends Canvas implements MouseListener{
 			}
 
 		}
-		plateau [7][7]=5;}
+		plateau [7][7]=5;
 		// on affiche la matrice 		
 		/*for (int i=0 ; i<15 ; i++) {
 
@@ -108,125 +105,72 @@ public class plateau extends Canvas implements MouseListener{
 			System.out.println();
 		}*/
 
-	
-	//couleur rouge = 1
-	// couleur bleu ==2
-	// couleur cyan =3
-	//couleur vert = 4 
-	// couleur rose =5
-	public void paint(Graphics g) {
-		this.addMouseListener(this);
-		for (int i = 0; i < 15; i++) {
-			for( int j = 0; j < 15; j++) {
+		for (int i = 2; i < 17; i++) {
+			for( int j = 2; j < 17; j++) {
 				// couleur bleu
-				if (plateau[i][j]==2) {
-					g.setColor(new Color (13,52,225));
-					g.fillRect(j*taille,i*taille,taille,taille);
-				}
-				// couleur rouge
-				if (plateau[i][j]==1) {
-					g.setColor(new Color (225,13,13));
-					g.fillRect(j*taille,i*taille,taille,taille);
 
+
+				if (plateau[i-2][j-2]==2) {
+					Rectangle rect_bleu = new Rectangle();
+					rect_bleu.setStroke(Color.WHITE);
+					rect_bleu.setWidth(taille);
+					rect_bleu.setHeight(taille);
+					rect_bleu.setX(j*taille);
+					rect_bleu.setY(i*taille);
+
+					rect_bleu.setFill(Color.rgb(13, 52, 225));
+					this.getChildren().add(rect_bleu);
+				}
+
+				// couleur rouge
+				if (plateau[i-2][j-2]==1) {
+					Rectangle rect_rouge = new Rectangle();
+					rect_rouge.setStroke(Color.WHITE);
+					rect_rouge.setWidth(taille);
+					rect_rouge.setHeight(taille);
+					rect_rouge.setX(j*taille);
+					rect_rouge.setY(i*taille);
+					rect_rouge.setFill(Color.rgb(225,13,13));
+					this.getChildren().add(rect_rouge);
 				}
 				// couleur cyan
-				if (plateau[i][j]==3) {
-					g.setColor(new Color (31,174,238));
-					g.fillRect(j*taille,i*taille,taille,taille);
-
+				if (plateau[i-2][j-2]==3) {
+					Rectangle rect_cyan = new Rectangle();
+					rect_cyan.setStroke(Color.WHITE);
+					rect_cyan.setWidth(taille);
+					rect_cyan.setHeight(taille);
+					rect_cyan.setX(j*taille);
+					rect_cyan.setY(i*taille);
+					rect_cyan.setFill(Color.rgb(31,174,238));
+					this.getChildren().add(rect_cyan);
 				}
 				// couleur beige
-				if (plateau[i][j]==5) {
-					g.setColor(new Color (230,216,171));
-					g.fillRect(j*taille,i*taille,taille,taille);
+				if (plateau[i-2][j-2]==5) {
+					Rectangle rect_beige = new Rectangle();
+					rect_beige.setStroke(Color.WHITE);
+					rect_beige.setWidth(taille);
+					rect_beige.setHeight(taille);
+					rect_beige.setX(j*taille);
+					rect_beige.setY(i*taille);
+					rect_beige.setFill(Color.rgb(230,216,171));
+					this.getChildren().add(rect_beige);
 					// couleur vert  
 				}
-				if (plateau[i][j]==0) {
-					g.setColor(new Color(10,173,153));
-					g.fillRect(j*taille,i*taille,taille,taille);
+				if (plateau[i-2][j-2]==0) {
+					Rectangle rect_vert = new Rectangle();
+					rect_vert.setStroke(Color.WHITE);
+					rect_vert.setWidth(taille);
+					rect_vert.setHeight(taille);
+					rect_vert.setX(j*taille);
+					rect_vert.setY(i*taille);
+					rect_vert.setFill(Color.rgb(10,173,153));
+					this.getChildren().add(rect_vert);
 
 				}
-				g.setColor(Color.white);
-				g.drawRect(j*taille,i*taille,taille,taille);
+
 			}
 		}
-		g.setColor(Color.BLACK);
-		for (int i =1; i<8;i++) {
-			Font fontEntered = new Font(Font.DIALOG, Font.PLAIN, 20);
-			g.drawRect(i*taille, 800, taille,taille);
-			g.setFont(fontEntered);
-			g.drawString(name[i-1], i*taille+15, 830);
-			
-		}
-		
-	
-		//System.out.println(g);
 	}
-	/*public void remplir_plateau(JButton bout, String name, int x , int y) {
-		Graphics g1 = null;
-		g1.setColor(Color.white);
-		g1.fillRect(x*taille,y*taille,taille,taille);
-		g1.setColor(Color.black);
-		g1.drawString(name, x, y);
-		
-		
-	}*/
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
-			Graphics g = getGraphics();
-			g.setColor(Color.black);
-			if (e.getY()<750 && e.getX()<=750) {
-			
-			double x = e.getX()/taille;
-			
-			double y = e.getY()/taille;
-			
-			
-			
-			g.fillRect((int)x*taille,(int)y*taille,taille,taille);
-			}
-			if (e.getY()<=850 && e.getY()>=800 && e.getX()<=400 && e.getX()>=50) {
-				double x = e.getX()/taille;
-				
-				double y = e.getY()/taille;
-				
-				g.setColor(Color.cyan);
-				g.fillRect((int)x*taille,(int)y*taille,taille,taille);
-				for(int i=0;i<8;i++) {
-					g.setColor(Color.BLACK);
-					g.drawString(name[i-1], (i-1)*taille+15, 830);
-					
-				}
-			}
-			
-		}
-		@Override
-		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		@Override
-		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-					
-				
-			
-		}
-
-
-
-	
 }
+
 
