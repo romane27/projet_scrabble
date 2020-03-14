@@ -6,34 +6,39 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class page_accueil extends JFrame{
-	public page_accueil() {
-		this.setSize(1000,1000);
-
-		//this.pack();
-		String [] lettre_joueurs = {"A","B","C","D","E","F","G"};
-		plateau p = new plateau (lettre_joueurs);
-		//JPanel panel = new JPanel();
-		//bouton bouton_lettres = new bouton(panel,lettre_joueurs);
-		//bouton bouton_lettre = new bouton(lettre_joueurs);
-		//this.add(bouton_lettres,BorderLayout.SOUTH);
-		//panel.setBounds(100, 50, 80, 80);
-		//panel.setPreferredSize(new Dimension(100,100));
-		//this.getContentPane().add(panel, BorderLayout.SOUTH);
-		//this.add(panel,BorderLayout.SOUTH);
-		
-		//this.add(le,BorderLayout.SOUTH);
-		this.add(p);
-		
-	//	this.pack();
-		this.setLocationRelativeTo(null); 
-		//this.addWindowListener(this);
-		this.setVisible(true);
-	}
 
 
 
-public static void main(String[] args) {
-	// TODO Auto-generated method stub
-	new page_accueil();
-}}
+
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+public class page_accueil extends Application {
+
+    public static void main(String[] args) {
+        Application.launch(page_accueil.class, args);
+    }
+    
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("Jeu du Scrabble");
+        Group root = new Group();
+        Scene scene = new Scene(root,1000, 1000, Color.WHITE);
+        
+        Clavier mon_clavier = new Clavier();
+        root.getChildren().add(mon_clavier);
+        plateau plateau = new plateau();
+        root.getChildren().add(plateau);
+        primaryStage.setScene(scene);
+        
+       primaryStage.show();
+    }
+}
+
