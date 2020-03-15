@@ -15,12 +15,12 @@ public class Clavier extends Parent {
 	    
 	    public Clavier(){
 	        Rectangle grand_fond = new Rectangle();
-	        grand_fond.setWidth(900);
-	        grand_fond.setHeight(900);
+	        grand_fond.setWidth(300); //900
+	        grand_fond.setHeight(300); //900
 	        grand_fond.setFill(Color.WHITE);
 	        Rectangle fond_clavier = new Rectangle();
 	        fond_clavier.setWidth(480);
-	        fond_clavier.setHeight(90);
+	        fond_clavier.setHeight(80);
 	        fond_clavier.setArcWidth(30);
 	        fond_clavier.setArcHeight(30);
 	        fond_clavier.setFill( //on remplie notre rectangle avec un dégradé
@@ -48,8 +48,8 @@ public class Clavier extends Parent {
 	            new lettre("M",416,20)
 	        };
 	        
-	        this.setTranslateX(230);
-	        this.setTranslateY(875);
+	        this.setTranslateX(117);
+	        this.setTranslateY(640); //875
 	        this.getChildren().add(grand_fond);
 	        this.getChildren().add(fond_clavier);
 	        

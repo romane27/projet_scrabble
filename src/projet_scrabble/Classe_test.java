@@ -49,6 +49,10 @@ public class Classe_test {
 		System.out.println(verifier_mot("abykjevkbev"));
 		System.out.println(System.currentTimeMillis()-debut3);
 		
+		long debut4 = System.currentTimeMillis();
+		System.out.println(verifier_mot("zythums"));
+		System.out.println(System.currentTimeMillis()-debut4);
+		
 
 	}
 
@@ -65,6 +69,5 @@ public class Classe_test {
 			}
 		}
 		return false;		
-		
 	}
 }

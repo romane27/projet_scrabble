@@ -8,8 +8,8 @@ import javafx.scene.shape.Rectangle;
 public class plateau extends Parent {
 	int[][] plateau;
 	//Color [] couleur  = {Color.RED,Color.BLUE,Color.CYAN,Color.GREEN,Color.pink}; 
-	int taille=50;
-	int espace = 40;
+	int taille=42; //50/20
+	//int espace = 30; //40/10
 	String [] name;
 
 	//ArrayList<Integer> placement_bouton = new ArrayList<>();
@@ -104,65 +104,73 @@ public class plateau extends Parent {
 			}
 			System.out.println();
 		}*/
-
-		for (int i = 2; i < 17; i++) {
-			for( int j = 2; j < 17; j++) {
+		
+		Rectangle r = new Rectangle();
+		r.setStroke(Color.BLACK);
+		r.setWidth(15*taille+6);
+		r.setHeight(15*taille+6);
+		r.setX(taille-3);
+		r.setY(0);
+		this.getChildren().add(r);
+		
+		for (int i = 0; i < 15; i++) {
+			for( int j = 1 ; j < 16; j++) {
 				// couleur bleu
 
 
-				if (plateau[i-2][j-2]==2) {
+				if (plateau[i][j-1]==2) {
 					Rectangle rect_bleu = new Rectangle();
 					rect_bleu.setStroke(Color.WHITE);
 					rect_bleu.setWidth(taille);
 					rect_bleu.setHeight(taille);
 					rect_bleu.setX(j*taille);
-					rect_bleu.setY(i*taille);
+					rect_bleu.setY(i*taille+3);
 
 					rect_bleu.setFill(Color.rgb(13, 52, 225));
 					this.getChildren().add(rect_bleu);
 				}
 
 				// couleur rouge
-				if (plateau[i-2][j-2]==1) {
+				if (plateau[i][j-1]==1) {
 					Rectangle rect_rouge = new Rectangle();
 					rect_rouge.setStroke(Color.WHITE);
 					rect_rouge.setWidth(taille);
 					rect_rouge.setHeight(taille);
 					rect_rouge.setX(j*taille);
-					rect_rouge.setY(i*taille);
+					rect_rouge.setY(i*taille+3);
 					rect_rouge.setFill(Color.rgb(225,13,13));
 					this.getChildren().add(rect_rouge);
 				}
 				// couleur cyan
-				if (plateau[i-2][j-2]==3) {
+				if (plateau[i][j-1]==3) {
 					Rectangle rect_cyan = new Rectangle();
 					rect_cyan.setStroke(Color.WHITE);
 					rect_cyan.setWidth(taille);
 					rect_cyan.setHeight(taille);
 					rect_cyan.setX(j*taille);
-					rect_cyan.setY(i*taille);
+					rect_cyan.setY(i*taille+3);
 					rect_cyan.setFill(Color.rgb(31,174,238));
 					this.getChildren().add(rect_cyan);
 				}
 				// couleur beige
-				if (plateau[i-2][j-2]==5) {
+				if (plateau[i][j-1]==5) {
 					Rectangle rect_beige = new Rectangle();
 					rect_beige.setStroke(Color.WHITE);
 					rect_beige.setWidth(taille);
 					rect_beige.setHeight(taille);
 					rect_beige.setX(j*taille);
-					rect_beige.setY(i*taille);
+					rect_beige.setY(i*taille+3);
 					rect_beige.setFill(Color.rgb(230,216,171));
 					this.getChildren().add(rect_beige);
 					// couleur vert  
 				}
-				if (plateau[i-2][j-2]==0) {
+				if (plateau[i][j-1]==0) {
 					Rectangle rect_vert = new Rectangle();
 					rect_vert.setStroke(Color.WHITE);
 					rect_vert.setWidth(taille);
 					rect_vert.setHeight(taille);
 					rect_vert.setX(j*taille);
-					rect_vert.setY(i*taille);
+					rect_vert.setY(i*taille+3);
 					rect_vert.setFill(Color.rgb(10,173,153));
 					this.getChildren().add(rect_vert);
 

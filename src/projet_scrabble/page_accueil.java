@@ -2,6 +2,7 @@ package projet_scrabble;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -27,13 +28,15 @@ public class page_accueil extends Application {
     }
     
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("Jeu du Scrabble");
         Group root = new Group();
         Scene scene = new Scene(root,1000, 1000, Color.WHITE);
+        Modele m = new Modele();
+        Controleur c = new Controleur(m);
         
         Clavier mon_clavier = new Clavier();
-       
+        
         plateau plateau = new plateau();
         root.getChildren().add(plateau);
         root.getChildren().add(mon_clavier);
