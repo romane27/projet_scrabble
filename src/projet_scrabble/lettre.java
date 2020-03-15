@@ -39,8 +39,8 @@ public class lettre extends Parent {
         this.lettre_touche.setFill(Color.BLACK);
         this.lettre_touche.setText(this.lettre);
         //this.lettre_touche.setTextAlignment(TextAlignment.CENTER);
-        this.lettre_touche.setX(20);
-        this.lettre_touche.setY(35);
+        this.lettre_touche.setX(12);
+        this.lettre_touche.setY(28);
         this.getChildren().add(this.lettre_touche);//ajout de la lettre de la touche
         
         // changement de couleur au clic de la lettre
@@ -58,8 +58,8 @@ public class lettre extends Parent {
         	this.fond_touche.setX(x);
         	this.fond_touche.setY(y);
         	this.fond_touche.setFill(Color.WHITE);
-        	this.lettre_touche.setX(x+20);
-        	this.lettre_touche.setY(y+35);
+        	this.lettre_touche.setX(x+12);
+        	this.lettre_touche.setY(y+28);
 
         	
 
@@ -78,11 +78,11 @@ public class lettre extends Parent {
         }
         else if (this.Selectionne==0){
         	this.fond_touche.setFill(Color.GRAY);
-            System.out.println("on selectionne le bouton");
+            System.out.println("on selectionne le bouton "+ this.lettre);
             l.setFont(new Font(25));
             l.setFill(Color.BLACK);
-            l.setX(20);
-            l.setY(35);
+            l.setX(12);
+            l.setY(28);
             this.Selectionne=1;
         	
         }

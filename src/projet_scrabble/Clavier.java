@@ -1,5 +1,7 @@
 package projet_scrabble;
 
+import java.util.ArrayList;
+
 import javafx.scene.Parent;
 import javafx.scene.effect.Reflection;
 import javafx.scene.paint.Color;
@@ -12,14 +14,14 @@ public class Clavier extends Parent {
 	
 	    
 	    private lettre[] touches;
-	    
+	   tirage_lettre tirage;
 	    public Clavier(){
-	        Rectangle grand_fond = new Rectangle();
-	        grand_fond.setWidth(300); //900
+	    	Rectangle grand_fond = new Rectangle();
+	        grand_fond.setWidth(250); //900
 	        grand_fond.setHeight(300); //900
 	        grand_fond.setFill(Color.WHITE);
 	        Rectangle fond_clavier = new Rectangle();
-	        fond_clavier.setWidth(480);
+	        fond_clavier.setWidth(420);
 	        fond_clavier.setHeight(80);
 	        fond_clavier.setArcWidth(30);
 	        fond_clavier.setArcHeight(30);
@@ -36,17 +38,21 @@ public class Clavier extends Parent {
 	        r.setBottomOpacity(0);
 	        r.setTopOpacity(0.5);
 	        fond_clavier.setEffect(r);
-	        
-	        touches = new lettre[]{
-	            new lettre("U",10,20),
-	            new lettre("I",68,20),
-	            new lettre("O",126,20),
-	            new lettre("P",184,20),
-	            new lettre("J",242,20),
-	            new lettre("K",300,20),
-	            new lettre("L",358,20),
-	            new lettre("M",416,20)
+	        tirage = new tirage_lettre(7);
+	        ArrayList<String>  t = tirage.newlettre;
+	         
+	        touches = new lettre[] {
+	        	new lettre(t.get(0),10,20),
+	        	new lettre(t.get(1),68,20),
+	        	new lettre(t.get(2),126,20),
+	        	new lettre(t.get(3),184,20),
+	        	new lettre(t.get(4),242,20),
+	        	new lettre(t.get(5),300,20),
+	        	new lettre(t.get(6),358,20)
+	        	
+	        	
 	        };
+	        
 	        
 	        this.setTranslateX(117);
 	        this.setTranslateY(640); //875
@@ -57,5 +63,11 @@ public class Clavier extends Parent {
 	            this.getChildren().add(touche);
 	        }
 	        
+	        //System.out.println(tirage.newlettres);
+	        
 	    }
+	   /* public static void main(String[] args) {
+			// TODO Auto-generated method stub
+			Clavier ti = new Clavier();
+	    }*/
 	}
