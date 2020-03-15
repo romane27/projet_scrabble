@@ -33,9 +33,10 @@ public class page_accueil extends Application {
         Scene scene = new Scene(root,1000, 1000, Color.WHITE);
         
         Clavier mon_clavier = new Clavier();
-        root.getChildren().add(mon_clavier);
+       
         plateau plateau = new plateau();
         root.getChildren().add(plateau);
+        root.getChildren().add(mon_clavier);
         primaryStage.setScene(scene);
         
        primaryStage.show();
