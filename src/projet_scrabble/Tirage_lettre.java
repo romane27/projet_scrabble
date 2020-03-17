@@ -7,7 +7,7 @@ import java.util.Random;
 
 
 
-public class tirage_lettre {
+public class Tirage_lettre {
 	 static int nombrelettre =0;
 	String [] lettrepossible = {"A","A","A","A","A","A","A","A","A","B","B","C","C","D","D","D","E","E","E","E","E","E","E","E","E","E","E","E","E","E","E","F","F","G","G","H","H",
 			"I","I","I","I","I","I","I","I","J","K","L","L","L","L","L","M","M","M",
@@ -16,7 +16,7 @@ public class tirage_lettre {
 	//String [] newlettres = new String [this.nombrelettre];
 	ArrayList <String > newlettre = new ArrayList<>();
 	
-	public tirage_lettre(int nbrlettre) {
+	public Tirage_lettre(int nbrlettre) {
 		this.nombrelettre=nbrlettre;
 		Random r = new Random();
 		
