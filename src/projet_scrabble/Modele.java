@@ -20,11 +20,6 @@ public class Modele {
 
 	}
 
-	public static void main(String[] argv) throws IOException {
-		Modele m = new Modele();
-		System.out.println(m.dico.get("av"));
-	}
-
 	public boolean verifier_mot(String a) {
 		String cle = a.substring(0, 2);
 		ArrayList<String> l = this.dico.get(cle);

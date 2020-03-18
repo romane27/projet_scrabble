@@ -12,8 +12,9 @@ import javafx.scene.shape.Rectangle;
 
 public class Clavier extends Parent {
 
-	private Lettre[] touches;
+	private Lettre_g[] touches;
 	Tirage_lettre tirage;
+	ArrayList<Lettre> t; // la liste des lettres dans le clavier
 
 	public Clavier() {
 		Rectangle grand_fond = new Rectangle();
@@ -34,11 +35,14 @@ public class Clavier extends Parent {
 		r.setTopOpacity(0.5);
 		fond_clavier.setEffect(r);
 		Tirage_lettre tirage = new Tirage_lettre(7);
-		ArrayList<String> t = tirage.newlettre;
+		this.t = tirage.newlettre;
 
-		touches = new Lettre[] { new Lettre(t.get(0), 10, 20), new Lettre(t.get(1), 68, 20),
-				new Lettre(t.get(2), 126, 20), new Lettre(t.get(3), 184, 20), new Lettre(t.get(4), 242, 20),
-				new Lettre(t.get(5), 300, 20), new Lettre(t.get(6), 358, 20)
+		touches = new Lettre_g[] { new Lettre_g(t.get(0).nom, t.get(0).valeur, 10, 20),
+				new Lettre_g(t.get(1).nom, t.get(1).valeur, 68, 20),
+				new Lettre_g(t.get(2).nom, t.get(2).valeur, 126, 20),
+				new Lettre_g(t.get(3).nom, t.get(3).valeur, 184, 20),
+				new Lettre_g(t.get(4).nom, t.get(4).valeur, 242, 20), new Lettre_g(t.get(5).nom,t.get(5).valeur, 300, 20),
+				new Lettre_g(t.get(6).nom,t.get(6).valeur, 358, 20)
 
 		};
 
@@ -47,7 +51,7 @@ public class Clavier extends Parent {
 		this.getChildren().add(grand_fond);
 		this.getChildren().add(fond_clavier);
 
-		for (Lettre touche : touches) {
+		for (Lettre_g touche : touches) {
 			this.getChildren().add(touche);
 		}
 
