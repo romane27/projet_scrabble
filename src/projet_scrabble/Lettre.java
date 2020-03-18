@@ -9,7 +9,4 @@ public class Lettre {
 		valeur = v;
 	}
 
-	public int valeur(Lettre lettre) {
-		return valeur;
-	}
 }

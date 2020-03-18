@@ -32,8 +32,8 @@ public class Page_accueil extends Application {
         primaryStage.setTitle("Jeu du Scrabble");
         Group root = new Group();
         Scene scene = new Scene(root,1000, 800, Color.WHITE);
-        Modele m = new Modele();
-        Controleur c = new Controleur(m);
+        //Modele m = new Modele();
+        //Controleur c = new Controleur(m);
         
         Clavier mon_clavier = new Clavier();
         Suggestions suggestion = new Suggestions();

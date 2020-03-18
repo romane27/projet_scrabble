@@ -43,4 +43,14 @@ public class Dico {
 		lecteurAvecBuffer.close();
 	}
 
+	public boolean verifier_mot(String a) {
+		String cle = a.substring(0, 2);
+		ArrayList<String> l = this.dico.get(cle);
+		for (int i = 0; i < l.size(); i++) {
+			if (l.get(i).equals(a)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
