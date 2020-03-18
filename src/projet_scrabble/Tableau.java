@@ -28,12 +28,15 @@ public class Tableau {
 				tableau[i][j] = new Case();
 			}
 		}
-		tableau[0][0].bonus = 1;
-
+		
+		tableau[0][0].bonus=1;
+		tableau[7][0].bonus=1;
+		tableau[0][7].bonus=1;
+		
 		// carre haut gauche
 		for (int i = 0; i < 14; i++) {
 
-			for (int j = 0; j < 14; j++) {
+			for (int j = 0; j <14; j++) {
 				// on remplie par carre de 7 par 7 car tout est symétrique
 				// couleur bleu fonce
 				if (j == 5 & i == 1) {
@@ -51,13 +54,21 @@ public class Tableau {
 					tableau[j][i].bonus = 3;
 
 				}
+				if (i == 7 & j == 3) {
+					tableau[i][j].bonus = 3;
+					tableau[j][i].bonus = 3;
+
+				}
+				
 
 				// couleur rose
-
-				if (i < 7 && j < 7) {
-					if (i == j & tableau[i][j].bonus == 0) {
+				
+				if (i < 7 && j < 7 ) {
+					
+				if (tableau[i][j].bonus == 0) {
+					if (i == j  ) {
 						tableau[i][j].bonus = 5;
-					}
+					}}
 				}
 			}
 		}
@@ -66,7 +77,7 @@ public class Tableau {
 
 			for (int j = 7; j < 15; j++) {
 				tableau[i][j] = tableau[i][7 - (j - 7)];
-				if (j == 7) {
+				if (j == 7  & i!=7) {
 					tableau[i][j] = tableau[i][0];
 				}
 			}
@@ -75,10 +86,13 @@ public class Tableau {
 		// carre bas gauche
 		for (int i = 7; i < 15; i++) {
 
-			for (int j = 0; j < 8; j++) {
+			for (int j = 0; j < 7; j++) {
 				tableau[i][j] = tableau[7 - (i - 7)][j];
-				if (i == 7) {
-					tableau[i][j] = tableau[0][j];
+				if (j == 7 & i!=7) {
+					tableau[i][j] = tableau[i][0];
+				}
+				if(j==7 & i==7) {
+					tableau[i][j].bonus = 6;
 				}
 			}
 
@@ -88,14 +102,26 @@ public class Tableau {
 
 			for (int j = 7; j < 15; j++) {
 				tableau[i][j] = tableau[i][7 - (j - 7)];
-				if (j == 7) {
+				if (j == 7  & i!=7) {
 					tableau[i][j] = tableau[i][0];
+				}
+				if(j==7 & i==7) {
+					tableau[i][j].bonus = 6;
 				}
 			}
 
 		}
-		tableau[7][7].bonus = 5;
+		
+		for (int i=0 ; i<15 ; i++) {
+
+			for (int j=0; j<15; j++) {
+				System.out.print(tableau[i][j].bonus + " ");
+			}
+			System.out.println();
+		}
+		
 	}
+	
 
 
 
