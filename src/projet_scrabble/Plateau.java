@@ -41,6 +41,18 @@ public class Plateau extends Parent {
 					rect_bleu.setFill(Color.rgb(13, 52, 225));
 					this.getChildren().add(rect_bleu);
 				}
+				// milieu
+				if (plateau.tableau[i][j - 1].bonus == 6) {
+					Rectangle rect_rose = new Rectangle();
+					rect_rose.setStroke(Color.WHITE);
+					rect_rose.setWidth(taille);
+					rect_rose.setHeight(taille);
+					rect_rose.setX(j * taille);
+					rect_rose.setY(i * taille + 3);
+
+					rect_rose.setFill(Color.PINK);
+					this.getChildren().add(rect_rose);
+				}
 
 				// couleur rouge
 				if (plateau.tableau[i][j - 1].bonus == 1) {
