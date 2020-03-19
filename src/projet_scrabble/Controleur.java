@@ -2,9 +2,9 @@ package projet_scrabble;
 
 public class Controleur {
 	
-	Modele mod;
+	Tableau mod;
 	
-	public Controleur(Modele m) {
+	public Controleur(Tableau m) {
 		this.mod = m;
 		
 	}

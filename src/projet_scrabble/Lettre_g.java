@@ -22,6 +22,7 @@ public class Lettre_g extends Parent {
 	Rectangle fond_touche;
 	Text lettre_touche;
 	Text valeur_touche;
+	boolean deplacable; //1 quand la lettre est déplaçable (sur le pupitre ou sur le plateau mais jouable ) / 0 quand elle ne l'est plus
 
 	public Lettre_g(String l,int valeur, int posX, int posY) {
 		this.lettre = new String(l);
