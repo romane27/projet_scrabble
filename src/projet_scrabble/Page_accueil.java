@@ -38,6 +38,9 @@ public class Page_accueil extends Application {
         Clavier mon_clavier = new Clavier();
         Suggestions suggestion = new Suggestions();
         Plateau plateau = new Plateau();
+        bouton_ok bouton = new bouton_ok("valider");
+       
+        root.getChildren().add(bouton);
         root.getChildren().add(suggestion);
         root.getChildren().add(plateau);
         root.getChildren().add(mon_clavier);
