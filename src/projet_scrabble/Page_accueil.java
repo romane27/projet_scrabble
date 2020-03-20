@@ -29,13 +29,15 @@ public class Page_accueil extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
+    	Tableau m = new Tableau();
+    	Controleur c = new Controleur(m);
         primaryStage.setTitle("Jeu du Scrabble");
         Group root = new Group();
         Scene scene = new Scene(root,1000, 800, Color.WHITE);
         //Modele m = new Modele();
         //Controleur c = new Controleur(m);
         
-        Clavier mon_clavier = new Clavier();
+        Clavier mon_clavier = new Clavier(c,m);
         Suggestions suggestion = new Suggestions();
         Plateau plateau = new Plateau();
         bouton_ok bouton = new bouton_ok("valider");

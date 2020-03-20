@@ -3,6 +3,8 @@ package projet_scrabble;
 import java.awt.event.MouseEvent;
 import java.beans.EventHandler;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.scene.input.TransferMode;
@@ -12,7 +14,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class Lettre_g extends Parent {
+public class Lettre_g extends Parent implements Observable {
+	Controleur c;
+	Tableau m;
 	public String lettre;// lettre de la touche, c'est une variable public pour qu'elle puisse être lue
 							// depuis les autres classes
 	private int positionX = 0;// abscisse
@@ -23,8 +27,9 @@ public class Lettre_g extends Parent {
 	Text lettre_touche;
 	Text valeur_touche;
 	boolean deplacable; //1 quand la lettre est déplaçable (sur le pupitre ou sur le plateau mais jouable ) / 0 quand elle ne l'est plus
-
-	public Lettre_g(String l,int valeur, int posX, int posY) {
+	
+	public Lettre_g(String l,int valeur, int posX, int posY, Controleur c, Tableau m) {
+		this.c = c;
 		this.lettre = new String(l);
 		this.positionX = posX;
 		this.positionY = posY;
@@ -72,8 +77,11 @@ public class Lettre_g extends Parent {
 			
 
 			this.setOnMouseReleased(mouseEvent -> {
-				System.out.println("la lettre " + this.lettre + " a été déposé en (" + ((int) e.getSceneX() - 45) / 42 + ","
-						+ (e.getSceneY() - 3) / 42 + ")");
+				int pX = (int)(( e.getSceneX() +21-45) / 42);
+				int pY = (int)((e.getSceneY() +21 -3) / 42);
+				System.out.println("la lettre " + this.lettre + " a été déposé en (" + pX + ","
+						+ pY + ")");
+				//m.ajoutLettre(pX, pY, null); // pour envoyer sur le modèle, je n'arrive pas à passer par le controleur
 				
 			});
 
@@ -97,6 +105,18 @@ public class Lettre_g extends Parent {
 
 		}
 
+	}
+
+	@Override
+	public void addListener(InvalidationListener arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeListener(InvalidationListener arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

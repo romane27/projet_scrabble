@@ -122,7 +122,11 @@ public class Tableau {
 		
 	}
 	
-
+	public void ajoutLettre(int posX, int posY, Lettre l) {
+		//tableau[(posX+21)/15][(posY+21)%15].ajoutLettreCase(l);
+		System.out.print(posX); 
+		System.out.println(posY);
+	}
 
 
 }
