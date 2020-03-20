@@ -17,7 +17,7 @@ public class Clavier extends Parent {
 	ArrayList<Lettre> t; // la liste des lettres dans le clavier
 	Controleur c;
 	Tableau m;
-
+	int taille =50;
 	public Clavier(Controleur c, Tableau m) {
 		this.c = c ;
 		this.m = m;
@@ -41,13 +41,13 @@ public class Clavier extends Parent {
 		Tirage_lettre tirage = new Tirage_lettre(7);
 		this.t = tirage.newlettre;
 
-		touches = new Lettre_g[] { new Lettre_g(t.get(0).nom, t.get(0).valeur, 10, 20, this.c, this.m),
-				new Lettre_g(t.get(1).nom, t.get(1).valeur, 68, 20, this.c, this.m),
-				new Lettre_g(t.get(2).nom, t.get(2).valeur, 126, 20, this.c, this.m),
-				new Lettre_g(t.get(3).nom, t.get(3).valeur, 184, 20, this.c, this.m),
-				new Lettre_g(t.get(4).nom, t.get(4).valeur, 242, 20, this.c, this.m), 
-				new Lettre_g(t.get(5).nom,t.get(5).valeur, 300, 20, this.c, this.m),
-				new Lettre_g(t.get(6).nom,t.get(6).valeur, 358, 20, this.c, this.m)
+		touches = new Lettre_g[] { new Lettre_g(t.get(0).nom, t.get(0).valeur, 10, 20, this.c, this.m, taille),
+				new Lettre_g(t.get(1).nom, t.get(1).valeur, 68, 20, this.c, this.m, taille),
+				new Lettre_g(t.get(2).nom, t.get(2).valeur, 126, 20, this.c, this.m,taille),
+				new Lettre_g(t.get(3).nom, t.get(3).valeur, 184, 20, this.c, this.m,taille),
+				new Lettre_g(t.get(4).nom, t.get(4).valeur, 242, 20, this.c, this.m,taille), 
+				new Lettre_g(t.get(5).nom,t.get(5).valeur, 300, 20, this.c, this.m,taille),
+				new Lettre_g(t.get(6).nom,t.get(6).valeur, 358, 20, this.c, this.m,taille)
 
 		};
 

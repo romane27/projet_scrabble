@@ -12,7 +12,8 @@ public class Plateau extends Parent {
 	int taille = 42; // 50/20
 	// int espace = 30; //40/10
 	String[] name;
-
+	Controleur c;
+	Tableau m;
 	// ArrayList<Integer> Placement_bouton = new ArrayList<>();
 	public Plateau() {
 
@@ -102,5 +103,23 @@ public class Plateau extends Parent {
 
 			}
 		}
+	this.setOnMouseClicked(e-> changer_bouton("E",e.getX(),e.getY()));
 	}
+	public void changer_bouton( String l, double x, double y) {
+		/*if (l1.selectionne==1) {
+			Rectangle r = new Rectangle();
+			r.setStroke(Color.WHITE);
+			r.setWidth(taille);
+			r.setHeight(taille);
+			r.setX((int)x );
+			r.setY((int)y  );
+			r.setFill(Color.BLUE);*/
+			System.out.println(x);
+			System.out.println(y);
+			System.out.println((int)(x/50)*50);
+			System.out.println((int)(y/50)*50);
+			Lettre_g le = new Lettre_g(l, 2, (int)(x/taille)*taille, (int)(y/taille)*taille+3,this.c,this.m,taille);
+			this.getChildren().add(le);
+			//this.getChildren().add(r);
+		}
 }
