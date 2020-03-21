@@ -123,9 +123,32 @@ public class Tableau {
 	}
 	
 	public void ajoutLettre(int posX, int posY, Lettre l) {
-		//tableau[(posX+21)/15][(posY+21)%15].ajoutLettreCase(l);
-		System.out.print(posX); 
-		System.out.println(posY);
+		for (int i=0 ; i<this.tableau.length; i++) {
+			for (int j=0 ; j<this.tableau[i].length; j++) {
+				System.out.print(this.tableau[i][j].lettre.nom);
+				System.out.print(" ");
+
+			}
+			System.out.print("\n");
+
+		}
+		System.out.println(tableau[posX][posY].bonus);
+		Case a = tableau[posX][posY];
+		a.ajoutLettreCase(l);
+		System.out.print(posX);
+		System.out.print(" ");
+		System.out.print(posY);
+		System.out.print("\n");
+		for (int i=0 ; i<this.tableau.length; i++) {
+			for (int j=0 ; j<this.tableau[i].length; j++) {
+				System.out.print(this.tableau[i][j].lettre.nom);
+				System.out.print(" ");
+
+			}
+			System.out.print("\n");
+
+		}
+		
 	}
 
 

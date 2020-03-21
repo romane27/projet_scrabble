@@ -103,9 +103,9 @@ public class Plateau extends Parent {
 
 			}
 		}
-	this.setOnMouseClicked(e-> changer_bouton("E",e.getX(),e.getY()));
+	this.setOnMouseClicked(e-> changer_bouton(new Lettre("E",1),e.getX(),e.getY()));
 	}
-	public void changer_bouton( String l, double x, double y) {
+	public void changer_bouton(Lettre l, double x, double y) {
 		/*if (l1.selectionne==1) {
 			Rectangle r = new Rectangle();
 			r.setStroke(Color.WHITE);

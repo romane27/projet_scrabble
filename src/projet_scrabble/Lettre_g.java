@@ -28,9 +28,9 @@ public class Lettre_g extends Parent implements Observable {
 	Text valeur_touche;
 	boolean deplacable; //1 quand la lettre est déplaçable (sur le pupitre ou sur le plateau mais jouable ) / 0 quand elle ne l'est plus
 	
-	public Lettre_g(String l,int valeur, int posX, int posY, Controleur c, Tableau m, int taille) {
+	public Lettre_g(Lettre l,int valeur, int posX, int posY, Controleur c, Tableau m, int taille) {
 		this.c = c;
-		this.lettre = new String(l);
+		this.lettre = l.nom;
 		this.positionX = posX;
 		this.positionY = posY;
 		this.valeur = valeur;
@@ -81,7 +81,7 @@ public class Lettre_g extends Parent implements Observable {
 				int pY = (int)((e.getSceneY() +21 -3) / 42);
 				System.out.println("la lettre " + this.lettre + " a été déposé en (" + pX + ","
 						+ pY + ")");
-				//m.ajoutLettre(pX, pY, null); // pour envoyer sur le modèle, je n'arrive pas à passer par le controleur
+				m.ajoutLettre(pX, pY, l); // pour envoyer sur le modèle
 				
 			});
 
@@ -106,7 +106,6 @@ public class Lettre_g extends Parent implements Observable {
 		}
 
 	}
-	
 
 	@Override
 	public void addListener(InvalidationListener arg0) {
