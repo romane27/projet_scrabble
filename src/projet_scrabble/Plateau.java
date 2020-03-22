@@ -103,23 +103,12 @@ public class Plateau extends Parent {
 
 			}
 		}
-	this.setOnMouseClicked(e-> changer_bouton(new Lettre("E",1),e.getX(),e.getY()));
+		this.setOnMouseClicked(e->{this.getChildren().add(Lettre_g.changer_bouton(e.getX(),e.getY()));
+		//System.out.println(lettreg2.changer_bouton(e.getX(),e.getY()).lettre);
+		//System.out.println("la taille y est de "+(int)(e.getY()));
+		//System.out.println("la taille x est de "+lettreg2.changer_bouton(e.getX(),e.getY()));
+		
+	//	m.mat_lettre(lettreg2.changer_bouton(e.getX(),e.getY()).lettre,(int)(e.getX()/taille),(int)(e.getY()/taille));
+		});
 	}
-	public void changer_bouton(Lettre l, double x, double y) {
-		/*if (l1.selectionne==1) {
-			Rectangle r = new Rectangle();
-			r.setStroke(Color.WHITE);
-			r.setWidth(taille);
-			r.setHeight(taille);
-			r.setX((int)x );
-			r.setY((int)y  );
-			r.setFill(Color.BLUE);*/
-			System.out.println(x);
-			System.out.println(y);
-			System.out.println((int)(x/50)*50);
-			System.out.println((int)(y/50)*50);
-			Lettre_g le = new Lettre_g(l, 2, (int)(x/taille)*taille, (int)(y/taille)*taille+3,this.c,this.m,taille);
-			this.getChildren().add(le);
-			//this.getChildren().add(r);
-		}
 }
