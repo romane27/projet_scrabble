@@ -1,22 +1,24 @@
 package projet_scrabble;
 
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class Plateau extends Parent {
+public class Plateau extends Parent implements Observer {
 	Tableau plateau; // Color [] couleur = {Color.RED,Color.BLUE,Color.CYAN,Color.GREEN,Color.pink};
 	int taille = 42; // 50/20
 	// int espace = 30; //40/10
 	String[] name;
 	Controleur c;
-	Tableau m;
+	Modele m;
 	// ArrayList<Integer> Placement_bouton = new ArrayList<>();
-	public Plateau() {
-
+	public Plateau(Modele m) {
+		this.m = m;
 		// this.name=nom;
 		plateau = new Tableau();
 		Rectangle r = new Rectangle();
@@ -103,7 +105,18 @@ public class Plateau extends Parent {
 
 			}
 		}
-		this.setOnMouseClicked(e->{this.getChildren().add(Lettre_g.changer_bouton(e.getX(),e.getY()));
+		this.setOnMouseClicked(e->{
+			System.out.println(e.getX());
+			System.out.println(e.getY());
+			int posX = (int) (e.getX()/taille);
+			int posY = (int) (e.getY()/taille);
+			if (this.m.CaseLibre(posX, posY)) {
+				Lettre_g l = this.m.ajouterLettre(posX, posY);
+				if (l != null) {
+					this.getChildren().add(l);
+					this.m.rmL_EC();
+				}
+			}
 		//System.out.println(lettreg2.changer_bouton(e.getX(),e.getY()).lettre);
 		//System.out.println("la taille y est de "+(int)(e.getY()));
 		//System.out.println("la taille x est de "+lettreg2.changer_bouton(e.getX(),e.getY()));
@@ -111,4 +124,12 @@ public class Plateau extends Parent {
 	//	m.mat_lettre(lettreg2.changer_bouton(e.getX(),e.getY()).lettre,(int)(e.getX()/taille),(int)(e.getY()/taille));
 		});
 	}
+	
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+	
 }

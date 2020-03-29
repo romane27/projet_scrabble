@@ -29,7 +29,7 @@ public class Page_accueil extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-    	Tableau m = new Tableau();
+    	Modele m = new Modele();
     	Controleur c = new Controleur(m);
         primaryStage.setTitle("Jeu du Scrabble");
         Group root = new Group();
@@ -39,8 +39,8 @@ public class Page_accueil extends Application {
         
         Clavier mon_clavier = new Clavier(c,m);
         Suggestions suggestion = new Suggestions();
-        Plateau plateau = new Plateau();
-        bouton_ok bouton = new bouton_ok("remettre");
+        Plateau plateau = new Plateau(m);
+        bouton_ok bouton = new bouton_ok("valider");
        
         root.getChildren().add(bouton);
         root.getChildren().add(suggestion);

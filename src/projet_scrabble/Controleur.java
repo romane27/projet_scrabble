@@ -1,5 +1,7 @@
 package projet_scrabble;
 
+
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
@@ -7,9 +9,9 @@ import java.util.Observer;
 
 public class Controleur implements ActionListener, Observer {
 	
-	Tableau mod;
+	Modele mod;
 	
-	public Controleur(Tableau m) {
+	public Controleur(Modele m) {
 		this.mod = m;
 		
 	}
