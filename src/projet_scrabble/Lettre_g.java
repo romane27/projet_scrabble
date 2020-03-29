@@ -33,6 +33,9 @@ public class Lettre_g extends Parent implements Observable {
 	Button lettres;
 	static matrice_mots mat;
 	static ArrayList <String> lettresel ;
+	static ArrayList <Lettre_g> lettre_plateau= new ArrayList<>();
+	static ArrayList <Button>bouttonclavier  = new ArrayList<>();
+	static ArrayList <Button>bouttonsupprimer  = new ArrayList<>();
 	public Lettre_g(String l,int valeur, int posX, int posY,int taille) {
 		this.lettre = l;
 		this.positionX = posX;
@@ -41,6 +44,7 @@ public class Lettre_g extends Parent implements Observable {
 		this.lettresel =new ArrayList<>();
 		lettresel.add("A");
 		this.lettres=new Button(this.lettre);
+		bouttonclavier.add(lettres);
 		//bouton.setMinHeight(50);;
 		lettres.setMinSize(taille,taille);
 		lettres.setStyle("-fx-background-color: White");
@@ -141,8 +145,8 @@ public class Lettre_g extends Parent implements Observable {
 		// on ajoute la lettre selectionne a la liste 
 		//System.out.println("la lettre"+lettres.getText());
 		lettresel.add(lettres.getText());}});}
-	public void ajout_lettre_sele(String lettre_a_ajouter) {
-		this.lettresel.add(lettre_a_ajouter);
+	public static void ajout_lettre_sele(String lettre_a_ajouter) {
+		lettresel.add(lettre_a_ajouter);
 		System.out.println(lettresel.get(1));
 		System.out.println("la lettre ajoute est"+ lettre_a_ajouter);
 		
@@ -160,11 +164,19 @@ public class Lettre_g extends Parent implements Observable {
 		int taille=42;
 		System.out.println((int)(x/50)*50);
 		System.out.println((int)(y/50)*50);
-		
+		// on supprime la lettre du clavier quand elle est posée
+				for (Button bouton: bouttonclavier) {
+					if (bouton.getText()==l) {
+						bouton.setVisible(false);
+						//bouttonclavier.remove(bouton);
+						bouttonsupprimer.add(bouton);
+					}
+				}
 		Lettre_g lll =new Lettre_g(l, 2, (int)(x/taille)*taille, (int)(y/taille)*taille,taille);
 		//lll.getChildren().add();
 		//this.getChildren().add(le);
 		mat.mat_lettre(lll.lettre,(int)(x/taille),(int)(y/taille));
+		lettre_plateau.add(lll);
 		System.out.println("la lelele"+lll.lettre);
 		return lll;
 		

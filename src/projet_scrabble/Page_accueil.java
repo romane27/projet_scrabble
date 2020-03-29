@@ -40,7 +40,7 @@ public class Page_accueil extends Application {
         Clavier mon_clavier = new Clavier(c,m);
         Suggestions suggestion = new Suggestions();
         Plateau plateau = new Plateau();
-        bouton_ok bouton = new bouton_ok("valider");
+        bouton_ok bouton = new bouton_ok("remettre");
        
         root.getChildren().add(bouton);
         root.getChildren().add(suggestion);
