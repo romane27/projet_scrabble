@@ -41,6 +41,24 @@ public class Dico {
 
 		}
 		lecteurAvecBuffer.close();
+		
+		/* Tests
+		long debut = System.currentTimeMillis();
+		System.out.println(verifier_mot("abnegations"));
+		System.out.println(System.currentTimeMillis()-debut);
+		
+		long debut2 = System.currentTimeMillis();
+		System.out.println(verifier_mot("abyssins"));
+		System.out.println(System.currentTimeMillis()-debut2);
+		
+		long debut3 = System.currentTimeMillis();
+		System.out.println(verifier_mot("abykjevkbev"));
+		System.out.println(System.currentTimeMillis()-debut3);
+		
+		long debut4 = System.currentTimeMillis();
+		System.out.println(verifier_mot("zythums"));
+		System.out.println(System.currentTimeMillis()-debut4);
+		*/
 	}
 
 	public boolean verifier_mot(String a) {

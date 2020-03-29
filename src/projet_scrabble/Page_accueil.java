@@ -51,4 +51,3 @@ public class Page_accueil extends Application {
        primaryStage.show();
     }
 }
-
