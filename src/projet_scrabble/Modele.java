@@ -16,8 +16,7 @@ public class Modele extends Observable {
 	//Lettre l = new Lettre("A", 2);
 	Lettre_g en_cours;
 	//int val_EC;
-	static Lettre_g[] manche;
-	int nL;
+	ArrayList<Lettre_g> manche;
 	
 	public Modele() {
 		this.matrice = new String[15][15];
@@ -29,9 +28,7 @@ public class Modele extends Observable {
 		}
 		this.en_cours = null;
 		//this.val_EC = 0;
-		this.manche = new Lettre_g[7];
-		this.nL = 0;
-			
+		this.manche = new ArrayList<Lettre_g>();			
 
 		
 	}
@@ -49,18 +46,28 @@ public class Modele extends Observable {
 	public Lettre_g ajouterLettre(int posX, int posY) {
 		if (this.en_cours != null) {
 			this.matrice[posY][posX-1]=this.en_cours.lettre;
-			for (int i = 0; i < 15; i++) { // initialisation du tableau
-				for (int j = 0; j < 15; j++) {
-					System.out.print(matrice[i][j] + " ");
-				}
-				System.out.println();
-			}
+			afficherMat();
 			this.en_cours.setPosition(posX, posY);
-			this.manche[this.nL] = this.en_cours;
-			System.out.println("lll"+this.manche[this.nL].lettre);
-			this.nL += 1;
+			if (this.manche.contains(this.en_cours)){
+				System.out.println("redéplacement");
+				verif_maj(this.en_cours);
+			}
+			else {
+			this.manche.add(this.en_cours);
+			}
+			System.out.println("lll"+this.manche.get(this.manche.size()-1).lettre);
+			System.out.println("lll"+this.manche.get(this.manche.size()-1).positionX/42);
 		}
 		return this.en_cours;
+	}
+	
+	public void verif_maj(Lettre_g l) {
+		for (Lettre_g ll : this.manche) {
+			if (l.equals(ll)) {
+				ll.positionX = l.positionX;
+				ll.positionY = l.positionY;
+			}
+		}
 	}
 	
 	
@@ -69,7 +76,22 @@ public class Modele extends Observable {
 	}
 	
 	public boolean CaseLibre(int posX, int posY) {
-		return (this.matrice[posX][posY] == null);
+		System.out.println("La case cliquée a pour valeur :" + this.matrice[posY][posX-1]);
+		return (this.matrice[posY][posX-1] == null);
+	}
+	
+	public void supprimerElem(int posX, int posY) {
+		this.matrice[posY][posX-1] = null;
+		afficherMat();
+	}
+	
+	public void afficherMat() {
+		for (int i = 0; i < 15; i++) { // initialisation du tableau
+			for (int j = 0; j < 15; j++) {
+				System.out.print(matrice[i][j] + " ");
+			}
+			System.out.println();
+		}
 	}
 	
 	/*public Lettre_g ajoutBouton(double x, double y) {

@@ -16,6 +16,8 @@ public class Plateau extends Parent implements Observer {
 	String[] name;
 	Controleur c;
 	Modele m;
+	int anc_posX, anc_posY;
+
 	// ArrayList<Integer> Placement_bouton = new ArrayList<>();
 	public Plateau(Modele m) {
 		this.m = m;
@@ -28,7 +30,8 @@ public class Plateau extends Parent implements Observer {
 		r.setX(taille - 3);
 		r.setY(0);
 		this.getChildren().add(r);
-
+		anc_posX = -1;
+		anc_posY = -1;
 		for (int i = 0; i < 15; i++) {
 			for (int j = 1; j < 16; j++) {
 				// couleur bleu
@@ -105,33 +108,56 @@ public class Plateau extends Parent implements Observer {
 
 			}
 		}
-		
-		this.setOnMouseClicked(e->{
+
+		this.setOnMouseClicked(e -> {
+			System.out.println("On a cliqué sur le plateau");
 			System.out.println(e.getX());
 			System.out.println(e.getY());
-			int posX = (int) (e.getX()/taille);
-			int posY = (int) (e.getY()/taille);
-			if (this.m.CaseLibre(posX, posY)) {
-				Lettre_g l = this.m.ajouterLettre(posX, posY);
-				
-				if (l != null) {
-					this.getChildren().add(l);
+			int posX = (int) (e.getX() / taille);
+			int posY = (int) (e.getY() / taille);
+			if (this.m.en_cours != null) {
+				if (this.m.CaseLibre(posX, posY)) {
+					int apX = this.m.en_cours.positionX/taille;
+					int apY = this.m.en_cours.positionY/taille;
+					Lettre_g l = this.m.ajouterLettre(posX, posY);
+
+					if (!this.getChildren().contains(l)) {
+						this.getChildren().add(l);
+					} else {
+						//if (anc_posX != -1 && anc_posY != -1) {
+							this.m.supprimerElem(apX, apY);
+						//}
+					}
+					/*anc_posX = -1;
+					anc_posY = -1;*/
 					this.m.rmL_EC();
-				}
+					/*
+					 * else {
+					 * 
+					 * 
+					 * }
+					 */
+				} /*else {
+					//anc_posX = posX;
+					//anc_posY = posY;
+				}*/
+				// System.out.println(lettreg2.changer_bouton(e.getX(),e.getY()).lettre);
+				// System.out.println("la taille y est de "+(int)(e.getY()));
+				// System.out.println("la taille x est de
+				// "+lettreg2.changer_bouton(e.getX(),e.getY()));
+
+				// m.mat_lettre(lettreg2.changer_bouton(e.getX(),e.getY()).lettre,(int)(e.getX()/taille),(int)(e.getY()/taille));
 			}
-		//System.out.println(lettreg2.changer_bouton(e.getX(),e.getY()).lettre);
-		//System.out.println("la taille y est de "+(int)(e.getY()));
-		//System.out.println("la taille x est de "+lettreg2.changer_bouton(e.getX(),e.getY()));
-		
-	//	m.mat_lettre(lettreg2.changer_bouton(e.getX(),e.getY()).lettre,(int)(e.getX()/taille),(int)(e.getY()/taille));
+			else {
+				System.out.println("Aucune lettre n'est sélectionnée");
+			}
 		});
 	}
-	
+
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-		
-		
+
 	}
-	
+
 }

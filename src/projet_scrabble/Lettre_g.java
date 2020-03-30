@@ -22,8 +22,8 @@ public class Lettre_g extends Parent implements Observable {
 	Modele m;
 	public String lettre;// lettre de la touche, c'est une variable public pour qu'elle puisse être lue
 							// depuis les autres classes
-	private int positionX = 0;// abscisse
-	private int positionY = 0;// ordonnée de la touche
+	int positionX = 0;// abscisse
+	int positionY = 0;// ordonnée de la touche
 	int valeur =0; //combien de points vaut la lettre
 	//int Selectionne = 0;
 	Rectangle fond_touche;
@@ -64,6 +64,7 @@ public class Lettre_g extends Parent implements Observable {
 		//System.out.print("On clique sur un bouton");
 		lettres.setOnMousePressed(e-> {
 			System.out.println("On clique sur un bouton");
+			System.out.println(lettres.parentProperty());
 			if (e.getButton() == MouseButton.SECONDARY){
 				lettres.setStyle("-fx-background-color: White"); 
 				System.out.println("Nope");
