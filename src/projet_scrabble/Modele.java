@@ -11,11 +11,12 @@ public class Modele extends Observable {
 	
 	String [][] matrice;
 	ArrayList <String> listlettre;
+	
 	Dico dico;
 	//Lettre l = new Lettre("A", 2);
 	Lettre_g en_cours;
 	//int val_EC;
-	Lettre_g[] manche;
+	static Lettre_g[] manche;
 	int nL;
 	
 	public Modele() {
@@ -41,6 +42,7 @@ public class Modele extends Observable {
 	
 	public void modifL_EC(Lettre_g l) {
 		this.en_cours = l;
+
 		System.out.println(this.en_cours.lettre);
 	}
 	
@@ -55,10 +57,12 @@ public class Modele extends Observable {
 			}
 			this.en_cours.setPosition(posX, posY);
 			this.manche[this.nL] = this.en_cours;
+			System.out.println("lll"+this.manche[this.nL].lettre);
 			this.nL += 1;
 		}
 		return this.en_cours;
 	}
+	
 	
 	public void rmL_EC() {
 		this.en_cours = null;

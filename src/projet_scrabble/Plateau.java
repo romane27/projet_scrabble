@@ -105,6 +105,7 @@ public class Plateau extends Parent implements Observer {
 
 			}
 		}
+		
 		this.setOnMouseClicked(e->{
 			System.out.println(e.getX());
 			System.out.println(e.getY());
@@ -112,6 +113,7 @@ public class Plateau extends Parent implements Observer {
 			int posY = (int) (e.getY()/taille);
 			if (this.m.CaseLibre(posX, posY)) {
 				Lettre_g l = this.m.ajouterLettre(posX, posY);
+				
 				if (l != null) {
 					this.getChildren().add(l);
 					this.m.rmL_EC();

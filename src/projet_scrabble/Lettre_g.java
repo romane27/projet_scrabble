@@ -89,6 +89,7 @@ public class Lettre_g extends Parent implements Observable {
 		this.lettres.setStyle("-fx-background-color: White"); 
 		System.out.println(this.positionX);
 		System.out.println(this.positionY);
+		
 		//this.getChildren().add(this.lettres);
 	}
 	/*public void ajout_lettre_sele(String lettre_a_ajouter) {
