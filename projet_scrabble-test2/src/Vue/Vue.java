@@ -19,21 +19,21 @@ public class Vue extends JFrame {
 
 	public Vue(Tableau tableau, Joueur joueur, Joueur joueur2) {
 		score = new Scores(4);
-		score.setBounds(820, 150, 100, 100);
+		score.setBounds(670, 150, 100, 100);
 		score.setVisible(true);
 		plateau = new Plateau(tableau);
 		clavier = new Clavier(joueur);
 		this.setLayout(null);
-		plateau.setBounds(0, 0, 800, 800);
-		clavier.setBounds((800 - (800 / 15) * 7) / 2, 800 + 10, 800 / 15 * 7, 800 / 15);
+		plateau.setBounds(0, 0, 640, 640);
+		clavier.setBounds((640 - (640 / 15) * 7) / 2, 640 + 10, 640 / 15 * 7,640 / 15);
 		this.add(clavier);
 		this.add(plateau);
-		this.setSize(1000, 1000);
+		this.setSize(900, 900);
 		this.setVisible(true);
 		this.setResizable(false);
 		this.getContentPane().setBackground(Color.white);
 		fdt = new JButton("Fin de Tour");
-		fdt.setBounds(805, 760, 170, 30);
+		fdt.setBounds(670, 600, 170, 30);
 		this.add(fdt);
 		this.add(score);
 		this.setLocationRelativeTo(null);
