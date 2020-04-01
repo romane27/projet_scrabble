@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
 
+import Controleur.Controleur;
+
 public class Dico {
 
 	HashMap<String, ArrayList<String>> dico;
@@ -25,16 +27,17 @@ public class Dico {
 		} catch (FileNotFoundException exc) {
 			System.out.println("Erreur d'ouverture");
 		}
+		String lignemaj;
 		while ((ligne = lecteurAvecBuffer.readLine()) != null) {
-
-			String cle = ligne.substring(0, 2);
+			lignemaj = ligne.toUpperCase();
+			String cle = lignemaj.substring(0, 2);
 			if (this.dico.containsKey(cle)) {
 				ArrayList<String> liste = this.dico.get(cle);
-				liste.add(ligne);
+				liste.add(lignemaj);
 				this.dico.put(cle, liste);
 			} else {
 				ArrayList<String> l = new ArrayList<String>();
-				l.add(ligne);
+				l.add(lignemaj);
 				this.dico.put(cle, l);
 
 			}
@@ -44,13 +47,21 @@ public class Dico {
 	}
 
 	public boolean verifier_mot(String a) {
-		String cle = a.substring(0, 2);
-		ArrayList<String> l = this.dico.get(cle);
-		for (int i = 0; i < l.size(); i++) {
-			if (l.get(i).equals(a)) {
+		try {
+
+			String cle = a.substring(0, 2);
+			ArrayList<String> l = this.dico.get(cle);
+			if (l.contains(a)) {
 				return true;
 			}
+			return false;
+		} catch (NullPointerException exp) {
+			return false;
 		}
-		return false;
+	}
+
+	public static void main(String[] args) throws IOException {
+		Dico d = new Dico();
+		System.out.println(d.verifier_mot("LAG"));
 	}
 }

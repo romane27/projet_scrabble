@@ -11,20 +11,23 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Random;
 
+import javafx.util.Pair;
+
 public class Tableau {
 	public Case[][] tableau;
-	HashMap<String, ArrayList<String>> dico;
-	int mot_triple = 1;
-	int lettre_triple = 2;
-	int mot_double = 5;
-	int lettre_double = 3;
-	int sans_bonus = 0;
+	/*
+	 * int mot_triple = 1; int lettre_triple = 2; int mot_double = 5; int
+	 * lettre_double = 3; int sans_bonus = 0;
+	 */
+	public ArrayList<Case> casejouables;
 	public Color[] couleur = { Color.green, Color.red, Color.getHSBColor(0, 128, 255), Color.cyan, null, Color.pink,
 			Color.pink };
 	public String[] def = { "", "MT", "LT", "LD", "", "MD", "" };
+	public Dico dic;
 
-	public Tableau() {
-
+	public Tableau() throws IOException {
+		dic = new Dico();
+		casejouables = new ArrayList<Case>();
 		this.tableau = new Case[15][15];
 		// this.dico = new Dico().dico;
 		for (int i = 0; i < 15; i++) { // initialisation du tableau
@@ -117,37 +120,40 @@ public class Tableau {
 		tableau[7][7].jouable = true;
 	}
 
-	public void majjouable(int o, int p, int i) {
-		if (i == 1) {
-			if (o != 0 && o != 14 && p != 0 && p != 14) {
-				if (tableau[o - 1][p].occupe == false) {
-					tableau[o - 1][p].jouable = true;
-				}
-				if (tableau[o + 1][p].occupe == false) {
-					tableau[o + 1][p].jouable = true;
-				}
-				if (tableau[o][p - 1].occupe == false) {
-					tableau[o][p - 1].jouable = true;
-				}
-				if (tableau[o][p + 1].occupe == false) {
-					tableau[o][p + 1].jouable = true;
-				}
+	public void majjouabletour() {
+		for (int i = 1; i < 14; i++) {
+			for (int j = 1; j < 14; j++) {
+
+			}
+		}
+	}
+
+	public void resetjouable() {
+		for (int i = 0; i < 15; i++) {
+			for (int j = 0; j < 15; j++) {
+				tableau[i][j].jouable = false;
 			}
 		}
 	}
 
 	public void posee(int o, int p, Bouton btn) {
+		if (o == 7 && p == 7) {
+			tableau[o + 1][p].jouable = true;
+			tableau[o - 1][p].jouable = true;
+			tableau[o][p - 1].jouable = true;
+			tableau[o][p + 1].jouable = true;
+		}
 		if (o != 0 && o != 14 && p != 0 && p != 14) {
-			if (tableau[o - 1][p].occupe == false) {
-				tableau[o - 1][p].jouable = true;
-			}
-			if (tableau[o + 1][p].occupe == false) {
+			if (tableau[o - 1][p].occupe == true && tableau[o + 1][p].occupe == false) {
 				tableau[o + 1][p].jouable = true;
 			}
-			if (tableau[o][p - 1].occupe == false) {
+			if (tableau[o + 1][p].occupe == true && tableau[o - 1][p].occupe == false) {
+				tableau[o - 1][p].jouable = true;
+			}
+			if (tableau[o][p - 1].occupe == false && tableau[o][p + 1].occupe == true) {
 				tableau[o][p - 1].jouable = true;
 			}
-			if (tableau[o][p + 1].occupe == false) {
+			if (tableau[o][p + 1].occupe == false && tableau[o][p - 1].occupe == true) {
 				tableau[o][p + 1].jouable = true;
 			}
 		}
@@ -163,13 +169,12 @@ public class Tableau {
 		tableau[o][p].lettre = null;
 	}
 
-	public int comptescore() {
+	public Pair<Boolean, Integer> comptescore() {
 		int score = 0;
 		int multiplacteurscore = 1;
-		int memx = 0;
-		int memy = 0;
 		int i = 0;
 		int j = 0;
+		String mot = "";
 
 		while (tableau[i][j].jouee == false) {
 			j++;
@@ -177,16 +182,12 @@ public class Tableau {
 				i += 1;
 				j = 0;
 			}
-
 		}
-
 		if (tableau[i][j + 1].occupe == true || tableau[i][j - 1].occupe == true) {// de droite à gauche
 
 			while (tableau[i][j - 1].occupe == true) {// retrouve le debut du mot
-
 				j -= 1;
 			}
-
 			while (tableau[i][j].occupe == true) {
 
 				if (tableau[i][j].bonus == 0) {// sans bonus
@@ -216,7 +217,11 @@ public class Tableau {
 					score += tableau[i][j].lettre.valeur * 3;
 					tableau[i][j].bonus = 0;
 				}
+				tableau[i][j].jouee = false;
+				// tableau[i][j].verouillee = true;
+				mot += tableau[i][j].lettre.nom;
 				j += 1;
+
 			}
 		}
 		if (tableau[i - 1][j].occupe == true || tableau[i + 1][j].occupe == true) {// de droite à gauche
@@ -238,28 +243,53 @@ public class Tableau {
 				if (tableau[i][j].bonus == 5) {// mot double
 					score += tableau[i][j].lettre.valeur;
 					multiplacteurscore *= 2;
-					tableau[i][j].bonus = 0;
+
 				}
 				if (tableau[i][j].bonus == 3) {// lettre double
 					score += tableau[i][j].lettre.valeur * 2;
-					tableau[i][j].bonus = 0;
+
 				}
 
 				if (tableau[i][j].bonus == 1) {// mot triple
 					score += tableau[i][j].lettre.valeur;
 					multiplacteurscore *= 3;
-					tableau[i][j].bonus = 0;
+
 				}
 
 				if (tableau[i][j].bonus == 2) {// lettre triple
 					score += tableau[i][j].lettre.valeur * 3;
-					tableau[i][j].bonus = 0;
+
 				}
+				tableau[i][j].jouee = false;
+				mot += tableau[i][j].lettre.nom;
 				i += 1;
 			}
 		}
+		System.out.println(mot + " " + dic.verifier_mot(mot));
+		/*
+		 * if (!dic.verifier_mot(mot)) { score = 0; }
+		 */
+		Pair<Boolean, Integer> pair = new Pair<Boolean, Integer>(dic.verifier_mot(mot), score);
+		return pair;
 
-		return score;
+	}
+
+	public void majmauvaismot(ArrayList<Integer> listecasejouee) {
+		for (int k = 0; k < listecasejouee.size(); k++) {
+			int i = listecasejouee.get(k) / 15;
+			int j = listecasejouee.get(k) % 15;
+			tableau[i][j].occupe = false;
+		}
+	}
+
+	public void majbonmot(ArrayList<Integer> listecasejouee) {
+		for (int k = 0; k < listecasejouee.size(); k++) {
+			int i = listecasejouee.get(k) / 15;
+			int j = listecasejouee.get(k) % 15;
+			tableau[i][j].bonus = 0;
+			tableau[i][j].verouillee = true;
+			tableau[i][j].occupe = false;
+		}
 
 	}
 }

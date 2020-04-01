@@ -9,7 +9,7 @@ public class Joueur {
 	// public String nom;
 
 	public Joueur(Pioche pioche) {
-		score=0;
+		score = 0;
 		this.jeu = new ArrayList<>();
 		for (int i = 0; i < 7; i++) {
 			this.jeu.add(pioche.piocherLettre());
@@ -17,8 +17,18 @@ public class Joueur {
 	}
 
 	public void tirage(Pioche pioche) {
-		for (int i = 0; i < 7 - this.jeu.size(); i++) {
+		for (int i = 0; i < 7 - this.jeu.size() + 1; i++) {
 			this.jeu.add(pioche.piocherLettre());
 		}
+
+	}
+
+	public String toString() {
+		String s = "";
+		for (int i = 0; i < 7; i++) {
+			s += jeu.get(i).nom + ", ";
+		}
+		return s;
+
 	}
 }

@@ -20,14 +20,14 @@ public class Clavier extends JPanel {
 			Bouton boutton = new Bouton();
 			boutton.setText(joueur.jeu.get(i).nom);
 			boutton.lettre = joueur.jeu.get(i);
-			boutton.setName("btn" + i);
 			boutton.setBackground(Color.white);
+			boutton.place = i;
 			this.add(boutton);
 		}
 	}
 
 	public void ajoutactionlistner(int i, ActionListener l) {
-		JButton btn = (Bouton) this.getComponent(i);
+		Bouton btn = (Bouton) this.getComponent(i);
 		btn.addActionListener(l);
 	}
 }

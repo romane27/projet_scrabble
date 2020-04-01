@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -15,8 +16,10 @@ import javafx.scene.shape.Rectangle;
 import java.awt.Color;
 
 public class Plateau extends JPanel {
+	Tableau tableau;
 
 	public Plateau(Tableau plateau) {
+		tableau = plateau;
 		this.setLayout(new GridLayout(15, 15));
 		for (int i = 0; i < 15; i++) {
 			for (int j = 1; j < 16; j++) {
@@ -77,5 +80,53 @@ public class Plateau extends JPanel {
 	public void ajoutactionlistner(int k, ActionListener l) {
 		JButton btn = (Bouton) this.getComponent(k);
 		btn.addActionListener(l);
+	}
+
+	public void resetplateau(ArrayList<Integer> listecasejouee) {
+		for (int k = 0; k < listecasejouee.size(); k++) {
+			int i = listecasejouee.get(k) / 15;
+			int j = listecasejouee.get(k) % 15;
+
+			Bouton bouton = (Bouton) this.getComponent(listecasejouee.get(k));
+			// bouton.setBackground(Color.orange);
+			System.out.println(bouton.getBackground());
+			if (tableau.tableau[i][j].bonus == 2) {
+				bouton.setText("");
+				bouton.setBackground(Color.getHSBColor(0, 128, 255));
+				bouton.caseass = tableau.tableau[i][j];
+			}
+			// milieu
+			if (tableau.tableau[i][j].bonus == 6) {
+				bouton.setText("");
+				bouton.setBackground(Color.pink);
+				bouton.caseass = tableau.tableau[i][j];
+			}
+
+			// couleur rouge
+			if (tableau.tableau[i][j].bonus == 1) {
+				bouton.setText("");
+				bouton.setBackground(Color.red);
+				bouton.caseass = tableau.tableau[i][j];
+			}
+			// couleur cyan
+			if (tableau.tableau[i][j].bonus == 3) {
+				bouton.setText("");
+				bouton.setBackground(Color.cyan);
+				bouton.caseass = tableau.tableau[i][j];
+			}
+			// couleur beige
+			if (tableau.tableau[i][j].bonus == 5) {
+				bouton.setText("");
+				bouton.setBackground(Color.pink);
+				bouton.caseass = tableau.tableau[i][j];
+				// couleur vert
+			}
+			if (tableau.tableau[i][j].bonus == 0) {
+				bouton.setText("");
+				bouton.setBackground(Color.green);
+				bouton.caseass = tableau.tableau[i][j];
+
+			}
+		}
 	}
 }
