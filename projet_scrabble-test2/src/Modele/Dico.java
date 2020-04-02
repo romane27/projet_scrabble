@@ -60,8 +60,8 @@ public class Dico {
 		}
 	}
 
-	public static void main(String[] args) throws IOException {
+/*	public static void main(String[] args) throws IOException {
 		Dico d = new Dico();
 		System.out.println(d.verifier_mot("LAG"));
-	}
+	}*/
 }
