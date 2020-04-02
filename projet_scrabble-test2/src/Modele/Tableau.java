@@ -299,13 +299,13 @@ public class Tableau {
 		if (tableau[o - 1][p].occupe == true && o != 14) {
 			return true;
 		}
-		if (o != 0 && tableau[o + 1][p].occupe == true && tableau[o - 1][p].occupe == false) {
+		if (o != 0 && tableau[o + 1][p].occupe == true) {
 			return true;
 		}
-		if (tableau[o][p - 1].occupe == false && p != 0) {
+		if (tableau[o][p - 1].occupe == true && p != 0) {
 			return true;
 		}
-		if (tableau[o][p + 1].occupe == false && p != 14) {
+		if (tableau[o][p + 1].occupe == true && p != 14) {
 			return true;
 
 		}
