@@ -26,8 +26,11 @@ public class Plateau extends JPanel {
 				// couleur bleu
 				if (plateau.tableau[i][j - 1].bonus == 2) {
 					Bouton bouton = new Bouton();
-					bouton.setText("LT");
-					bouton.setBackground(Color.getHSBColor(0, 128, 255));
+					bouton.setText("LD");
+					// test mais lettre ecrit trop petit ...
+					Font f=bouton.getFont().deriveFont(5.0f);
+					bouton.setFont(f);
+					bouton.setBackground(new Color (42, 125, 210 ));
 					bouton.caseass = plateau.tableau[i][j - 1];
 					this.add(bouton);
 				}
@@ -59,14 +62,14 @@ public class Plateau extends JPanel {
 				if (plateau.tableau[i][j - 1].bonus == 5) {
 					Bouton bouton = new Bouton();
 					bouton.setText("MD");
-					bouton.setBackground(Color.pink);
+					bouton.setBackground(new Color (240,175,234));
 					bouton.caseass = plateau.tableau[i][j - 1];
 					this.add(bouton);
 					// couleur vert
 				}
 				if (plateau.tableau[i][j - 1].bonus == 0) {
 					Bouton bouton = new Bouton();
-					bouton.setBackground(Color.green);
+					bouton.setBackground(new Color(13,173,31));
 					bouton.caseass = plateau.tableau[i][j - 1];
 					this.add(bouton);
 
