@@ -27,9 +27,8 @@ public class Controleur {
 	Pioche pioche;
 	Vue vue;
 	Case[] mot;
-	int nblettre = 0;
 	int sens = 0;
-	ArrayList<Integer> listecasejouee;
+	ArrayList<Pair> listecasejouee;
 
 	public Controleur() throws IOException {
 
@@ -51,7 +50,7 @@ public class Controleur {
 	public void ajoutactlist() {
 		ArrayList<Lettre> liste = new ArrayList();
 		ArrayList<Bouton> list = new ArrayList();
-		listecasejouee = new ArrayList<Integer>();
+		listecasejouee = new ArrayList<Pair>();
 		// Ce qu'il se passe quand tu cliques sur une des lettres du clavier
 		for (int i = 0; i < 7; i++) {
 
@@ -61,20 +60,16 @@ public class Controleur {
 					btn.setBackground(Color.lightGray);
 					if (!liste.isEmpty()) {
 						list.get(0).setBackground(Color.white);
-						nblettre -= 1;
-
 					}
 					liste.clear();
 					liste.add(btn.lettre);
 					list.clear();
 					list.add(btn);
-					nblettre += 1;
 				}
 				if (btn.isclicked() && btn.verrouille == false) {
 					btn.setBackground(Color.white);
 					liste.remove(btn.lettre);
 					list.remove(btn);
-					nblettre -= 1;
 				}
 			});
 		}
@@ -84,33 +79,30 @@ public class Controleur {
 				int o = i;
 				int p = j;
 				int k = 15 * i + j;
+				Pair<Integer, Integer> xy = new Pair<Integer, Integer>(o, p);
 				Bouton btn = (Bouton) vue.plateau.getComponent(k);
 				vue.plateau.ajoutactionlistner(k, (ActionEvent evt) -> {
 					try {
-						if (nblettre > 0) {
-							if (tableau.tableau[o][p].occupe == false && !liste.isEmpty()
-									&& tableau.tableau[o][p].jouable == true) {
-								// btn.setBackground(Color.white);
-								// btn.setText(liste.get(0).nom);
-								vue.majplateau(k, liste.get(0).nom);
-								liste.clear();
-								btn.associe(list.get(0));
-								tableau.posee(o, p, btn);
-								joueur.jeu.remove(btn.boutonass.lettre);
-								listecasejouee.add(k);
-							} else {
-								if (!tableau.tableau[o][p].verouillee) {
-									btn.setBackground(tableau.couleur[tableau.tableau[o][p].bonus]);
-									btn.setText(tableau.def[tableau.tableau[o][p].bonus]);
-									btn.boutonass.setBackground(Color.white);
-									btn.boutonass.clique = false;
-									tableau.retiree(o, p, btn);
-									joueur.jeu.add(btn.boutonass.lettre);
-									listecasejouee.remove(k);
-								}
-							}
+						if (tableau.tableau[o][p].occupe == false && !liste.isEmpty()
+								&& tableau.tableau[o][p].jouable == true) {
+							// btn.setBackground(Color.white);
+							// btn.setText(liste.get(0).nom);
+							vue.majplateau(k, liste.get(0).nom);
+							liste.clear();
+							btn.associe(list.get(0));
+							tableau.posee(o, p, btn);
+							joueur.jeu.remove(btn.boutonass.lettre);
+							listecasejouee.add(xy);
 						} else {
-
+							if (!tableau.tableau[o][p].verouillee) {
+								btn.setBackground(tableau.couleur[tableau.tableau[o][p].bonus]);
+								btn.setText(tableau.def[tableau.tableau[o][p].bonus]);
+								btn.boutonass.setBackground(Color.white);
+								btn.boutonass.clique = false;
+								tableau.retiree(o, p, btn);
+								joueur.jeu.add(btn.boutonass.lettre);
+								listecasejouee.remove(xy);
+							}
 						}
 					} catch (NullPointerException exp) {
 					}
@@ -122,7 +114,6 @@ public class Controleur {
 	public void appuisfdt() {
 		vue.ajoutactlist((ActionEvent evt) -> {
 			Pair<Boolean, Integer> pair = tableau.comptescore();
-
 			if (pair.getKey() == false) {// si le mot est faux
 				System.out.println(listecasejouee);
 				vue.resetclavier();
@@ -131,13 +122,13 @@ public class Controleur {
 
 			} else {
 				joueur.score += pair.getValue();
-				vue.score.majscore(joueur, pioche);
 				joueur.tirage(pioche);
+				vue.score.majscore(joueur, pioche);
 				vue.majclavier(joueur);
 				tableau.majbonmot(listecasejouee);
 				// tableau.majbonmot(listecasejouee);
-
 			}
+			tableau.majjouabletour();
 			listecasejouee.clear();
 		});
 

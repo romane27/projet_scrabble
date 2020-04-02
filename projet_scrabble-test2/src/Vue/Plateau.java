@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import Modele.Bouton;
 import Modele.Tableau;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Pair;
 
 import java.awt.Color;
 
@@ -28,9 +29,9 @@ public class Plateau extends JPanel {
 					Bouton bouton = new Bouton();
 					bouton.setText("LD");
 					// test mais lettre ecrit trop petit ...
-					Font f=bouton.getFont().deriveFont(5.0f);
+					Font f = bouton.getFont().deriveFont(5.0f);
 					bouton.setFont(f);
-					bouton.setBackground(new Color (42, 125, 210 ));
+					bouton.setBackground(new Color(42, 125, 210));
 					bouton.caseass = plateau.tableau[i][j - 1];
 					this.add(bouton);
 				}
@@ -62,14 +63,14 @@ public class Plateau extends JPanel {
 				if (plateau.tableau[i][j - 1].bonus == 5) {
 					Bouton bouton = new Bouton();
 					bouton.setText("MD");
-					bouton.setBackground(new Color (240,175,234));
+					bouton.setBackground(new Color(240, 175, 234));
 					bouton.caseass = plateau.tableau[i][j - 1];
 					this.add(bouton);
 					// couleur vert
 				}
 				if (plateau.tableau[i][j - 1].bonus == 0) {
 					Bouton bouton = new Bouton();
-					bouton.setBackground(new Color(13,173,31));
+					bouton.setBackground(new Color(13, 173, 31));
 					bouton.caseass = plateau.tableau[i][j - 1];
 					this.add(bouton);
 
@@ -85,12 +86,13 @@ public class Plateau extends JPanel {
 		btn.addActionListener(l);
 	}
 
-	public void resetplateau(ArrayList<Integer> listecasejouee) {
+	public void resetplateau(ArrayList<Pair> listecasejouee) {
 		for (int k = 0; k < listecasejouee.size(); k++) {
-			int i = listecasejouee.get(k) / 15;
-			int j = listecasejouee.get(k) % 15;
+			int i = (int) listecasejouee.get(k).getKey();
+			int j = (int) listecasejouee.get(k).getValue();
 
-			Bouton bouton = (Bouton) this.getComponent(listecasejouee.get(k));
+			Bouton bouton = (Bouton) this
+					.getComponent((int) listecasejouee.get(k).getKey() * 15 + (int) listecasejouee.get(k).getValue());
 			// bouton.setBackground(Color.orange);
 			System.out.println(bouton.getBackground());
 			if (tableau.tableau[i][j].bonus == 2) {

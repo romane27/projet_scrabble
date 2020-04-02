@@ -17,15 +17,18 @@ public class Joueur {
 	}
 
 	public void tirage(Pioche pioche) {
-		for (int i = 0; i < 7 - this.jeu.size() + 1; i++) {
+		int k = 7 - this.jeu.size();
+		for (int i = 0; i < k; i++) {
+			System.out.println(this);
 			this.jeu.add(pioche.piocherLettre());
 		}
+		System.out.println(this.jeu.size());
 
 	}
 
 	public String toString() {
 		String s = "";
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < jeu.size(); i++) {
 			s += jeu.get(i).nom + ", ";
 		}
 		return s;

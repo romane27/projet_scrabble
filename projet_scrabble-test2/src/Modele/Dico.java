@@ -47,6 +47,9 @@ public class Dico {
 	}
 
 	public boolean verifier_mot(String a) {
+		if (a=="") {
+			return true;
+		}
 		try {
 
 			String cle = a.substring(0, 2);

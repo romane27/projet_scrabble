@@ -20,8 +20,8 @@ public class Tableau {
 	 * lettre_double = 3; int sans_bonus = 0;
 	 */
 	public ArrayList<Case> casejouables;
-	public Color[] couleur = { new Color(13,173,31), Color.red, new Color (42, 125, 210 ), Color.cyan, null, new Color (240,175,234),
-			Color.pink };
+	public Color[] couleur = { new Color(13, 173, 31), Color.red, new Color(42, 125, 210), Color.cyan, null,
+			new Color(240, 175, 234), Color.pink };
 	public String[] def = { "", "MT", "LT", "LD", "", "MD", "" };
 	public Dico dic;
 
@@ -123,7 +123,7 @@ public class Tableau {
 	public void majjouabletour() {
 		for (int i = 1; i < 14; i++) {
 			for (int j = 1; j < 14; j++) {
-
+				tableau[i][j].jouable = this.jouable(i, j);
 			}
 		}
 	}
@@ -143,19 +143,19 @@ public class Tableau {
 			tableau[o][p - 1].jouable = true;
 			tableau[o][p + 1].jouable = true;
 		}
-		if (o != 0 && o != 14 && p != 0 && p != 14) {
-			if (tableau[o - 1][p].occupe == true && tableau[o + 1][p].occupe == false) {
-				tableau[o + 1][p].jouable = true;
-			}
-			if (tableau[o + 1][p].occupe == true && tableau[o - 1][p].occupe == false) {
-				tableau[o - 1][p].jouable = true;
-			}
-			if (tableau[o][p - 1].occupe == false && tableau[o][p + 1].occupe == true) {
-				tableau[o][p - 1].jouable = true;
-			}
-			if (tableau[o][p + 1].occupe == false && tableau[o][p - 1].occupe == true) {
-				tableau[o][p + 1].jouable = true;
-			}
+
+		if (tableau[o - 1][p].occupe == true && tableau[o + 1][p].occupe == false && o != 14) {
+			tableau[o + 1][p].jouable = true;
+		}
+		if (o != 0 && tableau[o + 1][p].occupe == true && tableau[o - 1][p].occupe == false) {
+			tableau[o - 1][p].jouable = true;
+		}
+		if (tableau[o][p - 1].occupe == false && tableau[o][p + 1].occupe == true && p != 0) {
+			tableau[o][p - 1].jouable = true;
+		}
+		if (tableau[o][p + 1].occupe == false && tableau[o][p - 1].occupe == true && p != 14) {
+			tableau[o][p + 1].jouable = true;
+
 		}
 		tableau[o][p].jouee = true;
 		tableau[o][p].occupe = true;
@@ -174,8 +174,8 @@ public class Tableau {
 		int multiplacteurscore = 1;
 		int i = 0;
 		int j = 0;
-		String mot = "";
-
+		String mot1 = "";
+		String mot2 = "";
 		while (tableau[i][j].jouee == false) {
 			j++;
 			if (j == 14) {
@@ -219,12 +219,12 @@ public class Tableau {
 				}
 				tableau[i][j].jouee = false;
 				// tableau[i][j].verouillee = true;
-				mot += tableau[i][j].lettre.nom;
+				mot1 += tableau[i][j].lettre.nom;
 				j += 1;
 
 			}
 		}
-		if (tableau[i - 1][j].occupe == true || tableau[i + 1][j].occupe == true) {// de droite à gauche
+		if (tableau[i - 1][j].occupe == true || tableau[i + 1][j].occupe == true) {// de haut en bas
 
 			while (tableau[i - 1][j].occupe == true) {// retrouve le debut du mot
 
@@ -261,35 +261,54 @@ public class Tableau {
 
 				}
 				tableau[i][j].jouee = false;
-				mot += tableau[i][j].lettre.nom;
+				mot2 += tableau[i][j].lettre.nom;
 				i += 1;
 			}
 		}
-		System.out.println(mot + " " + dic.verifier_mot(mot));
-		/*
-		 * if (!dic.verifier_mot(mot)) { score = 0; }
-		 */
-		Pair<Boolean, Integer> pair = new Pair<Boolean, Integer>(dic.verifier_mot(mot), score);
+		System.out.println(mot1 + " " + dic.verifier_mot(mot1));
+		System.out.println(mot2 + " " + dic.verifier_mot(mot1));
+		Boolean b = dic.verifier_mot(mot1) && dic.verifier_mot(mot2);
+		Pair<Boolean, Integer> pair = new Pair<Boolean, Integer>(b, score);
 		return pair;
 
 	}
 
-	public void majmauvaismot(ArrayList<Integer> listecasejouee) {
+	public void majmauvaismot(ArrayList<Pair> listecasejouee) {
 		for (int k = 0; k < listecasejouee.size(); k++) {
-			int i = listecasejouee.get(k) / 15;
-			int j = listecasejouee.get(k) % 15;
+			int i = (int) listecasejouee.get(k).getKey();
+			int j = (int) listecasejouee.get(k).getValue();
 			tableau[i][j].occupe = false;
 		}
 	}
 
-	public void majbonmot(ArrayList<Integer> listecasejouee) {
+	public void majbonmot(ArrayList<Pair> listecasejouee) {
 		for (int k = 0; k < listecasejouee.size(); k++) {
-			int i = listecasejouee.get(k) / 15;
-			int j = listecasejouee.get(k) % 15;
+			int i = (int) listecasejouee.get(k).getKey();
+			int j = (int) listecasejouee.get(k).getValue();
 			tableau[i][j].bonus = 0;
 			tableau[i][j].verouillee = true;
-			tableau[i][j].occupe = false;
+			tableau[i][j].occupe = true;
 		}
 
+	}
+
+	public boolean jouable(int o, int p) {
+		if (o == 7 && p == 7) {
+			return true;
+		}
+		if (tableau[o - 1][p].occupe == true && o != 14) {
+			return true;
+		}
+		if (o != 0 && tableau[o + 1][p].occupe == true && tableau[o - 1][p].occupe == false) {
+			return true;
+		}
+		if (tableau[o][p - 1].occupe == false && p != 0) {
+			return true;
+		}
+		if (tableau[o][p + 1].occupe == false && p != 14) {
+			return true;
+
+		}
+		return false;
 	}
 }
