@@ -11,19 +11,31 @@ public class Joueur {
 	public Joueur(Pioche pioche) {
 		score = 0;
 		this.jeu = new ArrayList<>();
-		for (int i = 0; i < 7; i++) {
-			this.jeu.add(pioche.piocherLettre());
-		}
+		initTirage(pioche);
 	}
 
 	public void tirage(Pioche pioche) {
 		int k = 7 - this.jeu.size();
 		for (int i = 0; i < k; i++) {
-			System.out.println(this);
 			this.jeu.add(pioche.piocherLettre());
 		}
+		for (int i = 0; i < this.jeu.size(); i++) {
+			System.out.print(this.jeu.get(i).nom);
+		}
 		System.out.println(this.jeu.size());
-
+		System.out.println("\n");
+	}
+	
+	public void initTirage(Pioche pioche) {
+		this.jeu.clear();
+		for (int i = 0; i < 7; i++) {
+			this.jeu.add(pioche.piocherLettre());
+		}
+		for (int i = 0; i < this.jeu.size(); i++) {
+			System.out.print(this.jeu.get(i).nom);
+		}
+		System.out.println(this.jeu.size());
+		System.out.println("\n");
 	}
 
 	public String toString() {

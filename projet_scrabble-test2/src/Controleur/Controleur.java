@@ -113,24 +113,34 @@ public class Controleur {
 
 	public void appuisfdt() {
 		vue.ajoutactlist((ActionEvent evt) -> {
-			Pair<Boolean, Integer> pair = tableau.comptescore();
-			if (pair.getKey() == false) {// si le mot est faux
-				System.out.println(listecasejouee);
-				vue.resetclavier();
-				vue.plateau.resetplateau(listecasejouee);
-				tableau.majmauvaismot(listecasejouee);
-
-			} else {
-				joueur.score += pair.getValue();
-				joueur.tirage(pioche);
+			System.out.println(joueur.jeu.size());
+			if (joueur.jeu.size()==7) {
+				joueur.initTirage(pioche);
 				vue.score.majscore(joueur, pioche);
 				vue.majclavier(joueur);
-				tableau.majbonmot(listecasejouee);
-				// tableau.majbonmot(listecasejouee);
 			}
-			tableau.majjouabletour();
-			listecasejouee.clear();
+			else {
+				Pair<Boolean, Integer[]> pair = tableau.comptescore();
+				if (pair.getKey() == false) {// si le mot est faux
+					System.out.println(listecasejouee);
+					vue.resetclavier();
+					vue.plateau.resetplateau(listecasejouee);
+					tableau.majmauvaismot(listecasejouee);
+	
+				} else {
+					joueur.score += pair.getValue()[0];
+					joueur.score += pair.getValue()[1];
+					joueur.tirage(pioche);
+					vue.score.majscore(joueur, pioche);
+					vue.majclavier(joueur);
+					tableau.majbonmot(listecasejouee);
+					// tableau.majbonmot(listecasejouee);
+				}
+				tableau.majjouabletour();
+				listecasejouee.clear();
+			}
 		});
+	
 
 	}
 }

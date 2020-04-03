@@ -97,7 +97,7 @@ public class Plateau extends JPanel {
 			System.out.println(bouton.getBackground());
 			if (tableau.tableau[i][j].bonus == 2) {
 				bouton.setText("");
-				bouton.setBackground(Color.getHSBColor(0, 128, 255));
+				bouton.setBackground(new Color(42, 125, 210));
 				bouton.caseass = tableau.tableau[i][j];
 			}
 			// milieu
@@ -122,13 +122,13 @@ public class Plateau extends JPanel {
 			// couleur beige
 			if (tableau.tableau[i][j].bonus == 5) {
 				bouton.setText("");
-				bouton.setBackground(Color.pink);
+				bouton.setBackground(new Color(240, 175, 234));
 				bouton.caseass = tableau.tableau[i][j];
 				// couleur vert
 			}
 			if (tableau.tableau[i][j].bonus == 0) {
 				bouton.setText("");
-				bouton.setBackground(Color.green);
+				bouton.setBackground(new Color(13, 173, 31));
 				bouton.caseass = tableau.tableau[i][j];
 
 			}

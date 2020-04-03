@@ -169,9 +169,11 @@ public class Tableau {
 		tableau[o][p].lettre = null;
 	}
 
-	public Pair<Boolean, Integer> comptescore() {
-		int score = 0;
-		int multiplacteurscore = 1;
+	public Pair<Boolean, Integer[]> comptescore() {
+		int score_m1 = 0;
+		int score_m2 = 0;
+		int mults1 = 1;
+		int mults2 = 1;
 		int i = 0;
 		int j = 0;
 		String mot1 = "";
@@ -191,30 +193,30 @@ public class Tableau {
 			while (tableau[i][j].occupe == true) {
 
 				if (tableau[i][j].bonus == 0) {// sans bonus
-					score += tableau[i][j].lettre.valeur;
+					score_m1 += tableau[i][j].lettre.valeur;
 				}
 				if (tableau[i][j].bonus == 6) {// sans bonus
-					score += tableau[i][j].lettre.valeur;
+					score_m1 += tableau[i][j].lettre.valeur;
 				}
 
 				if (tableau[i][j].bonus == 5) {// mot double
-					score += tableau[i][j].lettre.valeur;
-					multiplacteurscore *= 2;
+					score_m1 += tableau[i][j].lettre.valeur;
+					mults1 *= 2;
 					tableau[i][j].bonus = 0;
 				}
 				if (tableau[i][j].bonus == 3) {// lettre double
-					score += tableau[i][j].lettre.valeur * 2;
+					score_m1 += tableau[i][j].lettre.valeur * 2;
 					tableau[i][j].bonus = 0;
 				}
 
 				if (tableau[i][j].bonus == 1) {// mot triple
-					score += tableau[i][j].lettre.valeur;
-					multiplacteurscore *= 3;
+					score_m1 += tableau[i][j].lettre.valeur;
+					mults1 *= 3;
 					tableau[i][j].bonus = 0;
 				}
 
 				if (tableau[i][j].bonus == 2) {// lettre triple
-					score += tableau[i][j].lettre.valeur * 3;
+					score_m1 += tableau[i][j].lettre.valeur * 3;
 					tableau[i][j].bonus = 0;
 				}
 				tableau[i][j].jouee = false;
@@ -234,30 +236,30 @@ public class Tableau {
 			while (tableau[i][j].occupe == true) {
 				tableau[i][j].jouee = false;
 				if (tableau[i][j].bonus == 0) {// sans bonus
-					score += tableau[i][j].lettre.valeur;
+					score_m2 += tableau[i][j].lettre.valeur;
 				}
 				if (tableau[i][j].bonus == 6) {// sans bonus
-					score += tableau[i][j].lettre.valeur;
+					score_m2 += tableau[i][j].lettre.valeur;
 				}
 
 				if (tableau[i][j].bonus == 5) {// mot double
-					score += tableau[i][j].lettre.valeur;
-					multiplacteurscore *= 2;
+					score_m2 += tableau[i][j].lettre.valeur;
+					mults2 *= 2;
 
 				}
 				if (tableau[i][j].bonus == 3) {// lettre double
-					score += tableau[i][j].lettre.valeur * 2;
+					score_m2 += tableau[i][j].lettre.valeur * 2;
 
 				}
 
 				if (tableau[i][j].bonus == 1) {// mot triple
-					score += tableau[i][j].lettre.valeur;
-					multiplacteurscore *= 3;
+					score_m2 += tableau[i][j].lettre.valeur;
+					mults2 *= 3;
 
 				}
 
 				if (tableau[i][j].bonus == 2) {// lettre triple
-					score += tableau[i][j].lettre.valeur * 3;
+					score_m2 += tableau[i][j].lettre.valeur * 3;
 
 				}
 				tableau[i][j].jouee = false;
@@ -265,10 +267,13 @@ public class Tableau {
 				i += 1;
 			}
 		}
-		System.out.println(mot1 + " " + dic.verifier_mot(mot1));
-		System.out.println(mot2 + " " + dic.verifier_mot(mot1));
+		score_m1 *= mults1;
+		score_m2 *= mults2;
+		Integer[] scores = { score_m1, score_m2};
+		System.out.println(mot1 + " " + score_m1 + " " + dic.verifier_mot(mot1));
+		System.out.println(mot2 + " " + score_m2 + " " + dic.verifier_mot(mot2));
 		Boolean b = dic.verifier_mot(mot1) && dic.verifier_mot(mot2);
-		Pair<Boolean, Integer> pair = new Pair<Boolean, Integer>(b, score);
+		Pair<Boolean, Integer[]> pair = new Pair<Boolean, Integer[]>(b, scores);
 		return pair;
 
 	}
@@ -282,6 +287,7 @@ public class Tableau {
 	}
 
 	public void majbonmot(ArrayList<Pair> listecasejouee) {
+		System.out.print(listecasejouee);
 		for (int k = 0; k < listecasejouee.size(); k++) {
 			int i = (int) listecasejouee.get(k).getKey();
 			int j = (int) listecasejouee.get(k).getValue();
