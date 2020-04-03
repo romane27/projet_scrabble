@@ -31,7 +31,7 @@ import javax.swing.JTextField;
 
 import Controleur.Controleur;
 import Vue.IHMChrono;
-public class premierepage extends Frame implements WindowListener, ItemListener{
+public class premierepage extends Frame implements WindowListener, ActionListener{
 	
 	
 	Boutonexec bouton_executer;
@@ -58,6 +58,7 @@ public class premierepage extends Frame implements WindowListener, ItemListener{
 		JLabel titre3 = new JLabel(" Durée de jeu par tours :");
 		
 		bouton_executer = new Boutonexec("Nouvelle partie");
+		bouton_executer.addActionListener(this);
 		nbrjoueur= new nombre_joueur(combo);
 		dureetour = new duree_tours(combo_duree);
 		this.add(bouton_executer,BorderLayout.SOUTH);
@@ -86,8 +87,7 @@ public class premierepage extends Frame implements WindowListener, ItemListener{
 		
 		
 		//this.setBackground(new Color(0,153,0));
-		this.setSize(800,800);
-		
+		this.setSize(670,670);
 		//this.pack();
 		
 		this.setLocationRelativeTo(null); 
@@ -119,11 +119,12 @@ public class premierepage extends Frame implements WindowListener, ItemListener{
 		// TODO Auto-generated method stub
 		new premierepage();
 	}
-	@Override
+	/*@Override
 	public void itemStateChanged(ItemEvent e) {
 		// TODO Auto-generated method stub
-		
-	}
+		System.out.println("j'écoute");
+		//this.setVisible(false);
+	}*/
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub
@@ -158,6 +159,14 @@ public class premierepage extends Frame implements WindowListener, ItemListener{
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		System.out.println("j'écoute");
+		this.setVisible(false);
 	}
 	
 
