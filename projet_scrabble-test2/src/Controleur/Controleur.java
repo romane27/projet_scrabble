@@ -14,12 +14,13 @@ import Modele.Lettre;
 import Modele.Pioche;
 import Modele.Tableau;
 import Vue.Clavier;
+import Vue.IHMChrono;
 import Vue.Plateau;
 import Vue.Vue;
 import javafx.util.Pair;
 
 public class Controleur {
-
+	IHMChrono c;
 	Plateau plateau;
 	Tableau tableau;
 	Joueur joueur;
@@ -43,9 +44,9 @@ public class Controleur {
 		appuisfdt();
 	}
 
-	public static void main(String[] args) throws IOException {
+	/*public static void main(String[] args) throws IOException {
 		Controleur c = new Controleur();
-	}
+	}*/
 
 	public void ajoutactlist() {
 		ArrayList<Lettre> liste = new ArrayList();
@@ -113,6 +114,8 @@ public class Controleur {
 
 	public void appuisfdt() {
 		vue.ajoutactlist((ActionEvent evt) -> {
+			// quand on clique sur fin de tour on redemarre le chrono
+						c.chrono.demarrer();
 			System.out.println(joueur.jeu.size());
 			if (joueur.jeu.size()==7) {
 				joueur.initTirage(pioche);
