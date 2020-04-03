@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Random;
 
+import javax.swing.JPanel;
+
 import javafx.util.Pair;
 
 public class Tableau {
@@ -269,7 +271,7 @@ public class Tableau {
 		}
 		score_m1 *= mults1;
 		score_m2 *= mults2;
-		Integer[] scores = { score_m1, score_m2};
+		Integer[] scores = { score_m1, score_m2 };
 		System.out.println(mot1 + " " + score_m1 + " " + dic.verifier_mot(mot1));
 		System.out.println(mot2 + " " + score_m2 + " " + dic.verifier_mot(mot2));
 		Boolean b = dic.verifier_mot(mot1) && dic.verifier_mot(mot2);

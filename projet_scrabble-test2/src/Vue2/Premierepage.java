@@ -31,136 +31,127 @@ import javax.swing.JTextField;
 
 import Controleur.Controleur;
 import Vue.IHMChrono;
-public class premierepage extends Frame implements WindowListener, ActionListener{
-	
-	
+
+public class premierepage extends Frame implements WindowListener, ActionListener {
+
 	Boutonexec bouton_executer;
-	JComboBox combo = new JComboBox();
-	nombre_joueur nbrjoueur; 
-	JComboBox combo_duree = new JComboBox();
+	nombre_joueur nbrjoueur;
+	duree_tours combo_duree;
 	duree_tours dureetour;
-	public premierepage () {
+
+	public premierepage() {
 		// titre avec taille, police, positionnement
-		Font fonte,font;
-		
+		Font fonte, font;
+
 		photo image = new photo("src/image.jpg");
-		
+
 		fonte = new Font("Helvetica", Font.BOLD, 30);
 		font = new Font("Helvetica", Font.CENTER_BASELINE, 15);
 		JLabel titre = new JLabel("Bienvenue dans le jeu du Scrabble \n");
-		
+
 		titre.setHorizontalAlignment(JLabel.CENTER);
 		titre.setFont(fonte);
-		titre.setForeground(new Color (210, 42, 42 ));
-	
-		this.add(titre,BorderLayout.NORTH);
+		titre.setForeground(new Color(210, 42, 42));
+
+		this.add(titre, BorderLayout.NORTH);
 		JLabel titre2 = new JLabel(" Nombre de joueurs :");
 		JLabel titre3 = new JLabel(" Durée de jeu par tours :");
-		
+
 		bouton_executer = new Boutonexec("Nouvelle partie");
 		bouton_executer.addActionListener(this);
-		nbrjoueur= new nombre_joueur(combo);
-		dureetour = new duree_tours(combo_duree);
-		this.add(bouton_executer,BorderLayout.SOUTH);
+		nbrjoueur = new nombre_joueur();
+		dureetour = new duree_tours();
+		this.add(bouton_executer, BorderLayout.SOUTH);
 		this.add(titre2);
 		this.add(titre3);
 		titre2.setFont(font);
 		titre3.setFont(font);
-	//titre2.setBackground(Color.yellow);
-		titre2.setBounds(100, 155,150,40);
-		titre3.setBounds(100, 200,200,40);
-		//this.setBackground(new Color (119, 210, 132));
+		// titre2.setBackground(Color.yellow);
+		titre2.setBounds(100, 155, 150, 40);
+		titre3.setBounds(100, 200, 200, 40);
+		// this.setBackground(new Color (119, 210, 132));
 		// ajout menu deroulant
-		combo.setBounds(360, 160, 100, 30);
-		combo_duree.setBounds(360, 200, 100, 30);
-		this.add(combo_duree);
-	    this.add(combo);
-	    this.add(image);
-	   
-	    
-		
+		nbrjoueur.setBounds(360, 160, 100, 30);
+		dureetour.setBounds(360, 200, 100, 30);
+		this.add(dureetour);
+		this.add(nbrjoueur);
+		this.add(image);
+
 		// ajout d'un bouton
-		
-		
-		
-		
-		
-		
-		//this.setBackground(new Color(0,153,0));
-		this.setSize(670,670);
-		//this.pack();
-		
-		this.setLocationRelativeTo(null); 
+
+		// this.setBackground(new Color(0,153,0));
+		this.setSize(670, 670);
+		// this.pack();
+
+		this.setLocationRelativeTo(null);
 		this.addWindowListener(this);
 		this.setVisible(true);
 	}
-	/*public void paint(Graphics g) {
-		
-		g.setColor(Color.BLUE);
-		//g.drawRect(10,20,this.getHeight(),120);
-		g.fillRect(0, 0, this.getWidth(), 80);
-		
-	}*/
-	  
-	
-	/*class rectangle extends Canvas{
-		private void rpaint(Graphics g) {
-		// TODO Auto-generated method stub
-		g.drawRect(0, 10, this.getWidth(), this.getHeight());
-		g.setColor(new Color(0,153,0));		
-	}
-	}*/
-	
+	/*
+	 * public void paint(Graphics g) {
+	 * 
+	 * g.setColor(Color.BLUE); //g.drawRect(10,20,this.getHeight(),120);
+	 * g.fillRect(0, 0, this.getWidth(), 80);
+	 * 
+	 * }
+	 */
 
-	
-
+	/*
+	 * class rectangle extends Canvas{ private void rpaint(Graphics g) { // TODO
+	 * Auto-generated method stub g.drawRect(0, 10, this.getWidth(),
+	 * this.getHeight()); g.setColor(new Color(0,153,0)); } }
+	 */
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		new premierepage();
 	}
-	/*@Override
-	public void itemStateChanged(ItemEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("j'écoute");
-		//this.setVisible(false);
-	}*/
+
+	/*
+	 * @Override public void itemStateChanged(ItemEvent e) { // TODO Auto-generated
+	 * method stub System.out.println("j'écoute"); //this.setVisible(false); }
+	 */
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public void windowClosing(WindowEvent e) {
 		// TODO Auto-generated method stub
-		System.exit(0); 
+		System.exit(0);
 	}
+
 	@Override
 	public void windowClosed(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public void windowIconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public void windowDeiconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public void windowActivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -168,10 +159,5 @@ public class premierepage extends Frame implements WindowListener, ActionListene
 		System.out.println("j'écoute");
 		this.setVisible(false);
 	}
-	
 
-
-
-
-
-	}
+}

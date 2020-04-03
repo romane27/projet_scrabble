@@ -10,13 +10,9 @@ import java.util.Hashtable;
 
 import Controleur.Controleur;
 
-public class Dico {
-
-	HashMap<String, ArrayList<String>> dico;
+public class Dico extends HashMap<String, ArrayList<String>> {
 
 	public Dico() throws IOException {
-
-		this.dico = new HashMap<String, ArrayList<String>>();
 
 		// initialisation du dico
 		BufferedReader lecteurAvecBuffer = null;
@@ -31,14 +27,14 @@ public class Dico {
 		while ((ligne = lecteurAvecBuffer.readLine()) != null) {
 			lignemaj = ligne.toUpperCase();
 			String cle = lignemaj.substring(0, 2);
-			if (this.dico.containsKey(cle)) {
-				ArrayList<String> liste = this.dico.get(cle);
+			if (this.containsKey(cle)) {
+				ArrayList<String> liste = this.get(cle);
 				liste.add(lignemaj);
-				this.dico.put(cle, liste);
+				this.put(cle, liste);
 			} else {
 				ArrayList<String> l = new ArrayList<String>();
 				l.add(lignemaj);
-				this.dico.put(cle, l);
+				this.put(cle, l);
 
 			}
 
@@ -47,13 +43,13 @@ public class Dico {
 	}
 
 	public boolean verifier_mot(String a) {
-		if (a=="") {
+		if (a == "") {
 			return true;
 		}
 		try {
 
 			String cle = a.substring(0, 2);
-			ArrayList<String> l = this.dico.get(cle);
+			ArrayList<String> l = this.get(cle);
 			if (l.contains(a)) {
 				return true;
 			}
@@ -63,8 +59,8 @@ public class Dico {
 		}
 	}
 
-/*	public static void main(String[] args) throws IOException {
-		Dico d = new Dico();
-		System.out.println(d.verifier_mot("LAG"));
-	}*/
+	/*
+	 * public static void main(String[] args) throws IOException { Dico d = new
+	 * Dico(); System.out.println(d.verifier_mot("LAG")); }
+	 */
 }

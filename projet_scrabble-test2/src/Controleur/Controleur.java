@@ -34,7 +34,7 @@ public class Controleur {
 	public Controleur() throws IOException {
 
 		pioche = new Pioche();
-		System.out.println(pioche.lettrepossible.size());
+		System.out.println(pioche.size());
 		joueur = new Joueur(pioche);
 		joueur2 = new Joueur(pioche);
 		tableau = new Tableau();
@@ -44,9 +44,10 @@ public class Controleur {
 		appuisfdt();
 	}
 
-	/*public static void main(String[] args) throws IOException {
-		Controleur c = new Controleur();
-	}*/
+	/*
+	 * public static void main(String[] args) throws IOException { Controleur c =
+	 * new Controleur(); }
+	 */
 
 	public void ajoutactlist() {
 		ArrayList<Lettre> liste = new ArrayList();
@@ -92,7 +93,7 @@ public class Controleur {
 							liste.clear();
 							btn.associe(list.get(0));
 							tableau.posee(o, p, btn);
-							joueur.jeu.remove(btn.boutonass.lettre);
+							joueur.remove(btn.boutonass.lettre);
 							listecasejouee.add(xy);
 						} else {
 							if (!tableau.tableau[o][p].verouillee) {
@@ -101,7 +102,7 @@ public class Controleur {
 								btn.boutonass.setBackground(Color.white);
 								btn.boutonass.clique = false;
 								tableau.retiree(o, p, btn);
-								joueur.jeu.add(btn.boutonass.lettre);
+								joueur.add(btn.boutonass.lettre);
 								listecasejouee.remove(xy);
 							}
 						}
@@ -115,21 +116,19 @@ public class Controleur {
 	public void appuisfdt() {
 		vue.ajoutactlist((ActionEvent evt) -> {
 			// quand on clique sur fin de tour on redemarre le chrono
-						c.chrono.demarrer();
-			System.out.println(joueur.jeu.size());
-			if (joueur.jeu.size()==7) {
+			System.out.println(joueur.size());
+			if (joueur.size() == 7) {
 				joueur.initTirage(pioche);
 				vue.score.majscore(joueur, pioche);
 				vue.majclavier(joueur);
-			}
-			else {
+			} else {
 				Pair<Boolean, Integer[]> pair = tableau.comptescore();
 				if (pair.getKey() == false) {// si le mot est faux
 					System.out.println(listecasejouee);
 					vue.resetclavier();
 					vue.plateau.resetplateau(listecasejouee);
 					tableau.majmauvaismot(listecasejouee);
-	
+
 				} else {
 					joueur.score += pair.getValue()[0];
 					joueur.score += pair.getValue()[1];
@@ -137,13 +136,13 @@ public class Controleur {
 					vue.score.majscore(joueur, pioche);
 					vue.majclavier(joueur);
 					tableau.majbonmot(listecasejouee);
+					c.chrono.demarrer();
 					// tableau.majbonmot(listecasejouee);
 				}
 				tableau.majjouabletour();
 				listecasejouee.clear();
 			}
 		});
-	
 
 	}
 }

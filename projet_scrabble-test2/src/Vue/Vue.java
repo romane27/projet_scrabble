@@ -20,6 +20,7 @@ public class Vue extends JFrame {
 	public JButton fdt;
 	public Scores score;
 	public IHMChrono chrono;
+	
 	public Vue(Tableau tableau, Joueur joueur, Joueur joueur2) {
 		score = new Scores(4);
 		score.setBounds(670, 150, 150, 120);
