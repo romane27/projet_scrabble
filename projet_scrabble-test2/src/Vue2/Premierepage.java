@@ -31,6 +31,7 @@ import javax.swing.JTextField;
 
 import Controleur.Controleur;
 import Vue.IHMChrono;
+import Vue2.photo;
 
 public class Premierepage extends Frame implements WindowListener, ActionListener {
 
@@ -43,7 +44,8 @@ public class Premierepage extends Frame implements WindowListener, ActionListene
 		// titre avec taille, police, positionnement
 		Font fonte, font;
 
-		photo image = new photo("src/image.jpg");
+		photo image = new photo("src/images/image.jpg");
+		
 
 		fonte = new Font("Helvetica", Font.BOLD, 30);
 		font = new Font("Helvetica", Font.CENTER_BASELINE, 15);
@@ -157,7 +159,7 @@ public class Premierepage extends Frame implements WindowListener, ActionListene
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		System.out.println("j'écoute");
-		this.setVisible(false);
+	//	this.setVisible(false);
 	}
 
 }

@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Bouton extends JButton implements MouseListener {
@@ -21,10 +22,13 @@ public class Bouton extends JButton implements MouseListener {
 	public Bouton boutonass;
 	public Boolean verrouille;
 	public int place;
-
+	public ImageIcon image;
+	public ImageIcon imagegris;
 	public Bouton() {
 		clique = false;
-		lettre = new Lettre(null, 0);
+		image=null;
+		imagegris=null;
+		lettre = new Lettre(null, 0,image,imagegris);
 		caseass = new Case();
 		boutonass = null;
 		verrouille = false;

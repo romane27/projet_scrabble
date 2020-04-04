@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -27,8 +28,10 @@ public class Plateau extends JPanel {
 				// couleur bleu
 				if (plateau.tableau[i][j - 1].bonus == 2) {
 					Bouton bouton = new Bouton();
-					bouton.setText("LD");
+					bouton.setIcon(new ImageIcon("src/images/LT.jpg"));
+					//bouton.setText("LD");
 					// test mais lettre ecrit trop petit ...
+					
 					Font f = bouton.getFont().deriveFont(5.0f);
 					bouton.setFont(f);
 					bouton.setBackground(new Color(42, 125, 210));
@@ -38,7 +41,8 @@ public class Plateau extends JPanel {
 				// milieu
 				if (plateau.tableau[i][j - 1].bonus == 6) {
 					Bouton bouton = new Bouton();
-					bouton.setBackground(Color.pink);
+					bouton.image=new ImageIcon("src/images/MILIEU.jpg");
+					bouton.setIcon(bouton.image);
 					bouton.caseass = plateau.tableau[i][j - 1];
 					this.add(bouton);
 				}
@@ -46,15 +50,18 @@ public class Plateau extends JPanel {
 				// couleur rouge
 				if (plateau.tableau[i][j - 1].bonus == 1) {
 					Bouton bouton = new Bouton();
-					bouton.setText("MT");
-					bouton.setBackground(Color.red);
+					//bouton.setText("MT");
+				//	bouton.setBackground(Color.red);
+					bouton.image=new ImageIcon("src/images/MT.jpg");
+					bouton.setIcon(bouton.image);
 					bouton.caseass = plateau.tableau[i][j - 1];
 					this.add(bouton);
 				}
 				// couleur cyan
 				if (plateau.tableau[i][j - 1].bonus == 3) {
 					Bouton bouton = new Bouton();
-					bouton.setText("LD");
+					bouton.image=new ImageIcon("src/images/LD.jpg");
+					bouton.setIcon(bouton.image);
 					bouton.setBackground(Color.cyan);
 					bouton.caseass = plateau.tableau[i][j - 1];
 					this.add(bouton);
@@ -62,15 +69,18 @@ public class Plateau extends JPanel {
 				// couleur beige
 				if (plateau.tableau[i][j - 1].bonus == 5) {
 					Bouton bouton = new Bouton();
-					bouton.setText("MD");
-					bouton.setBackground(new Color(240, 175, 234));
+					bouton.image=new ImageIcon("src/images/MD.jpg");
+					bouton.setIcon(bouton.image);
+					
 					bouton.caseass = plateau.tableau[i][j - 1];
 					this.add(bouton);
 					// couleur vert
 				}
 				if (plateau.tableau[i][j - 1].bonus == 0) {
 					Bouton bouton = new Bouton();
-					bouton.setBackground(new Color(13, 173, 31));
+					bouton.image=new ImageIcon("src/images/VERT.jpg");
+					bouton.setIcon(bouton.image);
+					
 					bouton.caseass = plateau.tableau[i][j - 1];
 					this.add(bouton);
 

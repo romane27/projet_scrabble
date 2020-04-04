@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -55,8 +56,9 @@ public class Vue extends JFrame {
 		for (int i = 0; i < 7; i++) {
 			Bouton btn = (Bouton) claviertemp.getComponent(i);
 			Bouton btn2 = (Bouton) clavier.getComponent(i);
-			btn2.setText(btn.lettre.nom);
-			btn2.setBackground(Color.white);
+			btn2.setIcon(btn.lettre.image);
+			//btn2.setText(btn.lettre.nom);
+			//btn2.setBackground(Color.white);
 			btn2.lettre = btn.lettre;
 		}
 
@@ -65,13 +67,16 @@ public class Vue extends JFrame {
 	public void resetclavier() {
 		for (int i = 0; i < 7; i++) {
 			Bouton btn = (Bouton) clavier.getComponent(i);
-			btn.setBackground(Color.white);
+			btn.setIcon(btn.lettre.image);
+			//btn.setBackground(Color.white);
 		}
 	}
-	public void majplateau(int k, String nom) {
-		Bouton bouton = (Bouton) plateau.getComponent(k);
-		bouton.setBackground(Color.white);
-		bouton.setText(nom);
-	}
+	public void majplateau(int k, ImageIcon nom) {
+//		public void majplateau(int k, String nom) {
+			Bouton bouton = (Bouton) plateau.getComponent(k);
+			//bouton.setBackground(Color.white);
+			bouton.setIcon(nom);
+			//bouton.setText(nom);
+		}
 
 }

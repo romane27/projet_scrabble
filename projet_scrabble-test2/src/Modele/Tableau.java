@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import javafx.util.Pair;
@@ -22,8 +23,9 @@ public class Tableau {
 	 * lettre_double = 3; int sans_bonus = 0;
 	 */
 	public ArrayList<Case> casejouables;
-	public Color[] couleur = { new Color(13, 173, 31), Color.red, new Color(42, 125, 210), Color.cyan, null,
-			new Color(240, 175, 234), Color.pink };
+	//public Color[] couleur = { new Color(13, 173, 31), Color.red, new Color(42, 125, 210), Color.cyan, null,
+	//		new Color(240, 175, 234), Color.pink };
+	public ImageIcon [] imageplateau = {new ImageIcon("src/VERT.jpg"),new ImageIcon("src/MT.jpg"),new ImageIcon("src/LT.jpg"),new ImageIcon("src/LD.jpg"),null,new ImageIcon("src/MD.jpg"),new ImageIcon("src/MILIEU.jpg")};
 	public String[] def = { "", "MT", "LT", "LD", "", "MD", "" };
 	public Dico dic;
 

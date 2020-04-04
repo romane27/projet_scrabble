@@ -59,9 +59,12 @@ public class Controleur {
 			Bouton btn = (Bouton) vue.clavier.getComponent(i);
 			vue.clavier.ajoutactionlistner(i, (ActionEvent evt) -> {
 				if (!btn.isclicked()) {
-					btn.setBackground(Color.lightGray);
+					btn.setIcon(btn.lettre.image_gris);
+					//btn.setBackground(Color.lightGray);
 					if (!liste.isEmpty()) {
-						list.get(0).setBackground(Color.white);
+						
+						list.get(0).setIcon(btn.lettre.image);
+						//list.get(0).setBackground(Color.white);
 					}
 					liste.clear();
 					liste.add(btn.lettre);
@@ -69,7 +72,8 @@ public class Controleur {
 					list.add(btn);
 				}
 				if (btn.isclicked() && btn.verrouille == false) {
-					btn.setBackground(Color.white);
+					//btn.setBackground(Color.white);
+					btn.setIcon(btn.lettre.image);
 					liste.remove(btn.lettre);
 					list.remove(btn);
 				}
@@ -89,7 +93,9 @@ public class Controleur {
 								&& tableau.tableau[o][p].jouable == true) {
 							// btn.setBackground(Color.white);
 							// btn.setText(liste.get(0).nom);
-							vue.majplateau(k, liste.get(0).nom);
+							btn.setIcon(btn.image);
+							//vue.majplateau(k, liste.get(0).nom);
+							vue.majplateau(k, liste.get(0).image);
 							liste.clear();
 							btn.associe(list.get(0));
 							tableau.posee(o, p, btn);
@@ -97,9 +103,11 @@ public class Controleur {
 							listecasejouee.add(xy);
 						} else {
 							if (!tableau.tableau[o][p].verouillee) {
-								btn.setBackground(tableau.couleur[tableau.tableau[o][p].bonus]);
-								btn.setText(tableau.def[tableau.tableau[o][p].bonus]);
-								btn.boutonass.setBackground(Color.white);
+								//btn.setBackground(tableau.couleur[tableau.tableau[o][p].bonus]);
+								//btn.setText(tableau.def[tableau.tableau[o][p].bonus]);
+								//btn.boutonass.setBackground(Color.white);
+								//btn.setIcon(tableau.imageplateau[tableau.tableau[o][p].bonus]);
+								btn.setIcon(btn.image);
 								btn.boutonass.clique = false;
 								tableau.retiree(o, p, btn);
 								joueur.add(btn.boutonass.lettre);
