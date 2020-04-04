@@ -32,14 +32,14 @@ import javax.swing.JTextField;
 import Controleur.Controleur;
 import Vue.IHMChrono;
 
-public class premierepage extends Frame implements WindowListener, ActionListener {
+public class Premierepage extends Frame implements WindowListener, ActionListener {
 
 	Boutonexec bouton_executer;
 	nombre_joueur nbrjoueur;
 	duree_tours combo_duree;
 	duree_tours dureetour;
 
-	public premierepage() {
+	public Premierepage() {
 		// titre avec taille, police, positionnement
 		Font fonte, font;
 
@@ -104,7 +104,7 @@ public class premierepage extends Frame implements WindowListener, ActionListene
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new premierepage();
+		new Premierepage();
 	}
 
 	/*
