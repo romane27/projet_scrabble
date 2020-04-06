@@ -19,6 +19,7 @@ public class Vue extends JFrame {
 	public Clavier clavier;
 	public Plateau plateau;
 	public JButton fdt;
+	public JButton melanger;
 	public Scores score;
 	public IHMChrono chrono;
 	
@@ -36,6 +37,9 @@ public class Vue extends JFrame {
 		this.add(clavier);
 		this.add(plateau);
 		this.setSize(900, 850);
+		melanger = new JButton("melanger");
+		melanger.setBounds(670, 650, 170, 30);
+		this.add(melanger);
 		//this.setResizable(false);
 		this.getContentPane().setBackground(Color.white);
 		this.add(fdt);
@@ -49,6 +53,10 @@ public class Vue extends JFrame {
 	public void ajoutactlist(ActionListener e) {
 		fdt.addActionListener(e);
 	}
+	public void emplacement_lettre(ActionListener e) {
+		melanger.addActionListener(e);
+	}
+
 
 	public void majclavier(Joueur joueur) {
 		Clavier claviertemp = new Clavier(joueur);
@@ -62,6 +70,16 @@ public class Vue extends JFrame {
 			btn2.lettre = btn.lettre;
 		}
 
+	}
+	public void melangeclavier (int [] emplacement,Joueur joueur) {
+		Clavier claviertemp = new Clavier(joueur);
+		for (int i = 0; i < 7; i++) {
+			Bouton btn = (Bouton) claviertemp.getComponent(i);
+			Bouton btn2 = (Bouton) clavier.getComponent(emplacement[i]);
+			//btn2.place=emplacement[i];
+			btn2.setIcon(btn.lettre.image);
+			btn2.lettre = btn.lettre;
+		}
 	}
 
 	public void resetclavier() {

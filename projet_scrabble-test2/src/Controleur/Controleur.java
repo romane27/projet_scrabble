@@ -42,6 +42,7 @@ public class Controleur {
 		mot = new Case[15];
 		ajoutactlist();
 		appuisfdt();
+		melange_lettre();
 	}
 
 	/*
@@ -121,7 +122,13 @@ public class Controleur {
 			}
 		}
 	}
-
+	// ce qu'il se passe quand on clic sur bouton melanger
+	public void melange_lettre() {
+		vue.emplacement_lettre((ActionEvent evt) ->{
+			System.out.println("salut");
+			vue.melangeclavier(Clavier.melangerlettre(),joueur);
+		});
+	}
 	public void appuisfdt() {
 		vue.ajoutactlist((ActionEvent evt) -> {
 			// quand on clique sur fin de tour on redemarre le chrono

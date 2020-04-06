@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -32,4 +34,29 @@ public class Clavier extends JPanel {
 		Bouton btn = (Bouton) this.getComponent(i);
 		btn.addActionListener(l);
 	}
+	// retourne une liste de nombre sans doublons = pour changer emplacement lettre
+	// devrait peut etre pas etre la
+		public static int[] melangerlettre() {	
+		        ArrayList<Integer> list = new ArrayList<Integer>();
+		        for (int i = 0; i < 7; i++) {
+		            list.add(i);
+		            
+		        }
+		        int[] emplacementlettre = new int[list.size()];
+		        for (int i=0 ; i<emplacementlettre.length;i++) {
+		        	System.out.println(emplacementlettre[i]);
+		        }
+		        Random random = new Random();
+		        int position = 0;
+		 
+		        while (list.size() > 0) {
+		            position = random.nextInt(list.size());
+		            emplacementlettre[list.size() - 1] = list.get(position);
+		            list.remove(position);
+		        }
+		        for (int i=0 ; i<emplacementlettre.length;i++) {
+		        	System.out.println("ll"+emplacementlettre[i]);
+		        }
+		        return emplacementlettre;
+		    }
 }
