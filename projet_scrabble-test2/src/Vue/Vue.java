@@ -73,6 +73,7 @@ public class Vue extends JFrame {
 			// btn2.setBackground(Color.white);
 			btn2.lettre = btn.lettre;
 			btn2.verrouille = false;
+			btn2.clique = false;
 		}
 
 	}
@@ -93,6 +94,7 @@ public class Vue extends JFrame {
 			Bouton btn = (Bouton) clavier.getComponent(i);
 			btn.setIcon(btn.lettre.image);
 			btn.verrouille = false;
+			btn.clique = false;
 
 			// btn.setBackground(Color.white);
 		}
