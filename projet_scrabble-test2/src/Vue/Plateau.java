@@ -28,13 +28,14 @@ public class Plateau extends JPanel {
 				// couleur bleu
 				if (plateau.tableau[i][j - 1].bonus == 2) {
 					Bouton bouton = new Bouton();
-					bouton.setIcon(new ImageIcon("src/images/LT.jpg"));
+					bouton.image = new ImageIcon("src/images/LT.jpg");
+					bouton.setIcon(bouton.image);
 					//bouton.setText("LD");
 					// test mais lettre ecrit trop petit ...
 					
-					Font f = bouton.getFont().deriveFont(5.0f);
+					/*Font f = bouton.getFont().deriveFont(5.0f);
 					bouton.setFont(f);
-					bouton.setBackground(new Color(42, 125, 210));
+					bouton.setBackground(new Color(42, 125, 210));*/
 					bouton.caseass = plateau.tableau[i][j - 1];
 					this.add(bouton);
 				}
@@ -107,7 +108,8 @@ public class Plateau extends JPanel {
 			System.out.println(bouton.getBackground());
 			if (tableau.tableau[i][j].bonus == 2) {
 				bouton.setText("");
-				bouton.setBackground(new Color(42, 125, 210));
+				bouton.image = new ImageIcon("src/images/LT.jpg");
+				bouton.setIcon(bouton.image);
 				bouton.caseass = tableau.tableau[i][j];
 			}
 			// milieu
