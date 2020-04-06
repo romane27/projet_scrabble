@@ -35,7 +35,7 @@ public class Vue extends JFrame {
 		fdt.setBounds(670, 600, 170, 30);
 		this.add(clavier);
 		this.add(plateau);
-		this.setSize(850, 850);
+		this.setSize(900, 850);
 		//this.setResizable(false);
 		this.getContentPane().setBackground(Color.white);
 		this.add(fdt);
