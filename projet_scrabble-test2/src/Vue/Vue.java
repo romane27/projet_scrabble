@@ -37,8 +37,11 @@ public class Vue extends JFrame {
 		this.add(clavier);
 		this.add(plateau);
 		this.setSize(900, 850);
-		melanger = new JButton("melanger");
-		melanger.setBounds(670, 650, 170, 30);
+		ImageIcon melange = new ImageIcon("src/images/melanger.png");
+		melanger = new JButton(melange);
+	
+		melanger.setBounds(550, 650, melange.getIconHeight(), melange.getIconWidth());
+		
 		this.add(melanger);
 		//this.setResizable(false);
 		this.getContentPane().setBackground(Color.white);
