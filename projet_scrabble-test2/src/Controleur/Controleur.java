@@ -12,6 +12,7 @@ import Modele.Case;
 import Modele.Joueur;
 import Modele.Lettre;
 import Modele.Pioche;
+import Modele.Suggestion;
 import Modele.Tableau;
 import Vue.Clavier;
 import Vue.IHMChrono;
@@ -148,6 +149,14 @@ public class Controleur {
 				joueur.initTirage(pioche);
 				vue.score.majscore(joueur, pioche);
 				vue.majclavier(joueur);
+				try {
+					Suggestion s = new Suggestion (joueur);
+					System.out.println("eee");
+					vue.vuesuggestion(s);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			} else {
 				Pair<Boolean, Integer[]> pair = tableau.comptescore();
 				if (pair.getKey() == false) {// si le mot est faux
@@ -167,6 +176,14 @@ public class Controleur {
 					vue.majclavier(joueur);
 					tableau.majbonmot(listecasejouee);
 					c.chrono.demarrer();
+					try {
+						Suggestion s = new Suggestion (joueur);
+						System.out.println("eee");
+						vue.vuesuggestion(s);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
 					// tableau.majbonmot(listecasejouee);
 				}

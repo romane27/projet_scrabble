@@ -1,17 +1,24 @@
 package Vue;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 import Modele.Bouton;
 import Modele.Joueur;
+import Modele.Suggestion;
 import Modele.Tableau;
 
 import Vue2.duree_tours;
@@ -23,18 +30,22 @@ public class Vue extends JFrame {
 	public JButton melanger;
 	public Scores score;
 	public IHMChrono chrono;
-
-	public Vue(Tableau tableau, Joueur joueur, Joueur joueur2) {
+	public Suggestion sugges;
+	public JList liste;
+	public JPanel panel ;
+	public Vue(Tableau tableau, Joueur joueur, Joueur joueur2) throws IOException {
 		score = new Scores(4);
 		score.setBounds(670, 150, 150, 120);
 		score.setVisible(true);
 		plateau = new Plateau(tableau);
 		clavier = new Clavier(joueur);
+		sugges = new Suggestion(joueur);
 		// this.setLayout(null);
 		plateau.setBounds(0, 0, 640, 640);
 		clavier.setBounds((640 - (640 / 15) * 7) / 2, 640 + 10, 640 / 15 * 7, 640 / 15);
 		fdt = new JButton("Fin de Tour");
 		fdt.setBounds(670, 600, 170, 30);
+		vuesuggestion(sugges);
 		this.add(clavier);
 		this.add(plateau);
 		this.setSize(900, 850);
@@ -50,6 +61,7 @@ public class Vue extends JFrame {
 		this.add(score);
 		chrono = new IHMChrono(duree_tours.duree);
 		this.add(chrono);
+		//vuesuggestion(sugges);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
@@ -61,7 +73,30 @@ public class Vue extends JFrame {
 	public void emplacement_lettre(ActionListener e) {
 		melanger.addActionListener(e);
 	}
-
+	public void vuesuggestion(Suggestion s) {
+		 
+		panel =new JPanel();
+		JLabel motpossible = new JLabel("Suggestions");
+		motpossible.setFont(new Font("Arial", Font.PLAIN, 20));
+		liste = new JList<>();
+		//liste.setSize(200, 200);
+		//liste.setFixedCellHeight(200)
+		liste = new JList (sugges.suggestionlist);
+		// creer un assenceur quand bcp de suggestion
+		JScrollPane ascenseur = new JScrollPane(liste);
+		ascenseur.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		ascenseur.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		liste.setFont(new Font("Arial", Font.PLAIN, 20) );
+		liste.setBackground(new Color(236, 237, 191));
+		panel.add(motpossible,BorderLayout.NORTH);
+		panel.add(ascenseur,BorderLayout.SOUTH);
+		liste.setVisibleRowCount(4);
+		panel.setBounds(670, 400, 120,150);
+		this.add(panel);
+		
+		
+		
+		}
 	public void majclavier(Joueur joueur) {
 		Clavier claviertemp = new Clavier(joueur);
 

@@ -159,7 +159,7 @@ public class Premierepage extends Frame implements WindowListener, ActionListene
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		System.out.println("j'écoute");
-		this.setVisible(false);
+		//this.setVisible(false);
 	}
 
 }
