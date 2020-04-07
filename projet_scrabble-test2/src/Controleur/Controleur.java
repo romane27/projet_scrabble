@@ -30,9 +30,10 @@ public class Controleur {
 	Case[] mot;
 	int sens = 0;
 	ArrayList<Pair> listecasejouee;
+	ArrayList<Lettre> listelettrejouee;
 
 	public Controleur() throws IOException {
-
+		listelettrejouee = new ArrayList<Lettre>();
 		pioche = new Pioche();
 		System.out.println(pioche.size());
 		joueur = new Joueur(pioche);
@@ -42,6 +43,7 @@ public class Controleur {
 		mot = new Case[15];
 		ajoutactlist();
 		appuisfdt();
+		melange_lettre();
 	}
 
 	/*
@@ -58,7 +60,7 @@ public class Controleur {
 
 			Bouton btn = (Bouton) vue.clavier.getComponent(i);
 			vue.clavier.ajoutactionlistner(i, (ActionEvent evt) -> {
-				if (!btn.isclicked()) {
+				if (!btn.isclicked() && btn.verrouille == false) {
 					btn.setIcon(btn.lettre.image_gris);
 					// btn.setBackground(Color.lightGray);
 					if (!liste.isEmpty()) {
@@ -70,6 +72,7 @@ public class Controleur {
 					liste.add(btn.lettre);
 					list.clear();
 					list.add(btn);
+
 				}
 				if (btn.isclicked() && btn.verrouille == false) {
 					// btn.setBackground(Color.white);
@@ -101,6 +104,10 @@ public class Controleur {
 							tableau.posee(o, p, btn);
 							joueur.remove(btn.boutonass.lettre);
 							listecasejouee.add(xy);
+							listelettrejouee.add(btn.boutonass.lettre);
+							System.out.println(listelettrejouee);
+							btn.boutonass.verrouille = true;
+
 						} else {
 							if (!tableau.tableau[o][p].verouillee) {
 								// btn.setBackground(tableau.couleur[tableau.tableau[o][p].bonus]);
@@ -113,6 +120,8 @@ public class Controleur {
 								tableau.retiree(o, p, btn);
 								joueur.add(btn.boutonass.lettre);
 								listecasejouee.remove(xy);
+								listelettrejouee.remove(btn.boutonass.lettre);
+								btn.boutonass.verrouille = false;
 							}
 						}
 					} catch (NullPointerException exp) {
@@ -121,6 +130,15 @@ public class Controleur {
 			}
 		}
 	}
+
+	// ce qu'il se passe quand on clic sur bouton melanger
+	public void melange_lettre() {
+		vue.emplacement_lettre((ActionEvent evt) -> {
+			System.out.println("salut");
+			vue.melangeclavier(Clavier.melangerlettre(), joueur);
+		});
+	}
+
 
 	public void appuisfdt() {
 		vue.ajoutactlist((ActionEvent evt) -> {
@@ -133,10 +151,13 @@ public class Controleur {
 			} else {
 				Pair<Boolean, Integer[]> pair = tableau.comptescore();
 				if (pair.getKey() == false) {// si le mot est faux
-					System.out.println(listecasejouee);
+					System.out.println(joueur);
+					System.out.println(listelettrejouee);
 					vue.resetclavier();
 					vue.plateau.resetplateau(listecasejouee);
 					tableau.majmauvaismot(listecasejouee);
+					joueur.reset(listelettrejouee);
+					System.out.println(joueur);
 
 				} else {
 					joueur.score += pair.getValue()[0];
@@ -146,10 +167,12 @@ public class Controleur {
 					vue.majclavier(joueur);
 					tableau.majbonmot(listecasejouee);
 					c.chrono.demarrer();
+
 					// tableau.majbonmot(listecasejouee);
 				}
 				tableau.majjouabletour();
 				listecasejouee.clear();
+				listelettrejouee.clear();
 			}
 		});
 

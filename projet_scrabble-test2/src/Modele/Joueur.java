@@ -2,6 +2,8 @@ package Modele;
 
 import java.util.ArrayList;
 
+import javafx.util.Pair;
+
 public class Joueur extends ArrayList<Lettre> {
 	public int score;
 	public int pos;
@@ -43,5 +45,11 @@ public class Joueur extends ArrayList<Lettre> {
 		}
 		return s;
 
+	}
+
+	public void reset(ArrayList<Lettre> listelettrejouee) {
+		for (int i = 0; i < listelettrejouee.size(); i++) {
+			this.add(listelettrejouee.get(i));
+		}
 	}
 }
