@@ -119,6 +119,8 @@ public class Controleur {
 								    for (Lettre l : Suggestion.lettreetvaleurs) {
 								    	if (l.nom==lettrejokerchoisi) {
 								    		btn.setIcon(l.image);
+								    		list.get(0).lettre.nom=l.nom;
+								    		list.get(0).lettre.valeur=0;
 								    	}
 								    	
 								    }

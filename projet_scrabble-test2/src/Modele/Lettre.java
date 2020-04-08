@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 public class Lettre {
 	public String nom;
-	int valeur;
+	public int valeur;
 	public ImageIcon image;
 	public ImageIcon image_gris;
 	public Lettre(String s, int v, ImageIcon imagelettre, ImageIcon imagelettregris) {
