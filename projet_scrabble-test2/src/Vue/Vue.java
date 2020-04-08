@@ -87,7 +87,10 @@ public class Vue extends JFrame {
 	public void vuesuggestion(Suggestion s) {
 		this.panel.removeAll();
 		this.sugges = s;
-		
+		if (this.sugges.suggestionlist.length != 0) {
+		JLabel motpossible = new JLabel("Suggestions");
+		motpossible.setFont(new Font("Arial", Font.PLAIN, 20));
+		panel.add(motpossible,BorderLayout.NORTH);
 		//liste = new JList<>();
 		//liste.setSize(200, 200);
 		//liste.setFixedCellHeight(200)
@@ -101,8 +104,14 @@ public class Vue extends JFrame {
 		panel.add(ascenseur,BorderLayout.SOUTH);
 		//panel.add(liste, BorderLayout.CENTER);
 		liste.setVisibleRowCount(4);
-		
+		}
 		//this.add(panel);
+		else {
+			JLabel motpossible = new JLabel("Pas\n de\n suggestions");
+			motpossible.setFont(new Font("Arial", Font.PLAIN, 20));
+			panel.add(motpossible,BorderLayout.NORTH);
+		}
+		
 		panel.repaint();
 		//this.validate();
 		

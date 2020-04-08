@@ -61,6 +61,7 @@ public class Controleur {
 
 			Bouton btn = (Bouton) vue.clavier.getComponent(i);
 			vue.clavier.ajoutactionlistner(i, (ActionEvent evt) -> {
+				vue.melanger.setVisible(false);
 				if (!btn.isclicked() && btn.verrouille == false) {
 					btn.setIcon(btn.lettre.image_gris);
 					// btn.setBackground(Color.lightGray);
@@ -143,6 +144,7 @@ public class Controleur {
 
 	public void appuisfdt() {
 		vue.ajoutactlist((ActionEvent evt) -> {
+			vue.melanger.setVisible(true);
 			// quand on clique sur fin de tour on redemarre le chrono
 			System.out.println(joueur.size());
 			if (joueur.size() == 7) {
