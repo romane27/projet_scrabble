@@ -16,8 +16,15 @@ public class Joueur extends ArrayList<Lettre> {
 
 	public void tirage(Pioche pioche) {
 		int k = 7 - this.size();
+		if (pioche.size()<k) {
+			while (pioche.size()>0) {
+				this.add(pioche.piocherLettre());
+			}
+		}
+		else {
 		for (int i = 0; i < k; i++) {
 			this.add(pioche.piocherLettre());
+		}
 		}
 		for (int i = 0; i < this.size(); i++) {
 			System.out.print(this.get(i).nom);
