@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import Modele.Bouton;
 import Modele.Case;
@@ -32,7 +33,7 @@ public class Controleur {
 	int sens = 0;
 	ArrayList<Pair> listecasejouee;
 	ArrayList<Lettre> listelettrejouee;
-
+	public static String lettrejokerchoisi; 
 	public Controleur() throws IOException {
 		listelettrejouee = new ArrayList<Lettre>();
 		pioche = new Pioche();
@@ -101,6 +102,28 @@ public class Controleur {
 							btn.setIcon(btn.image);
 							// vue.majplateau(k, liste.get(0).nom);
 							vue.majplateau(k, liste.get(0).image);
+							if (liste.get(0).nom==" ") {
+								
+								
+								 JOptionPane jop = new JOptionPane(), jop2 = new JOptionPane();
+								    
+								    String joker = (String)jop.showInputDialog(null, 
+								    	      "Par quelle lettre voulait vous remplacer le joker?",
+								    	      "Joker",
+								    	      JOptionPane.DEFAULT_OPTION,
+								    	      null,
+								    	      Suggestion.alphabet,
+								    	      Suggestion.alphabet[0]);
+								    lettrejokerchoisi=joker;
+								    System.out.println(lettrejokerchoisi);
+								    for (Lettre l : Suggestion.lettreetvaleurs) {
+								    	if (l.nom==lettrejokerchoisi) {
+								    		btn.setIcon(l.image);
+								    	}
+								    	
+								    }
+								    
+							}
 							liste.clear();
 							btn.associe(list.get(0));
 							tableau.posee(o, p, btn);
