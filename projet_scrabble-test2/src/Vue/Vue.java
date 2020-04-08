@@ -45,7 +45,7 @@ public class Vue extends JFrame {
 		clavier.setBounds((640 - (640 / 15) * 7) / 2, 640 + 10, 640 / 15 * 7, 640 / 15);
 		fdt = new JButton("Fin de Tour");
 		fdt.setBounds(670, 600, 170, 30);
-		vuesuggestion(sugges);
+		initPanel();
 		this.add(clavier);
 		this.add(plateau);
 		this.setSize(900, 850);
@@ -73,12 +73,22 @@ public class Vue extends JFrame {
 	public void emplacement_lettre(ActionListener e) {
 		melanger.addActionListener(e);
 	}
-	public void vuesuggestion(Suggestion s) {
-		 
-		panel =new JPanel();
+	
+	public void initPanel() {
+		this.panel = new JPanel();
+		this.panel.setBounds(670, 400, 120,150);
+		this.add(this.panel);
 		JLabel motpossible = new JLabel("Suggestions");
 		motpossible.setFont(new Font("Arial", Font.PLAIN, 20));
-		liste = new JList<>();
+		panel.add(motpossible,BorderLayout.NORTH);
+		vuesuggestion(sugges);
+		
+	}
+	public void vuesuggestion(Suggestion s) {
+		this.panel.removeAll();
+		this.sugges = s;
+		
+		//liste = new JList<>();
 		//liste.setSize(200, 200);
 		//liste.setFixedCellHeight(200)
 		liste = new JList (sugges.suggestionlist);
@@ -88,11 +98,13 @@ public class Vue extends JFrame {
 		ascenseur.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		liste.setFont(new Font("Arial", Font.PLAIN, 20) );
 		liste.setBackground(new Color(236, 237, 191));
-		panel.add(motpossible,BorderLayout.NORTH);
 		panel.add(ascenseur,BorderLayout.SOUTH);
+		//panel.add(liste, BorderLayout.CENTER);
 		liste.setVisibleRowCount(4);
-		panel.setBounds(670, 400, 120,150);
-		this.add(panel);
+		
+		//this.add(panel);
+		panel.repaint();
+		//this.validate();
 		
 		
 		
