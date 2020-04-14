@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import Modele.Joueur;
 import Modele.Pioche;
+import Vue2.nombre_joueur;
 
 public class Scores extends JPanel {
 	int i;
@@ -23,16 +24,23 @@ public class Scores extends JPanel {
 		ImageIcon image3 = new ImageIcon("src/images/bonhomme3.png");
 		ImageIcon image4 = new ImageIcon("src/images/bonhomme4.png");
 		ImageIcon[] im = {image,image2,image3,image4};
-		for (int j = 0; j < i; j++) {
+		/*for (int k=0;k<4;k++) {
 			JButton b = new JButton();
+			b.setIcon(im[k]);
+			b.setPreferredSize(new Dimension(im[k].getIconHeight(),im[k].getIconWidth()));
+			b.setToolTipText("nom du joueur");
+			b.setLayout(new FlowLayout(FlowLayout.LEFT));
+			this.add(b);
+		}*/
+		for (int j = 0; j < i ;j++) {
+			/*JButton b = new JButton();
 			b.setIcon(im[j]);
 			b.setPreferredSize(new Dimension(im[j].getIconHeight(),im[j].getIconWidth()));
 			b.setToolTipText("nom du joueur");
-			b.setLayout(new FlowLayout(FlowLayout.LEFT));
+			b.setLayout(new FlowLayout(FlowLayout.LEFT));*/
 			JLabel label = new JLabel();
 			label.setText("Joueur " + (j + 1) + " : 0                   "                               );
 			label.setVisible(true);
-			this.add(b);
 			this.add(label);
 		}
 		JLabel label = new JLabel();
@@ -42,6 +50,8 @@ public class Scores extends JPanel {
 
 	public void majscore(Joueur joueur, Pioche pioche) {
 		JLabel label = (JLabel) this.getComponent(joueur.pos);
+		//JButton b = (JButton) this.getComponent(4);
+		
 		label.setText("Joueur " + (joueur.pos + 1) + " : " + joueur.score);
 		label = (JLabel) this.getComponent(4);
 		label.setText("Lettres restantes : " + pioche.size());
