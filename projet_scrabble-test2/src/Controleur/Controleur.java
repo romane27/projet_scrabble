@@ -128,6 +128,7 @@ public class Controleur {
 							}
 							liste.clear();
 							btn.associe(list.get(0));
+							list.get(0).setVisible(false);
 							tableau.posee(o, p, btn);
 							joueur.remove(btn.boutonass.lettre);
 							listecasejouee.add(xy);
@@ -144,6 +145,7 @@ public class Controleur {
 								btn.setIcon(btn.image);
 								btn.boutonass.clique = false;
 								btn.boutonass.setIcon(btn.boutonass.lettre.image);
+								list.get(0).setVisible(true);
 								tableau.retiree(o, p, btn);
 								joueur.add(btn.boutonass.lettre);
 								listecasejouee.remove(xy);

@@ -9,6 +9,7 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import Controleur.Controleur;
 import Modele.Joueur;
@@ -35,13 +36,21 @@ public class Boutonexec extends JButton implements MouseListener {
 	  }
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("bbb");
-		try {
-			c= new Controleur();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		if (nombre_joueur.nbrjoueur==0) {
+			JOptionPane.showMessageDialog(this,
+				    "Veuillez choisir le nombre de joueurs",
+				    "Attention",
+				    JOptionPane.WARNING_MESSAGE);
+		}
+		else {
+		
+			System.out.println("bbb");
+			try {
+				c= new Controleur();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 	@Override

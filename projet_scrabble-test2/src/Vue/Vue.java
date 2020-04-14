@@ -3,6 +3,8 @@ package Vue;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,8 +22,9 @@ import Modele.Bouton;
 import Modele.Joueur;
 import Modele.Suggestion;
 import Modele.Tableau;
-
+import Vue2.Photo;
 import Vue2.duree_tours;
+
 
 public class Vue extends JFrame {
 	public Clavier clavier;
@@ -35,7 +38,7 @@ public class Vue extends JFrame {
 	public JPanel panel ;
 	public Vue(Tableau tableau, Joueur joueur, Joueur joueur2) throws IOException {
 		score = new Scores(4);
-		score.setBounds(670, 150, 150, 120);
+		score.setBounds(670, 50, 200,300);
 		score.setVisible(true);
 		plateau = new Plateau(tableau);
 		clavier = new Clavier(joueur);
@@ -49,6 +52,7 @@ public class Vue extends JFrame {
 		this.add(clavier);
 		this.add(plateau);
 		this.setSize(900, 850);
+		Photo font = new Photo("src/images/font.jpg",0,0, this.getWidth(),this.getHeight());
 		ImageIcon melange = new ImageIcon("src/images/melanger.png");
 		melanger = new JButton(melange);
 
@@ -61,6 +65,11 @@ public class Vue extends JFrame {
 		this.add(score);
 		chrono = new IHMChrono(duree_tours.duree);
 		this.add(chrono);
+		this.add(font);
+		
+		this.setTitle("Jeu du Scrabble");
+		Image icone = Toolkit.getDefaultToolkit().getImage("src/images/S.jpg"); 
+		this.setIconImage(icone);
 		//vuesuggestion(sugges);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
@@ -75,7 +84,9 @@ public class Vue extends JFrame {
 	}
 	
 	public void initPanel() {
+		
 		this.panel = new JPanel();
+		this.panel.setBackground(new Color (220,233,230));
 		this.panel.setBounds(670, 400, 120,150);
 		this.add(this.panel);
 		JLabel motpossible = new JLabel("Suggestions");

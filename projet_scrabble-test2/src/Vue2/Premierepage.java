@@ -32,7 +32,7 @@ import javax.swing.JTextField;
 
 import Controleur.Controleur;
 import Vue.IHMChrono;
-import Vue2.photo;
+import Vue2.Photo;
 
 public class Premierepage extends Frame implements WindowListener, ActionListener {
 
@@ -45,7 +45,7 @@ public class Premierepage extends Frame implements WindowListener, ActionListene
 		// titre avec taille, police, positionnement
 		Font fonte, font;
 		this.setSize(670, 670);
-		photo image = new photo("src/images/image.jpg");
+		Photo image = new Photo("src/images/image.jpg",0,0,this.getWidth(),this.getHeight());
 		
 
 		fonte = new Font("Helvetica", Font.BOLD, 30);
