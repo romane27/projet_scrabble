@@ -21,6 +21,7 @@ public class Scores extends JPanel {
 
 	public Scores(int i, Joueur jou) {
 		this.i = i;
+		
 		this.setBackground(new Color (220,233,230));
 		ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
 		ImageIcon image2 = new ImageIcon("src/images/bonhomme2.png");

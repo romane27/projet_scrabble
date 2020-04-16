@@ -184,6 +184,7 @@ public class Controleur {
 				vue.score.majscore(multi.joueur_act(), pioche);
 				multi.changer_joueur();
 				vue.majclavier(multi.joueur_act());
+				
 				try {
 					Suggestion s = new Suggestion (multi.joueur_act());
 					System.out.println("eee");
@@ -192,6 +193,19 @@ public class Controleur {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
+				
+				int input2 = JOptionPane.showConfirmDialog(null, 
+						"c'est à "+nombre_joueur.nomjoueur.get(multi.ind_jr)+ " de jouer", " ", 
+			                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
+				 if (input2==JOptionPane.OK_OPTION) {
+					
+					 c.chrono.demarrer();
+
+						
+				 }
+				
+				
 			} else {
 				Pair<Boolean, Integer[]> pair = tableau.comptescore();
 				if (pair.getKey() == false) {// si le mot est faux
