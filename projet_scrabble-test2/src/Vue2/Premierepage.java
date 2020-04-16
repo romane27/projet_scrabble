@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -31,7 +32,7 @@ import javax.swing.JTextField;
 
 import Controleur.Controleur;
 import Vue.IHMChrono;
-import Vue2.photo;
+import Vue2.Photo;
 
 public class Premierepage extends Frame implements WindowListener, ActionListener {
 
@@ -43,8 +44,8 @@ public class Premierepage extends Frame implements WindowListener, ActionListene
 	public Premierepage() {
 		// titre avec taille, police, positionnement
 		Font fonte, font;
-
-		photo image = new photo("src/images/image.jpg");
+		this.setSize(670, 670);
+		Photo image = new Photo("src/images/image.jpg",0,0,this.getWidth(),this.getHeight());
 		
 
 		fonte = new Font("Helvetica", Font.BOLD, 30);
@@ -82,8 +83,10 @@ public class Premierepage extends Frame implements WindowListener, ActionListene
 		// ajout d'un bouton
 
 		// this.setBackground(new Color(0,153,0));
-		this.setSize(670, 670);
+		this.setTitle("Jeu du Scrabble");
+		Image icone = Toolkit.getDefaultToolkit().getImage("src/images/S.jpg"); 
 		// this.pack();
+		this.setIconImage(icone);
 
 		this.setLocationRelativeTo(null);
 		this.addWindowListener(this);
