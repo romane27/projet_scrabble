@@ -31,6 +31,7 @@ public class Tableau {
 
 	public Tableau() throws IOException {
 		dic = new Dico();
+		
 		casejouables = new ArrayList<Case>();
 		this.tableau = new Case[15][15];
 		// this.dico = new Dico().dico;

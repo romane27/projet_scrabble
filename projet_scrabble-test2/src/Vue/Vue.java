@@ -18,6 +18,7 @@ import javax.swing.ScrollPaneConstants;
 
 import Modele.Bouton;
 import Modele.Joueur;
+import Modele.Multijoueur;
 import Modele.Suggestion;
 import Modele.Tableau;
 
@@ -33,13 +34,13 @@ public class Vue extends JFrame {
 	public Suggestion sugges;
 	public JList liste;
 	public JPanel panel ;
-	public Vue(Tableau tableau, Joueur joueur, Joueur joueur2) throws IOException {
+	public Vue(Tableau tableau, Multijoueur joueurs) throws IOException {
 		score = new Scores(4);
 		score.setBounds(670, 150, 150, 120);
 		score.setVisible(true);
 		plateau = new Plateau(tableau);
-		clavier = new Clavier(joueur);
-		sugges = new Suggestion(joueur);
+		clavier = new Clavier(joueurs.joueur_act());
+		sugges = new Suggestion(joueurs.joueur_act());
 		// this.setLayout(null);
 		plateau.setBounds(0, 0, 640, 640);
 		clavier.setBounds((640 - (640 / 15) * 7) / 2, 640 + 10, 640 / 15 * 7, 640 / 15);
