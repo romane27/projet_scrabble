@@ -39,7 +39,7 @@ public class Vue extends JFrame {
 	public JPanel panel ;
 	public Vue(Tableau tableau, Multijoueur joueurs) throws IOException {
 		score = new Scores(4);
-		score.setBounds(670, 50, 200,300);
+		score.setBounds(670, 150, 150, 120);
 		score.setVisible(true);
 		plateau = new Plateau(tableau);
 		clavier = new Clavier(joueurs.joueur_act());
@@ -53,7 +53,7 @@ public class Vue extends JFrame {
 		this.add(clavier);
 		this.add(plateau);
 		this.setSize(900, 850);
-		Photo font = new Photo("src/images/font.jpg",0,0, this.getWidth(),this.getHeight());
+		//Photo font = new Photo("src/images/font.jpg",0,0, this.getWidth(),this.getHeight());
 		ImageIcon melange = new ImageIcon("src/images/melanger.png");
 		melanger = new JButton(melange);
 
@@ -66,7 +66,7 @@ public class Vue extends JFrame {
 		this.add(score);
 		chrono = new IHMChrono(duree_tours.duree);
 		this.add(chrono);
-		this.add(font);
+		//this.add(font);
 		
 		this.setTitle("Jeu du Scrabble");
 		Image icone = Toolkit.getDefaultToolkit().getImage("src/images/S.jpg"); 
