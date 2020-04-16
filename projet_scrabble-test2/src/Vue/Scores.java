@@ -19,7 +19,7 @@ import Vue2.nombre_joueur;
 public class Scores extends JPanel {
 	int i;
 
-	public Scores(int i) {
+	public Scores(int i, Joueur jou) {
 		this.i = i;
 		this.setBackground(new Color (220,233,230));
 		ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
@@ -44,7 +44,7 @@ public class Scores extends JPanel {
 			b.setToolTipText("nom du joueur");
 			b.setLayout(new FlowLayout(FlowLayout.LEFT));*/
 			JLabel label = new JLabel();
-			label.setText("Joueur " + (j + 1) + " : 0");
+			label.setText(nombre_joueur.nomjoueur.get(j) + " : 0");
 			label.setHorizontalTextPosition(SwingConstants.CENTER);
 			label.setAlignmentX(Component.CENTER_ALIGNMENT);
 			label.setVisible(true);
@@ -60,7 +60,7 @@ public class Scores extends JPanel {
 		JLabel label = (JLabel) this.getComponent(joueur.pos);
 		//JButton b = (JButton) this.getComponent(4);
 		
-		label.setText("Joueur " + (joueur.pos + 1) + " : " + joueur.score);
+		label.setText(nombre_joueur.nomjoueur.get(joueur.pos)  + " : " + joueur.score);
 		label = (JLabel) this.getComponent(i);
 		label.setText("Lettres restantes : " + pioche.size());
 	}

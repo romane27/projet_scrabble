@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -20,6 +21,7 @@ import Vue.Clavier;
 import Vue.IHMChrono;
 import Vue.Plateau;
 import Vue.Vue;
+import Vue2.nombre_joueur;
 import javafx.util.Pair;
 
 public class Controleur {
@@ -210,7 +212,7 @@ public class Controleur {
 					multi.changer_joueur();
 					vue.majclavier(multi.joueur_act());
 					tableau.majbonmot(listecasejouee);
-					c.chrono.demarrer();
+					
 					try {
 						Suggestion s = new Suggestion (multi.joueur_act());
 						System.out.println("eee");
@@ -222,6 +224,20 @@ public class Controleur {
 
 					// tableau.majbonmot(listecasejouee);
 				}
+				ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
+				
+				    
+				int input = JOptionPane.showConfirmDialog(null, 
+						"c'est à "+nombre_joueur.nomjoueur.get(multi.ind_jr)+ " de jouer", " ", 
+			                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
+				 if (input==JOptionPane.OK_OPTION) {
+					
+					 c.chrono.demarrer();
+
+						
+				 }
+			        // 0=ok, 2=cancel
+			       // System.out.println(input);
 				tableau.majjouabletour();
 				listecasejouee.clear();
 				listelettrejouee.clear();
