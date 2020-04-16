@@ -204,6 +204,7 @@ public class Controleur {
 				} else {
 					multi.joueur_act().score += pair.getValue()[0];
 					multi.joueur_act().score += pair.getValue()[1];
+					System.out.println(multi.ind_jr+ " : "+ multi.joueur_act().score );
 					multi.joueur_act().tirage(pioche);
 					vue.score.majscore(multi.joueur_act(), pioche);
 					multi.changer_joueur();

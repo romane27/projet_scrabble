@@ -10,7 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
 public class nombre_joueur extends JComboBox implements ActionListener {
-	public static int nbrjoueur;
+	public static int nbrjoueur = 1;
 
 	public nombre_joueur() {
 		// combo.setPreferredSize(new Dimension(100, 20));

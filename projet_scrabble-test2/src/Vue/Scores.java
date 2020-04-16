@@ -1,13 +1,16 @@
 package Vue;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import Modele.Joueur;
 import Modele.Pioche;
@@ -32,6 +35,8 @@ public class Scores extends JPanel {
 			b.setLayout(new FlowLayout(FlowLayout.LEFT));
 			this.add(b);
 		}*/
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		
 		for (int j = 0; j < i ;j++) {
 			/*JButton b = new JButton();
 			b.setIcon(im[j]);
@@ -39,12 +44,15 @@ public class Scores extends JPanel {
 			b.setToolTipText("nom du joueur");
 			b.setLayout(new FlowLayout(FlowLayout.LEFT));*/
 			JLabel label = new JLabel();
-			label.setText("Joueur " + (j + 1) + " : 0                   "                               );
+			label.setText("Joueur " + (j + 1) + " : 0");
+			label.setHorizontalTextPosition(SwingConstants.CENTER);
+			label.setAlignmentX(Component.CENTER_ALIGNMENT);
 			label.setVisible(true);
 			this.add(label);
 		}
 		JLabel label = new JLabel();
 		label.setText("Lettres restantes : " + (102 - 7 * this.i));
+		label.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(label);
 	}
 
@@ -53,7 +61,7 @@ public class Scores extends JPanel {
 		//JButton b = (JButton) this.getComponent(4);
 		
 		label.setText("Joueur " + (joueur.pos + 1) + " : " + joueur.score);
-		label = (JLabel) this.getComponent(4);
+		label = (JLabel) this.getComponent(i);
 		label.setText("Lettres restantes : " + pioche.size());
 	}
 }

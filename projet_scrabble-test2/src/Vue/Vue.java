@@ -38,7 +38,7 @@ public class Vue extends JFrame {
 	public JList liste;
 	public JPanel panel ;
 	public Vue(Tableau tableau, Multijoueur joueurs) throws IOException {
-		score = new Scores(4);
+		score = new Scores(joueurs.recupNbJ());
 		score.setBounds(670, 150, 150, 120);
 		score.setVisible(true);
 		plateau = new Plateau(tableau);

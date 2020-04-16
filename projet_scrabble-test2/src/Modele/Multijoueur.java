@@ -11,6 +11,7 @@ public class Multijoueur {
 		this.ind_jr = 0;
 		for (int i=0; i<nombre_joueur.nbrjoueur; i++) {
 			tab_joueurs[i] = new Joueur(pioche);
+			tab_joueurs[i].pos = i;
 			System.out.println(tab_joueurs[i]);
 		}
 		
@@ -23,6 +24,10 @@ public class Multijoueur {
 	public void changer_joueur() {
 		this.ind_jr = (this.ind_jr +1) % nombre_joueur.nbrjoueur;
 		System.out.println("num joueur : "+ this.ind_jr);
+	}
+	
+	public int recupNbJ() {
+		return nombre_joueur.nbrjoueur;
 	}
 	
 }
