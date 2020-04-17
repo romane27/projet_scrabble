@@ -13,12 +13,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class nombre_joueur extends JComboBox implements ActionListener {
-	public static int nbrjoueur = 1;
+	public static int nbrjoueur = 0;
 	public static ArrayList <String> nomjoueur = new ArrayList<>();
 	public nombre_joueur() {
 		// combo.setPreferredSize(new Dimension(100, 20));
 
 		this.addItem("Choix");
+		this.addItem("1 joueurs");
 		this.addItem("2 joueurs");
 		this.addItem("3 joueurs");
 		this.addItem("4 joueurs");
