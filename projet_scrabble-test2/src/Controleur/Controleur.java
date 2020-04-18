@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,7 +26,7 @@ import Vue.Vue;
 import Vue2.nombre_joueur;
 import javafx.util.Pair;
 
-public class Controleur {
+public class Controleur implements Observer{
 	IHMChrono c;
 	Plateau plateau;
 	Tableau tableau;
@@ -48,6 +50,7 @@ public class Controleur {
 		tableau = new Tableau();
 		vue = new Vue(tableau, multi);
 		mot = new Case[15];
+		c.chrono.addObserver(this);
 		ajoutactlist();
 		appuisfdt();
 		melange_lettre();
@@ -258,5 +261,11 @@ public class Controleur {
 			}
 		});
 
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		appuisfdt();
 	}
 }

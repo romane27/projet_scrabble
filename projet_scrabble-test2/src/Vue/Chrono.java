@@ -7,10 +7,11 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.Observable;
 
 import javax.swing.JComponent;
 
-	public class Chrono implements Runnable {
+	public class Chrono extends Observable implements Runnable {
 		private int x, y, diametre;
 		private JComponent proprietaire;
 		private Thread deroulement;
@@ -107,6 +108,8 @@ import javax.swing.JComponent;
 				//System.out.println("jj"+finir);
 			}
 			finir=true;
+			/*this.setChanged();
+			this.notifyObservers(this);*/ // fonctionne pas
 			
 		}
 
