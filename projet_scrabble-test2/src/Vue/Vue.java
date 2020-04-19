@@ -25,6 +25,7 @@ import Modele.Suggestion;
 import Modele.Tableau;
 import Vue2.Photo;
 import Vue2.duree_tours;
+import Vue2.nombre_joueur;
 
 
 public class Vue extends JFrame {
@@ -64,10 +65,11 @@ public class Vue extends JFrame {
 		this.getContentPane().setBackground(Color.white);
 		this.add(fdt);
 		this.add(score);
+
 		chrono = new IHMChrono(duree_tours.duree);
 		this.add(chrono);
 		//this.add(font);
-		
+
 		this.setTitle("Jeu du Scrabble");
 		Image icone = Toolkit.getDefaultToolkit().getImage("src/images/S.jpg"); 
 		this.setIconImage(icone);
@@ -83,9 +85,9 @@ public class Vue extends JFrame {
 	public void emplacement_lettre(ActionListener e) {
 		melanger.addActionListener(e);
 	}
-	
+
 	public void initPanel() {
-		
+
 		this.panel = new JPanel();
 		this.panel.setBackground(new Color (220,233,230));
 		this.panel.setBounds(670, 400, 120,150);
@@ -94,28 +96,28 @@ public class Vue extends JFrame {
 		motpossible.setFont(new Font("Arial", Font.PLAIN, 20));
 		panel.add(motpossible,BorderLayout.NORTH);
 		vuesuggestion(sugges);
-		
+
 	}
 	public void vuesuggestion(Suggestion s) {
 		this.panel.removeAll();
 		this.sugges = s;
 		if (this.sugges.suggestionlist.length != 0) {
-		JLabel motpossible = new JLabel("Suggestions");
-		motpossible.setFont(new Font("Arial", Font.PLAIN, 20));
-		panel.add(motpossible,BorderLayout.NORTH);
-		//liste = new JList<>();
-		//liste.setSize(200, 200);
-		//liste.setFixedCellHeight(200)
-		liste = new JList (sugges.suggestionlist);
-		// creer un assenceur quand bcp de suggestion
-		JScrollPane ascenseur = new JScrollPane(liste);
-		ascenseur.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		ascenseur.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		liste.setFont(new Font("Arial", Font.PLAIN, 20) );
-		liste.setBackground(new Color(236, 237, 191));
-		panel.add(ascenseur,BorderLayout.SOUTH);
-		//panel.add(liste, BorderLayout.CENTER);
-		liste.setVisibleRowCount(4);
+			JLabel motpossible = new JLabel("Suggestions");
+			motpossible.setFont(new Font("Arial", Font.PLAIN, 20));
+			panel.add(motpossible,BorderLayout.NORTH);
+			//liste = new JList<>();
+			//liste.setSize(200, 200);
+			//liste.setFixedCellHeight(200)
+			liste = new JList (sugges.suggestionlist);
+			// creer un assenceur quand bcp de suggestion
+			JScrollPane ascenseur = new JScrollPane(liste);
+			ascenseur.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			ascenseur.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			liste.setFont(new Font("Arial", Font.PLAIN, 20) );
+			liste.setBackground(new Color(236, 237, 191));
+			panel.add(ascenseur,BorderLayout.SOUTH);
+			//panel.add(liste, BorderLayout.CENTER);
+			liste.setVisibleRowCount(4);
 		}
 		//this.add(panel);
 		else {
@@ -123,13 +125,13 @@ public class Vue extends JFrame {
 			motpossible.setFont(new Font("Arial", Font.PLAIN, 20));
 			panel.add(motpossible,BorderLayout.NORTH);
 		}
-		
+
 		panel.repaint();
 		//this.validate();
-		
-		
-		
-		}
+
+
+
+	}
 	public void majclavier(Joueur joueur) {
 		Clavier claviertemp = new Clavier(joueur);
 
@@ -169,7 +171,7 @@ public class Vue extends JFrame {
 	}
 
 	public void majplateau(int k, ImageIcon nom) {
-//		public void majplateau(int k, String nom) {
+		//		public void majplateau(int k, String nom) {
 		Bouton bouton = (Bouton) plateau.getComponent(k);
 		// bouton.setBackground(Color.white);
 		bouton.setIcon(nom);

@@ -19,7 +19,7 @@ public class nombre_joueur extends JComboBox implements ActionListener {
 		// combo.setPreferredSize(new Dimension(100, 20));
 
 		this.addItem("Choix");
-		this.addItem("1 joueurs");
+		this.addItem("1 joueur");
 		this.addItem("2 joueurs");
 		this.addItem("3 joueurs");
 		this.addItem("4 joueurs");
@@ -43,9 +43,15 @@ public class nombre_joueur extends JComboBox implements ActionListener {
 		for (int i=0 ; i<nbrjoueur;i++) {
 			ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
 			 String nom = JOptionPane.showInputDialog(null, "Entrez nom du joueur "+j+":", "Nom", JOptionPane.QUESTION_MESSAGE);
-			 //String name = JOptionPane.showInputDialog(null,
-			//            "Entrez nom du joueur "+j+":");
-			nomjoueur.add(nom);
+			
+			 if (nom.isEmpty()) {
+				 System.out.println("le nom llll" +nom);
+				 nomjoueur.add("joueur "+j);
+			 }
+			 else {
+				 nomjoueur.add(nom);
+			 }
+			
 			 j+=1;
 			 
 		}

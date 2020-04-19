@@ -64,6 +64,25 @@ public class Premierepage extends Frame implements WindowListener, ActionListene
 		bouton_executer.addActionListener(this);
 		nbrjoueur = new nombre_joueur();
 		dureetour = new duree_tours();
+		JLabel b = new JLabel("                                                  Règle du jeu              ");
+		JLabel l = new JLabel("<html>  Déroulement d'une partie :  <br><br> - Le joueur 1 commence la partie 7 lettres au hasard lui sont attribué <br>  - Chaque joueur à un certain temps pour jouer temps choisit au début  <br> - il faut continuer les règles c est un test </html>");
+		//p.add(b,l);
+		b.setFont(font);
+		b.setBackground(new Color(173, 239, 200));
+		l.setBackground(new Color(173, 239, 200));
+		l.setOpaque(true);
+		b.setOpaque(true);
+		
+		b.setBounds(100, 300, 500,30);
+		
+		l.setBounds(100, 330, 500,200);
+		
+		//p.add(ascenseur);
+		//l.setText();
+		//l.setSize(200, 300);;
+		this.add(b);
+		
+		this.add(l);
 		this.add(bouton_executer, BorderLayout.SOUTH);
 		this.add(titre2);
 		this.add(titre3);

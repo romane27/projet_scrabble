@@ -41,6 +41,7 @@ public class Controleur implements Observer{
 	ArrayList<Lettre> listelettrejouee;
 	public static String lettrejokerchoisi; 
 	public Controleur() throws IOException {
+		this.lettrejokerchoisi =" ";
 		listelettrejouee = new ArrayList<Lettre>();
 		pioche = new Pioche();
 		System.out.println(pioche.size());
@@ -123,6 +124,9 @@ public class Controleur implements Observer{
 								    	      Suggestion.alphabet,
 								    	      Suggestion.alphabet[0]);
 								    lettrejokerchoisi=joker;
+								    if (joker == null) {
+								    	lettrejokerchoisi = "A";
+								    }
 								    System.out.println(lettrejokerchoisi);
 								    for (Lettre l : Suggestion.lettreetvaleurs) {
 								    	if (l.nom==lettrejokerchoisi) {
@@ -155,6 +159,9 @@ public class Controleur implements Observer{
 								btn.boutonass.setIcon(btn.boutonass.lettre.image);
 								//list.get(0).setVisible(true);
 								tableau.retiree(o, p, btn);
+								if (btn.boutonass.lettre.nom == lettrejokerchoisi) {
+									btn.boutonass.lettre.nom=" ";
+								}
 								multi.joueur_act().add(btn.boutonass.lettre);
 								listecasejouee.remove(xy);
 								listelettrejouee.remove(btn.boutonass.lettre);
@@ -171,7 +178,7 @@ public class Controleur implements Observer{
 	// ce qu'il se passe quand on clic sur bouton melanger
 	public void melange_lettre() {
 		vue.emplacement_lettre((ActionEvent evt) -> {
-			System.out.println("salut");
+			
 			vue.melangeclavier(Clavier.melangerlettre(), multi.joueur_act());
 		});
 	}
@@ -196,17 +203,21 @@ public class Controleur implements Observer{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
-				
-				int input2 = JOptionPane.showConfirmDialog(null, 
-						"c'est à "+nombre_joueur.nomjoueur.get(multi.ind_jr)+ " de jouer", " ", 
-			                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
-				 if (input2==JOptionPane.OK_OPTION) {
+				if (nombre_joueur.nbrjoueur!=1) {
+					ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
 					
-					 c.chrono.demarrer();
-
+					int input2 = JOptionPane.showConfirmDialog(null, 
+							"c'est à "+nombre_joueur.nomjoueur.get(multi.ind_jr)+ " de jouer", " ", 
+				                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
+					 if (input2==JOptionPane.OK_OPTION) {
 						
-				 }
+						 c.chrono.demarrer();
+
+							
+					 }
+				}
+				c.chrono.demarrer();
+				
 				
 				
 			} else {
