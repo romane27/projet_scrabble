@@ -99,6 +99,7 @@ public class Tableau {
 		// carre bas gauche
 		for (int i = 7; i < 15; i++) {
 			for (int j = 0; j < 7; j++) {
+				
 				int b = tableau[7 - (i - 7)][j].bonus;
 				tableau[i][j].bonus = b;
 				if (j == 7 & i != 7) {
@@ -112,6 +113,7 @@ public class Tableau {
 		for (int i = 7; i < 15; i++) {
 
 			for (int j = 7; j < 15; j++) {
+				
 				int b = tableau[i][7 - (j - 7)].bonus;
 				tableau[i][j].bonus = b;
 				if (j == 7 & i != 7) {
@@ -125,13 +127,13 @@ public class Tableau {
 		tableau[7][7].jouable = true;
 	}
 
-	public void majjouabletour() {
+	/*public void majjouabletour() {
 		for (int i = 1; i < 14; i++) {
 			for (int j = 1; j < 14; j++) {
 				tableau[i][j].jouable = this.jouable(i, j);
 			}
 		}
-	}
+	}*/
 
 	public void resetjouable() {
 		for (int i = 0; i < 15; i++) {
@@ -148,8 +150,205 @@ public class Tableau {
 			tableau[o][p - 1].jouable = true;
 			tableau[o][p + 1].jouable = true;
 		}
-
-		if (tableau[o - 1][p].occupe == true && tableau[o + 1][p].occupe == false && o != 14) {
+		if (o == 7 && p == 7) {
+			
+			tableau[o + 1][p].jouable = true;
+			tableau[o - 1][p].jouable = true;
+			tableau[o][p - 1].jouable = true;
+			tableau[o][p + 1].jouable = true;
+		}
+		// on différencie les cas 
+		// si on pose dans un angle 
+		if ((o == 0 && p==0) || (o==0 && p==14) || (o==14 && p==14)||(o==14 && p==0) ||  p==0 || p==14 || o==0 || o==14) {
+		
+		
+			if (o == 0 && p==0) {
+				
+			if (tableau[o+1][p].occupe==true) {
+				if (tableau[o][p+1].occupe==false) {
+					tableau[o][p+1].jouable=true;
+				}
+			}
+			if (tableau[o][p+1].occupe=true) {
+				if (tableau[o+1][p].occupe==false) {
+					tableau[o+1][p].jouable=true;
+				}
+			}
+		}
+		if (o==0 && p==14) {
+			
+			if (tableau[o][p-1].occupe==true) {
+				if (tableau[o+1][p].occupe==false) {
+					tableau[o+1][p].jouable=true;
+				}
+			}
+			if (tableau[o+1][p].occupe=true) {
+				if (tableau[o][p-1].occupe==false) {
+					tableau[o][p-1].jouable=true;
+				}
+			}
+		}
+		if (o==14 && p==14) {
+			
+			if (tableau[o][p-1].occupe==true) {
+				if (tableau[o-1][p].occupe==false) {
+					tableau[o-1][p].jouable=true;
+				}
+			}
+			if (tableau[o-1][p].occupe=true) {
+				if (tableau[o][p-1].occupe==false) {
+					tableau[o][p-1].jouable=true;
+				}
+			}
+		}
+		if (o==14 && p==0) {
+			
+			if (tableau[o][p+1].occupe==true) {
+				if (tableau[o-1][p].occupe==false) {
+					tableau[o-1][p].jouable=true;
+				}
+			}
+			if (tableau[o-1][p].occupe=true) {
+				if (tableau[o][p+1].occupe==false) {
+					tableau[o][p+1].jouable=true;
+				}
+			}
+		}
+		
+		// si on pose sur un coté 
+		
+		if (p==0 && o!=0 && o!=14) {
+			
+			if (tableau[o+1][p].occupe==true) {
+				if (tableau[o-1][p].occupe==false) {
+					tableau[o-1][p].jouable=true;
+				}
+				if (tableau[o][p+1].occupe==false) {
+					tableau[o][p+1].jouable=true;
+				}
+			}
+			if (tableau[o-1][p].occupe==true) {
+				if (tableau[o+1][p].occupe==false) {
+					tableau[o+1][p].jouable=true;
+				}
+				if (tableau[o][p+1].occupe==false) {
+					tableau[o][p+1].jouable=true;
+				}
+			}
+		}
+		if (o==0 && p!=0 && p!=14) {
+			
+			if (tableau[o][p+1].occupe==true) {
+				if (tableau[o][p-1].occupe==false) {
+					tableau[o][p-1].jouable=true;
+				}
+				if (tableau[o+1][p].occupe==false) {
+					tableau[o+1][p].jouable=true;
+				}
+			}
+			if (tableau[o][p-1].occupe==true) {
+				if (tableau[o][p+1].occupe==false) {
+					tableau[o][p+1].jouable=true;
+				}
+				if (tableau[o+1][p].occupe==false) {
+					tableau[o+1][p].jouable=true;
+				}
+			}
+		}
+		if (p==14 && o!=0 && o!=14) {
+		
+			if (tableau[o+1][p].occupe==true) {
+				if (tableau[o-1][p].occupe==false) {
+					tableau[o-1][p].jouable=true;
+				}
+				if (tableau[o][p-1].occupe==false) {
+					tableau[o][p-1].jouable=true;
+				}
+			}
+			if (tableau[o-1][p].occupe==true) {
+				if (tableau[o+1][p].occupe==false) {
+					tableau[o+1][p].jouable=true;
+				}
+				if (tableau[o][p-1].occupe==false) {
+					tableau[o][p-1].jouable=true;
+				}
+			}
+		}
+		if (o==14 && p!=0 && p!=14) {
+			
+			if (tableau[o][p-1].occupe==true) {
+				if (tableau[o][p+1].occupe==false) {
+					tableau[o][p+1].jouable=true;
+				}
+				if (tableau[o-1][p].occupe==false) {
+					tableau[o-1][p].jouable=true;
+				}
+			}
+			if (tableau[o][p+1].occupe==true) {
+				if (tableau[o][p-1].occupe==false) {
+					tableau[o][p-1].jouable=true;
+				}
+				if (tableau[o-1][p].occupe==false) {
+					tableau[o-1][p].jouable=true;
+				}
+			}
+		}
+		}
+		// si on pose ailleurs 
+		else {
+			if (tableau[o][p-1].occupe==true && p!=0) {
+			
+				if (tableau[o][p+1].occupe==false && p!=14) {
+					tableau[o][p+1].jouable=true;
+				}
+				if (tableau[o+1][p].occupe==false && o!=14) {
+					tableau[o+1][p].jouable=true;
+				}
+				if (tableau[o-1][p].occupe==false && o!=0) {
+					tableau[o-1][p].jouable=true;
+				}
+				
+				
+			}
+			if (tableau[o][p+1].occupe==true && p!=14) {
+				
+				if (tableau[o][p-1].occupe==false && p!=0) {
+					tableau[o][p-1].jouable=true;
+				}
+				if (tableau[o+1][p].occupe==false && o!=14) {
+					tableau[o+1][p].jouable=true;
+				}
+				if (tableau[o-1][p].occupe==false && o!=0) {
+					tableau[o-1][p].jouable=true;
+				}
+			}
+			if (tableau[o-1][p].occupe==true && o!=0 ) {
+				
+				if (tableau[o][p-1].occupe==false && p !=0) {
+					tableau[o][p-1].jouable=true;
+				}
+				if (tableau[o][p+1].occupe==false && p!=14) {
+					tableau[o][p+1].jouable=true;
+					
+				}
+				if (tableau[o+1][p].occupe==false && o!=14) {
+					tableau[o+1][p].jouable=true;
+				}
+			}
+			if (tableau[o+1][p].occupe==true && o!=14) {
+				
+				if (tableau[o][p-1].occupe==false && p!=0) {
+					tableau[o][p-1].jouable=true;
+				}
+				if (tableau[o][p+1].occupe==false && p!=14) {
+					tableau[o][p+1].jouable=true;
+				}
+				if (tableau[o-1][p].occupe==false && o!=0) {
+					tableau[o-1][p].jouable=true;
+				}
+			}
+		}
+		/*if (tableau[o - 1][p].occupe == true && tableau[o + 1][p].occupe == false && o != 14) {
 			tableau[o + 1][p].jouable = true;
 		}
 		if (o != 0 && tableau[o + 1][p].occupe == true && tableau[o - 1][p].occupe == false) {
@@ -161,7 +360,7 @@ public class Tableau {
 		if (tableau[o][p + 1].occupe == false && tableau[o][p - 1].occupe == true && p != 14) {
 			tableau[o][p + 1].jouable = true;
 
-		}
+		}*/
 		tableau[o][p].jouee = true;
 		tableau[o][p].occupe = true;
 		tableau[o][p].lettre = btn.boutonass.lettre;
@@ -303,7 +502,7 @@ public class Tableau {
 
 	}
 
-	public boolean jouable(int o, int p) {
+	/*public boolean jouable(int o, int p) {
 		if (o == 7 && p == 7) {
 			return true;
 		}
@@ -321,5 +520,5 @@ public class Tableau {
 
 		}
 		return false;
-	}
+	}*/
 }

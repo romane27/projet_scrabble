@@ -266,7 +266,7 @@ public class Controleur implements Observer{
 				 }
 			        // 0=ok, 2=cancel
 			       // System.out.println(input);
-				tableau.majjouabletour();
+			//	tableau.majjouabletour();
 				listecasejouee.clear();
 				listelettrejouee.clear();
 			}
