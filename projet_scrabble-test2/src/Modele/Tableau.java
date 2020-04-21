@@ -364,6 +364,7 @@ public class Tableau {
 		tableau[o][p].jouee = true;
 		tableau[o][p].occupe = true;
 		tableau[o][p].lettre = btn.boutonass.lettre;
+		afficher_matrice();
 
 	}
 
@@ -374,14 +375,8 @@ public class Tableau {
 	}
 
 	public Pair<Boolean, Integer[]> comptescore() {
-		int score_m1 = 0;
-		int score_m2 = 0;
-		int mults1 = 1;
-		int mults2 = 1;
 		int i = 0;
 		int j = 0;
-		String mot1 = "";
-		String mot2 = "";
 		while (tableau[i][j].jouee == false) {
 			j++;
 			if (j == 14) {
@@ -389,6 +384,25 @@ public class Tableau {
 				j = 0;
 			}
 		}
+		String[] r1 = mot_vertical(i, j);
+		String[] r2 = mot_horizontal(i,j);
+		String mot1 = r1[0];
+		String mot2 = r2[0];
+		int score_m1 = Integer.parseInt(r1[1]);
+		int score_m2 = Integer.parseInt(r2[1]);
+		Integer[] scores = {score_m1, score_m2};
+		System.out.println(mot1 + " " + score_m1 + " " + dic.verifier_mot(mot1));
+		System.out.println(mot2 + " " + score_m2 + " " + dic.verifier_mot(mot2));
+		Boolean b = dic.verifier_mot(mot1) && dic.verifier_mot(mot2);
+		Pair<Boolean, Integer[]> pair = new Pair<Boolean, Integer[]>(b, scores);
+		return pair;
+
+	}
+	
+	public String[] mot_vertical(int i, int j) {
+		int score_m1=0;
+		int mults1 =1;
+		String mot1 = "";
 		if (tableau[i][j + 1].occupe == true || tableau[i][j - 1].occupe == true) {// de droite à gauche
 
 			while (tableau[i][j - 1].occupe == true) {// retrouve le debut du mot
@@ -406,23 +420,20 @@ public class Tableau {
 				if (tableau[i][j].bonus == 5) {// mot double
 					score_m1 += tableau[i][j].lettre.valeur;
 					mults1 *= 2;
-					tableau[i][j].bonus = 0;
 				}
 				if (tableau[i][j].bonus == 3) {// lettre double
 					score_m1 += tableau[i][j].lettre.valeur * 2;
-					tableau[i][j].bonus = 0;
 				}
 
 				if (tableau[i][j].bonus == 1) {// mot triple
 					score_m1 += tableau[i][j].lettre.valeur;
 					mults1 *= 3;
-					tableau[i][j].bonus = 0;
 				}
 
 				if (tableau[i][j].bonus == 2) {// lettre triple
 					score_m1 += tableau[i][j].lettre.valeur * 3;
-					tableau[i][j].bonus = 0;
 				}
+				tableau[i][j].bonus = 0;
 				tableau[i][j].jouee = false;
 				// tableau[i][j].verouillee = true;
 				mot1 += tableau[i][j].lettre.nom;
@@ -430,6 +441,16 @@ public class Tableau {
 
 			}
 		}
+		System.out.println("Le mot 1 est : " + mot1);
+		System.out.println("Le score pour le mot 1 est : " +score_m1*mults1);
+		String[] resultat = {mot1, String.valueOf(score_m1*mults1)};
+		return resultat;
+	}
+	
+	public String[] mot_horizontal(int i, int j) {
+		int score_m2=0;
+		int mults2 =1;
+		String mot2 = "";
 		if (tableau[i - 1][j].occupe == true || tableau[i + 1][j].occupe == true) {// de haut en bas
 
 			while (tableau[i - 1][j].occupe == true) {// retrouve le debut du mot
@@ -449,37 +470,31 @@ public class Tableau {
 				if (tableau[i][j].bonus == 5) {// mot double
 					score_m2 += tableau[i][j].lettre.valeur;
 					mults2 *= 2;
-
 				}
 				if (tableau[i][j].bonus == 3) {// lettre double
 					score_m2 += tableau[i][j].lettre.valeur * 2;
-
 				}
 
 				if (tableau[i][j].bonus == 1) {// mot triple
 					score_m2 += tableau[i][j].lettre.valeur;
 					mults2 *= 3;
-
 				}
 
 				if (tableau[i][j].bonus == 2) {// lettre triple
 					score_m2 += tableau[i][j].lettre.valeur * 3;
-
+					
 				}
+				tableau[i][j].bonus = 0;
 				tableau[i][j].jouee = false;
 				mot2 += tableau[i][j].lettre.nom;
 				i += 1;
 			}
 		}
-		score_m1 *= mults1;
-		score_m2 *= mults2;
-		Integer[] scores = { score_m1, score_m2 };
-		System.out.println(mot1 + " " + score_m1 + " " + dic.verifier_mot(mot1));
-		System.out.println(mot2 + " " + score_m2 + " " + dic.verifier_mot(mot2));
-		Boolean b = dic.verifier_mot(mot1) && dic.verifier_mot(mot2);
-		Pair<Boolean, Integer[]> pair = new Pair<Boolean, Integer[]>(b, scores);
-		return pair;
-
+		System.out.println("Le mot 2 est : " + mot2);
+		System.out.println("Le score pour le mot 2 est : " +score_m2*mults2);
+		String[] resultat = {mot2, String.valueOf(score_m2*mults2)};
+		//System.out.println(resultat);
+		return resultat;
 	}
 
 	public void majmauvaismot(ArrayList<Pair> listecasejouee) {
@@ -500,6 +515,16 @@ public class Tableau {
 			tableau[i][j].occupe = true;
 		}
 
+	}
+	
+	public void afficher_matrice() {
+		for(int i=0; i<15; i++) {
+			for (int j=0; j<15; j++) {
+				System.out.print(tableau[i][j].lettre + " ");
+			}
+			System.out.print("\n");
+		}
+		System.out.print("\n");
 	}
 
 	/*public boolean jouable(int o, int p) {
