@@ -125,6 +125,7 @@ public class Tableau {
 		}
 		tableau[7][7].bonus = 6;
 		tableau[7][7].jouable = true;
+		afficher_matrice();
 	}
 
 	/*public void majjouabletour() {
@@ -405,10 +406,10 @@ public class Tableau {
 		String mot1 = "";
 		if (tableau[i][j + 1].occupe == true || tableau[i][j - 1].occupe == true) {// de droite à gauche
 
-			while (tableau[i][j - 1].occupe == true) {// retrouve le debut du mot
+			while (tableau[i][j - 1].occupe == true && j!=15 && j!=0) {// retrouve le debut du mot
 				j -= 1;
 			}
-			while (tableau[i][j].occupe == true) {
+			while (tableau[i][j].occupe == true && j!=15 && j!=0) {
 
 				if (tableau[i][j].bonus == 0) {// sans bonus
 					score_m1 += tableau[i][j].lettre.valeur;
@@ -453,12 +454,12 @@ public class Tableau {
 		String mot2 = "";
 		if (tableau[i - 1][j].occupe == true || tableau[i + 1][j].occupe == true) {// de haut en bas
 
-			while (tableau[i - 1][j].occupe == true) {// retrouve le debut du mot
+			while (tableau[i - 1][j].occupe == true && i!=15 && i!=0) {// retrouve le debut du mot
 
 				i -= 1;
 			}
 
-			while (tableau[i][j].occupe == true) {
+			while (tableau[i][j].occupe == true && i!=15 && i!=0) {
 				tableau[i][j].jouee = false;
 				if (tableau[i][j].bonus == 0) {// sans bonus
 					score_m2 += tableau[i][j].lettre.valeur;
