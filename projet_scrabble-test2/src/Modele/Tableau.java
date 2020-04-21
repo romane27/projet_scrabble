@@ -125,7 +125,9 @@ public class Tableau {
 		}
 		tableau[7][7].bonus = 6;
 		tableau[7][7].jouable = true;
-		afficher_matrice();
+		//afficher_matrice();
+		System.out.println("test 1 : " + tableau[0][14].bonus);
+		System.out.println("test 2 : " + tableau[14][0].bonus);
 	}
 
 	/*public void majjouabletour() {
@@ -365,7 +367,7 @@ public class Tableau {
 		tableau[o][p].jouee = true;
 		tableau[o][p].occupe = true;
 		tableau[o][p].lettre = btn.boutonass.lettre;
-		afficher_matrice();
+		//afficher_matrice();
 
 	}
 
@@ -380,13 +382,21 @@ public class Tableau {
 		int j = 0;
 		while (tableau[i][j].jouee == false) {
 			j++;
-			if (j == 14) {
+			if (j == 15) {
 				i += 1;
 				j = 0;
 			}
 		}
-		String[] r1 = mot_vertical(i, j);
-		String[] r2 = mot_horizontal(i,j);
+		System.out.println("coordonnées : "+i+", "+j);
+		String[] r1 = { "", "0"};
+		String[] r2 = { "", "0"};
+		//if (i!=14) {
+		r1 = mot_vertical(i, j);
+		//}
+		System.out.println("c2 "+i + j);
+		//if (j!=14) {
+		r2 = mot_horizontal(i,j);
+		//}
 		String mot1 = r1[0];
 		String mot2 = r2[0];
 		int score_m1 = Integer.parseInt(r1[1]);
@@ -400,16 +410,19 @@ public class Tableau {
 
 	}
 	
-	public String[] mot_vertical(int i, int j) {
+	public String[] mot_horizontal(int i, int j) {
 		int score_m1=0;
 		int mults1 =1;
 		String mot1 = "";
-		if (tableau[i][j + 1].occupe == true || tableau[i][j - 1].occupe == true) {// de droite à gauche
-
-			while (tableau[i][j - 1].occupe == true && j!=15 && j!=0) {// retrouve le debut du mot
+		System.out.println("je passe par ici");
+		//if (tableau[i][j + 1].occupe == true || tableau[i][j - 1].occupe == true) {// de droite à gauche
+		if (j!=0) {
+			while (tableau[i][j - 1].occupe == true && j!=0) {// retrouve le debut du mot
 				j -= 1;
 			}
-			while (tableau[i][j].occupe == true && j!=15 && j!=0) {
+		}
+		if (tableau[i][j+1].occupe) {
+			while (j<=14 && tableau[i][j].occupe == true) {
 
 				if (tableau[i][j].bonus == 0) {// sans bonus
 					score_m1 += tableau[i][j].lettre.valeur;
@@ -438,8 +451,10 @@ public class Tableau {
 				tableau[i][j].jouee = false;
 				// tableau[i][j].verouillee = true;
 				mot1 += tableau[i][j].lettre.nom;
+				System.out.println("lettre lue : "+ tableau[i][j].lettre.nom);
 				j += 1;
 
+			//}
 			}
 		}
 		System.out.println("Le mot 1 est : " + mot1);
@@ -448,18 +463,20 @@ public class Tableau {
 		return resultat;
 	}
 	
-	public String[] mot_horizontal(int i, int j) {
+	public String[] mot_vertical(int i, int j) {
 		int score_m2=0;
 		int mults2 =1;
 		String mot2 = "";
-		if (tableau[i - 1][j].occupe == true || tableau[i + 1][j].occupe == true) {// de haut en bas
-
-			while (tableau[i - 1][j].occupe == true && i!=15 && i!=0) {// retrouve le debut du mot
+		System.out.println("je passe par ici");
+		//if (tableau[i - 1][j].occupe == true || tableau[i + 1][j].occupe == true) {// de haut en bas
+		if (i!=0) {
+			while (tableau[i - 1][j].occupe == true && i!=0) {// retrouve le debut du mot
 
 				i -= 1;
 			}
-
-			while (tableau[i][j].occupe == true && i!=15 && i!=0) {
+		}
+		if (tableau[i+1][j].occupe) {
+			while (i<= 14 && tableau[i][j].occupe == true) {
 				tableau[i][j].jouee = false;
 				if (tableau[i][j].bonus == 0) {// sans bonus
 					score_m2 += tableau[i][j].lettre.valeur;
@@ -488,6 +505,7 @@ public class Tableau {
 				tableau[i][j].bonus = 0;
 				tableau[i][j].jouee = false;
 				mot2 += tableau[i][j].lettre.nom;
+				System.out.println("lettre lue : "+ tableau[i][j].lettre.nom);
 				i += 1;
 			}
 		}
