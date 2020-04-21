@@ -126,8 +126,8 @@ public class Tableau {
 		tableau[7][7].bonus = 6;
 		tableau[7][7].jouable = true;
 		//afficher_matrice();
-		System.out.println("test 1 : " + tableau[0][14].bonus);
-		System.out.println("test 2 : " + tableau[14][0].bonus);
+		//System.out.println("test 1 : " + tableau[0][14].bonus);
+		//System.out.println("test 2 : " + tableau[14][0].bonus);
 	}
 
 	/*public void majjouabletour() {
@@ -447,8 +447,8 @@ public class Tableau {
 				if (tableau[i][j].bonus == 2) {// lettre triple
 					score_m1 += tableau[i][j].lettre.valeur * 3;
 				}
-				tableau[i][j].bonus = 0;
-				tableau[i][j].jouee = false;
+				//tableau[i][j].bonus = 0;
+				//tableau[i][j].jouee = false;
 				// tableau[i][j].verouillee = true;
 				mot1 += tableau[i][j].lettre.nom;
 				System.out.println("lettre lue : "+ tableau[i][j].lettre.nom);
@@ -477,7 +477,7 @@ public class Tableau {
 		}
 		if (tableau[i+1][j].occupe) {
 			while (i<= 14 && tableau[i][j].occupe == true) {
-				tableau[i][j].jouee = false;
+				//tableau[i][j].jouee = false;
 				if (tableau[i][j].bonus == 0) {// sans bonus
 					score_m2 += tableau[i][j].lettre.valeur;
 				}
@@ -502,8 +502,8 @@ public class Tableau {
 					score_m2 += tableau[i][j].lettre.valeur * 3;
 					
 				}
-				tableau[i][j].bonus = 0;
-				tableau[i][j].jouee = false;
+				//tableau[i][j].bonus = 0;
+				//tableau[i][j].jouee = false;
 				mot2 += tableau[i][j].lettre.nom;
 				System.out.println("lettre lue : "+ tableau[i][j].lettre.nom);
 				i += 1;
@@ -521,6 +521,7 @@ public class Tableau {
 			int i = (int) listecasejouee.get(k).getKey();
 			int j = (int) listecasejouee.get(k).getValue();
 			tableau[i][j].occupe = false;
+			tableau[i][j].jouee = false;
 		}
 	}
 
@@ -530,6 +531,7 @@ public class Tableau {
 			int i = (int) listecasejouee.get(k).getKey();
 			int j = (int) listecasejouee.get(k).getValue();
 			tableau[i][j].bonus = 0;
+			tableau[i][j].jouee = false;
 			tableau[i][j].verouillee = true;
 			tableau[i][j].occupe = true;
 		}

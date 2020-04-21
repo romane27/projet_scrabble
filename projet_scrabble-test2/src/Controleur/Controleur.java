@@ -230,6 +230,8 @@ public class Controleur implements Observer{
 					tableau.majmauvaismot(listecasejouee);
 					multi.joueur_act().reset(listelettrejouee);
 					System.out.println(multi.joueur_act());
+					multi.changer_joueur();
+					vue.majclavier(multi.joueur_act());
 
 				} else {
 					multi.joueur_act().score += pair.getValue()[0];
@@ -237,10 +239,11 @@ public class Controleur implements Observer{
 					System.out.println(multi.ind_jr+ " : "+ multi.joueur_act().score );
 					multi.joueur_act().tirage(pioche);
 					vue.score.majscore(multi.joueur_act(), pioche);
+					tableau.majbonmot(listecasejouee);
 					multi.changer_joueur();
 					vue.majclavier(multi.joueur_act());
-					tableau.majbonmot(listecasejouee);
 					
+				}
 					try {
 						Suggestion s = new Suggestion (multi.joueur_act());
 						System.out.println("eee");
@@ -251,7 +254,6 @@ public class Controleur implements Observer{
 					}
 
 					// tableau.majbonmot(listecasejouee);
-				}
 				ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
 				
 				    
