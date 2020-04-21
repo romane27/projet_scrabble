@@ -259,7 +259,7 @@ public class Controleur implements Observer{
 				    
 				int input = JOptionPane.showConfirmDialog(null, 
 						"c'est à "+nombre_joueur.nomjoueur.get(multi.ind_jr)+ " de jouer", " ", 
-			                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
+			                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
 				 if (input==JOptionPane.OK_OPTION) {
 					
 					 c.chrono.demarrer();

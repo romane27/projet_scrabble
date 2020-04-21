@@ -46,7 +46,7 @@ public class nombre_joueur extends JComboBox implements ActionListener {
 			
 			 if (nom.isEmpty()) {
 				 System.out.println("le nom llll" +nom);
-				 nomjoueur.add("joueur "+j);
+				 nomjoueur.add("Joueur "+j);
 			 }
 			 else {
 				 nomjoueur.add(nom);
