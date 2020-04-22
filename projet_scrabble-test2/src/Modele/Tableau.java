@@ -153,13 +153,14 @@ public class Tableau {
 			tableau[o][p - 1].jouable = true;
 			tableau[o][p + 1].jouable = true;
 		}
+		/*
 		if (o == 7 && p == 7) {
 			
 			tableau[o + 1][p].jouable = true;
 			tableau[o - 1][p].jouable = true;
 			tableau[o][p - 1].jouable = true;
 			tableau[o][p + 1].jouable = true;
-		}
+		}*/
 		// on différencie les cas 
 		// si on pose dans un angle 
 		if ((o == 0 && p==0) || (o==0 && p==14) || (o==14 && p==14)||(o==14 && p==0) ||  p==0 || p==14 || o==0 || o==14) {
@@ -238,6 +239,14 @@ public class Tableau {
 					tableau[o][p+1].jouable=true;
 				}
 			}
+			if (tableau[o][p+1].occupe==true) {
+				if (tableau[o+1][p].occupe==false) {
+					tableau[o+1][p].jouable=true;
+				}
+				if (tableau[o-1][p].occupe==false) {
+					tableau[o-1][p].jouable=true;
+				}
+			}
 		}
 		if (o==0 && p!=0 && p!=14) {
 			
@@ -255,6 +264,14 @@ public class Tableau {
 				}
 				if (tableau[o+1][p].occupe==false) {
 					tableau[o+1][p].jouable=true;
+				}	
+			}
+			if (tableau[o-1][p].occupe==true) {
+				if (tableau[o][p+1].occupe==false) {
+					tableau[o][p+1].jouable=true;
+				}
+				if (tableau[o][p-1].occupe==false) {
+					tableau[o][p-1].jouable=true;
 				}
 			}
 		}
@@ -276,6 +293,14 @@ public class Tableau {
 					tableau[o][p-1].jouable=true;
 				}
 			}
+			if (tableau[o][p-1].occupe==true) {
+				if (tableau[o+1][p].occupe==false) {
+					tableau[o+1][p].jouable=true;
+				}
+				if (tableau[o-1][p].occupe==false) {
+					tableau[o-1][p].jouable=true;
+				}
+			}
 		}
 		if (o==14 && p!=0 && p!=14) {
 			
@@ -293,6 +318,14 @@ public class Tableau {
 				}
 				if (tableau[o-1][p].occupe==false) {
 					tableau[o-1][p].jouable=true;
+				}
+			}
+			if (tableau[o-1][p].occupe==true) {
+				if (tableau[o][p-1].occupe==false) {
+					tableau[o][p-1].jouable=true;
+				}
+				if (tableau[o][p+1].occupe==false) {
+					tableau[o][p+1].jouable=true;
 				}
 			}
 		}
@@ -372,9 +405,11 @@ public class Tableau {
 	}
 
 	public void retiree(int o, int p, Bouton btn) {
+		
 		tableau[o][p].jouee = false;
 		tableau[o][p].occupe = false;
 		tableau[o][p].lettre = null;
+		
 	}
 
 	public Pair<Boolean, Integer[]> comptescore() {
@@ -421,7 +456,7 @@ public class Tableau {
 				j -= 1;
 			}
 		}
-		if (tableau[i][j+1].occupe) {
+		if (j<14 && tableau[i][j+1].occupe) {
 			while (j<=14 && tableau[i][j].occupe == true) {
 
 				if (tableau[i][j].bonus == 0) {// sans bonus
@@ -475,7 +510,7 @@ public class Tableau {
 				i -= 1;
 			}
 		}
-		if (tableau[i+1][j].occupe) {
+		if (i<14 && tableau[i+1][j].occupe) {
 			while (i<= 14 && tableau[i][j].occupe == true) {
 				//tableau[i][j].jouee = false;
 				if (tableau[i][j].bonus == 0) {// sans bonus
