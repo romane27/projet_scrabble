@@ -190,6 +190,7 @@ public class Controleur implements Observer{
 			// quand on clique sur fin de tour on redemarre le chrono
 			System.out.println(multi.joueur_act().size());
 			if (multi.joueur_act().size() == 7) {
+				System.out.println(multi.joueur_act().size());
 				multi.joueur_act().initTirage(pioche);
 				vue.score.majscore(multi.joueur_act(), pioche);
 				multi.changer_joueur();
