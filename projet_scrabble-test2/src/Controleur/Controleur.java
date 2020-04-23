@@ -217,6 +217,7 @@ public class Controleur implements Observer{
 							
 					 }
 				}
+				vue.tour.majtour(multi.ind_jr);
 				c.chrono.demarrer();
 				
 				
@@ -262,7 +263,7 @@ public class Controleur implements Observer{
 						"c'est à "+nombre_joueur.nomjoueur.get(multi.ind_jr)+ " de jouer", " ", 
 			                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
 				 if (input==JOptionPane.OK_OPTION) {
-					
+					 vue.tour.majtour(multi.ind_jr);
 					 c.chrono.demarrer();
 
 						

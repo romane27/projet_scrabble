@@ -38,18 +38,21 @@ public class Vue extends JFrame {
 	public Suggestion sugges;
 	public JList liste;
 	public JPanel panel ;
+	public Tour tour;
 	public Vue(Tableau tableau, Multijoueur joueurs) throws IOException {
 		score = new Scores(joueurs.recupNbJ(),joueurs.joueur_act());
 		score.setBounds(670, 150, 150, 120);
 		score.setVisible(true);
 		plateau = new Plateau(tableau);
 		clavier = new Clavier(joueurs.joueur_act());
+		tour = new Tour(joueurs.ind_jr);
 		sugges = new Suggestion(joueurs.joueur_act());
 		// this.setLayout(null);
 		plateau.setBounds(0, 0, 640, 640);
 		clavier.setBounds((640 - (640 / 15) * 7) / 2, 640 + 10, 640 / 15 * 7, 640 / 15);
 		fdt = new JButton("Fin de Tour");
 		fdt.setBounds(670, 600, 170, 30);
+		tour.setBounds(640,10,250,40);
 		initPanel();
 		this.add(clavier);
 		this.add(plateau);
@@ -61,19 +64,19 @@ public class Vue extends JFrame {
 		melanger.setBounds(550, 650, melange.getIconHeight(), melange.getIconWidth());
 
 		this.add(melanger);
-		// this.setResizable(false);
+		
 		this.getContentPane().setBackground(Color.white);
 		this.add(fdt);
 		this.add(score);
-
+		this.add(tour);
 		chrono = new IHMChrono(duree_tours.duree);
 		this.add(chrono);
-		//this.add(font);
+		
 
 		this.setTitle("Jeu du Scrabble");
 		Image icone = Toolkit.getDefaultToolkit().getImage("src/images/S.jpg"); 
 		this.setIconImage(icone);
-		//vuesuggestion(sugges);
+		
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}

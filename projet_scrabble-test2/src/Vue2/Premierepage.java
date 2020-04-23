@@ -48,7 +48,7 @@ public class Premierepage extends Frame implements WindowListener, ActionListene
 		Photo image = new Photo("src/images/image.jpg",0,0,this.getWidth(),this.getHeight());
 		
 
-		fonte = new Font("Helvetica", Font.BOLD, 30);
+		fonte = new Font("Brush Script MT", Font.BOLD, 45);
 		font = new Font("Helvetica", Font.CENTER_BASELINE, 15);
 		JLabel titre = new JLabel("Bienvenue dans le jeu du Scrabble \n");
 
