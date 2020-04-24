@@ -108,6 +108,8 @@ import javax.swing.JComponent;
 				//System.out.println("jj"+finir);
 			}
 			finir=true;
+			this.setChanged();
+			this.notifyObservers(finir);
 			/*this.setChanged();
 			this.notifyObservers(this);*/ // fonctionne pas
 			

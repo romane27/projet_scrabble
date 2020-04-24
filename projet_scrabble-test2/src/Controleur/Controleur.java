@@ -23,11 +23,12 @@ import Vue.Clavier;
 import Vue.IHMChrono;
 import Vue.Plateau;
 import Vue.Vue;
+import Vue2.duree_tours;
 import Vue2.nombre_joueur;
 import javafx.util.Pair;
 
 public class Controleur implements Observer{
-	IHMChrono c;
+	
 	Plateau plateau;
 	Tableau tableau;
 	/*Joueur joueur;
@@ -51,7 +52,7 @@ public class Controleur implements Observer{
 		tableau = new Tableau();
 		vue = new Vue(tableau, multi);
 		mot = new Case[15];
-		c.chrono.addObserver(this);
+		vue.chrono.chrono.addObserver(this);
 		ajoutactlist();
 		appuisfdt();
 		melange_lettre();
@@ -212,13 +213,13 @@ public class Controleur implements Observer{
 				                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
 					 if (input2==JOptionPane.OK_OPTION) {
 						
-						 c.chrono.demarrer();
+						 vue.chrono.chrono.demarrer();
 
 							
 					 }
 				}
 				vue.tour.majtour(multi.ind_jr);
-				c.chrono.demarrer();
+				vue.chrono.chrono.demarrer();
 				
 				
 				
@@ -264,7 +265,7 @@ public class Controleur implements Observer{
 			                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
 				 if (input==JOptionPane.OK_OPTION) {
 					 vue.tour.majtour(multi.ind_jr);
-					 c.chrono.demarrer();
+					 vue.chrono.chrono.demarrer();
 
 						
 				 }
@@ -280,7 +281,18 @@ public class Controleur implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		appuisfdt();
-	}
+		System.out.println("on passe la");
+		Boolean etat = (Boolean)arg;
+		int input2 = JOptionPane.showConfirmDialog(null, 
+				"temps écoulé c'est à " +nombre_joueur.nomjoueur.get(multi.ind_jr) +" de jouer", " ", 
+	                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+		
+		
+		 if (input2==JOptionPane.OK_OPTION) {
+			 vue.majclavier(multi.joueur_act());
+			 vue.tour.majtour(multi.ind_jr);
+			// vue.chrono.chrono.demarrer();
+			 vue.chrono.reprendre(duree_tours.duree);
+		 }
+}
 }

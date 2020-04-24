@@ -33,6 +33,11 @@ public class IHMChrono extends JPanel implements ActionListener {
 		//add(arreter);
 		setVisible(true);
 	}
+	public void reprendre(int duree) {
+		chrono = (Chrono)new Chrono(this, duree, 680, 50, 80);
+		chrono.demarrer();
+		
+	}
 
 	public void actionPerformed(ActionEvent evt) {
 		/*Object source = evt.getSource();
