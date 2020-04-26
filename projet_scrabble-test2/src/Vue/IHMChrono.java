@@ -17,10 +17,11 @@ public class IHMChrono extends JPanel implements ActionListener {
 	//JButton reprendre = new JButton("reprendre");
 	//JButton arreter = new JButton("arreter");
 	public static Chrono chrono;
-
+	public int duree_chrono;
 	public IHMChrono(int duree) {
 		//setPreferredSize(new Dimension(500,300));
 		//setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+		duree_chrono = duree;
 		chrono = new Chrono(this, duree, 680, 50, 80);
 		chrono.demarrer();
 		//demarrer.addActionListener(this);
@@ -37,6 +38,11 @@ public class IHMChrono extends JPanel implements ActionListener {
 		chrono = (Chrono)new Chrono(this, duree, 680, 50, 80);
 		chrono.demarrer();
 		
+	}
+	
+	public void redemarrer() {
+		chrono = (Chrono)new Chrono(this, duree_chrono, 680, 50, 80);
+		chrono.demarrer();
 	}
 
 	public void actionPerformed(ActionEvent evt) {
