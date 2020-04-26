@@ -107,9 +107,12 @@ import javax.swing.JComponent;
 				}
 				//System.out.println("jj"+finir);
 			}
+			System.out.println("Temps écoulé" + tempsEcoule);
 			finir=true;
+			if (tempsEcoule >= duree) {
 			this.setChanged();
 			this.notifyObservers(finir);
+			}
 			/*this.setChanged();
 			this.notifyObservers(this);*/ // fonctionne pas
 			
