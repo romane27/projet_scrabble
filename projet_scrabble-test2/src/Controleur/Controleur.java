@@ -28,7 +28,7 @@ import Vue2.nombre_joueur;
 import javafx.util.Pair;
 
 public class Controleur implements Observer{
-	
+
 	Plateau plateau;
 	Tableau tableau;
 	/*Joueur joueur;
@@ -56,6 +56,7 @@ public class Controleur implements Observer{
 		ajoutactlist();
 		appuisfdt();
 		melange_lettre();
+		verif();
 	}
 
 	/*
@@ -67,6 +68,9 @@ public class Controleur implements Observer{
 		ArrayList<Lettre> liste = new ArrayList();
 		ArrayList<Bouton> list = new ArrayList();
 		listecasejouee = new ArrayList<Pair>();
+		if (liste.isEmpty()) {
+			vue.melanger.setVisible(true);
+		}
 		// Ce qu'il se passe quand tu cliques sur une des lettres du clavier
 		for (int i = 0; i < 7; i++) {
 
@@ -113,31 +117,31 @@ public class Controleur implements Observer{
 							// vue.majplateau(k, liste.get(0).nom);
 							vue.majplateau(k, liste.get(0).image);
 							if (liste.get(0).nom==" ") {
-								
-								
-								 JOptionPane jop = new JOptionPane(), jop2 = new JOptionPane();
-								    
-								    String joker = (String)jop.showInputDialog(null, 
-								    	      "Par quelle lettre voulait vous remplacer le joker?",
-								    	      "Joker",
-								    	      JOptionPane.DEFAULT_OPTION,
-								    	      null,
-								    	      Suggestion.alphabet,
-								    	      Suggestion.alphabet[0]);
-								    lettrejokerchoisi=joker;
-								    if (joker == null) {
-								    	lettrejokerchoisi = "A";
-								    }
-								    System.out.println(lettrejokerchoisi);
-								    for (Lettre l : Suggestion.lettreetvaleurs) {
-								    	if (l.nom==lettrejokerchoisi) {
-								    		btn.setIcon(l.image);
-								    		list.get(0).lettre.nom=l.nom;
-								    		list.get(0).lettre.valeur=0;
-								    	}
-								    	
-								    }
-								    
+
+
+								JOptionPane jop = new JOptionPane(), jop2 = new JOptionPane();
+
+								String joker = (String)jop.showInputDialog(null, 
+										"Par quelle lettre voulait vous remplacer le joker?",
+										"Joker",
+										JOptionPane.DEFAULT_OPTION,
+										null,
+										Suggestion.alphabet,
+										Suggestion.alphabet[0]);
+								lettrejokerchoisi=joker;
+								if (joker == null) {
+									lettrejokerchoisi = "A";
+								}
+								System.out.println(lettrejokerchoisi);
+								for (Lettre l : Suggestion.lettreetvaleurs) {
+									if (l.nom==lettrejokerchoisi) {
+										btn.setIcon(l.image);
+										list.get(0).lettre.nom=l.nom;
+										list.get(0).lettre.valeur=0;
+									}
+
+								}
+
 							}
 							liste.clear();
 							btn.associe(list.get(0));
@@ -175,11 +179,64 @@ public class Controleur implements Observer{
 			}
 		}
 	}
+	// ce qu il se passe quand on appuie sur verification
+	public void verif() {
+		vue.verification_mots((ActionEvent evt) -> {
+			ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
+			if (multi.joueur_act().size() == 7) {
+				int input = JOptionPane.showConfirmDialog(null, 
+						"veuillez placer des lettres sur le plateau", " ", 
+						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
+				if (input==JOptionPane.OK_OPTION) {
+				}
+			}
+			else {
+				
+			
+			Pair<Boolean, Integer[]> pair = tableau.comptescore();
+			if (pair.getKey() == false) {// si le mot est faux
 
+				vue.plateau.resetplateau(listecasejouee);
+				tableau.majmauvaismot(listecasejouee);
+				//multi.joueur_act().reset(listelettrejouee);
+				//vue.chrono.chrono.arreter();
+				
+
+
+				int input = JOptionPane.showConfirmDialog(null, 
+						"le mot est faux", " ", 
+						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
+				if (input==JOptionPane.OK_OPTION) {
+
+					// vue.chrono.chrono.reprendre();
+
+
+				}
+
+
+			} else  {
+				//vue.chrono.chrono.arreter();
+				
+
+
+				int input = JOptionPane.showConfirmDialog(null, 
+						"le mot est juste appuyer sur fin de tour pour valider", " ", 
+						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
+				if (input==JOptionPane.OK_OPTION) {
+
+					// vue.chrono.chrono.reprendre();
+
+
+				}
+			}
+			}
+		});
+
+	}
 	// ce qu'il se passe quand on clic sur bouton melanger
 	public void melange_lettre() {
 		vue.emplacement_lettre((ActionEvent evt) -> {
-			
+
 			vue.melangeclavier(Clavier.melangerlettre(), multi.joueur_act());
 		});
 	}
@@ -193,10 +250,14 @@ public class Controleur implements Observer{
 			if (multi.joueur_act().size() == 7) {
 				System.out.println(multi.joueur_act().size());
 				multi.joueur_act().initTirage(pioche);
+				for (Lettre l : multi.joueur_act()) {
+					pioche.remettrepioche(l);
+				}
+				
 				vue.score.majscore(multi.joueur_act(), pioche);
 				multi.changer_joueur();
 				vue.majclavier(multi.joueur_act());
-				
+
 				try {
 					Suggestion s = new Suggestion (multi.joueur_act());
 					System.out.println("eee");
@@ -207,22 +268,22 @@ public class Controleur implements Observer{
 				}
 				if (nombre_joueur.nbrjoueur!=1) {
 					ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
-					
+
 					int input2 = JOptionPane.showConfirmDialog(null, 
 							"c'est à "+nombre_joueur.nomjoueur.get(multi.ind_jr)+ " de jouer", " ", 
-				                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
-					 if (input2==JOptionPane.OK_OPTION) {
-						
-						 vue.chrono.chrono.demarrer();
+							JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
+					if (input2==JOptionPane.OK_OPTION) {
 
-							
-					 }
+						vue.chrono.chrono.demarrer();
+
+
+					}
 				}
 				vue.tour.majtour(multi.ind_jr);
 				vue.chrono.chrono.demarrer();
-				
-				
-				
+
+
+
 			} else {
 				Pair<Boolean, Integer[]> pair = tableau.comptescore();
 				if (pair.getKey() == false) {// si le mot est faux
@@ -245,33 +306,33 @@ public class Controleur implements Observer{
 					tableau.majbonmot(listecasejouee);
 					multi.changer_joueur();
 					vue.majclavier(multi.joueur_act());
-					
-				}
-					try {
-						Suggestion s = new Suggestion (multi.joueur_act());
-						System.out.println("eee");
-						vue.vuesuggestion(s);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
 
-					// tableau.majbonmot(listecasejouee);
+				}
+				try {
+					Suggestion s = new Suggestion (multi.joueur_act());
+					System.out.println("eee");
+					vue.vuesuggestion(s);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				// tableau.majbonmot(listecasejouee);
 				ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
-				
-				    
+
+
 				int input = JOptionPane.showConfirmDialog(null, 
 						"c'est à "+nombre_joueur.nomjoueur.get(multi.ind_jr)+ " de jouer", " ", 
-			                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
-				 if (input==JOptionPane.OK_OPTION) {
-					 vue.tour.majtour(multi.ind_jr);
-					 vue.chrono.chrono.demarrer();
+						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
+				if (input==JOptionPane.OK_OPTION) {
+					vue.tour.majtour(multi.ind_jr);
+					vue.chrono.chrono.demarrer();
 
-						
-				 }
-			        // 0=ok, 2=cancel
-			       // System.out.println(input);
-			//	tableau.majjouabletour();
+
+				}
+				// 0=ok, 2=cancel
+				// System.out.println(input);
+				//	tableau.majjouabletour();
 				listecasejouee.clear();
 				listelettrejouee.clear();
 			}
@@ -283,16 +344,20 @@ public class Controleur implements Observer{
 	public void update(Observable o, Object arg) {
 		System.out.println("on passe la");
 		Boolean etat = (Boolean)arg;
-		int input2 = JOptionPane.showConfirmDialog(null, 
-				"temps écoulé c'est à " +nombre_joueur.nomjoueur.get(multi.ind_jr) +" de jouer", " ", 
-	                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
-		
-		
-		 if (input2==JOptionPane.OK_OPTION) {
-			 vue.majclavier(multi.joueur_act());
-			 vue.tour.majtour(multi.ind_jr);
-			// vue.chrono.chrono.demarrer();
-			 vue.chrono.reprendre(duree_tours.duree);
-		 }
-}
+		if (etat ==true ) {
+
+
+			int input2 = JOptionPane.showConfirmDialog(null, 
+					"temps écoulé c'est à " +nombre_joueur.nomjoueur.get(multi.ind_jr) +" de jouer", " ", 
+					JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+
+
+			if (input2==JOptionPane.OK_OPTION) {
+				vue.majclavier(multi.joueur_act());
+				vue.tour.majtour(multi.ind_jr);
+				// vue.chrono.chrono.demarrer();
+				vue.chrono.reprendre(duree_tours.duree);
+			}
+		}
+	}
 }

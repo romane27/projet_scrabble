@@ -33,6 +33,7 @@ public class Vue extends JFrame {
 	public Plateau plateau;
 	public JButton fdt;
 	public JButton melanger;
+	public JButton verifmot;
 	public Scores score;
 	public IHMChrono chrono;
 	public Suggestion sugges;
@@ -53,6 +54,8 @@ public class Vue extends JFrame {
 		fdt = new JButton("Fin de Tour");
 		fdt.setBounds(670, 600, 170, 30);
 		tour.setBounds(640,10,250,40);
+		verifmot = new JButton("Vérification mot");
+		verifmot.setBounds(670, 650, 170, 30);
 		initPanel();
 		this.add(clavier);
 		this.add(plateau);
@@ -67,6 +70,7 @@ public class Vue extends JFrame {
 		
 		this.getContentPane().setBackground(Color.white);
 		this.add(fdt);
+		this.add(verifmot);
 		this.add(score);
 		this.add(tour);
 		chrono = new IHMChrono(duree_tours.duree);
@@ -84,7 +88,9 @@ public class Vue extends JFrame {
 	public void ajoutactlist(ActionListener e) {
 		fdt.addActionListener(e);
 	}
-
+	public void verification_mots(ActionListener e) {
+		verifmot.addActionListener(e);
+	}
 	public void emplacement_lettre(ActionListener e) {
 		melanger.addActionListener(e);
 	}

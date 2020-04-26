@@ -75,6 +75,9 @@ public class Pioche extends ArrayList<Lettre> {
 		this.remove(l);
 		return l;
 	}
+	public void remettrepioche(Lettre l) {
+		this.add(l);
+	}
 
 	/*
 	 * public static void main(String[] args) { Pioche p = new Pioche(); }
