@@ -68,9 +68,7 @@ public class Controleur implements Observer{
 		ArrayList<Lettre> liste = new ArrayList();
 		ArrayList<Bouton> list = new ArrayList();
 		listecasejouee = new ArrayList<Pair>();
-		if (liste.isEmpty()) {
-			vue.melanger.setVisible(true);
-		}
+		
 		// Ce qu'il se passe quand tu cliques sur une des lettres du clavier
 		for (int i = 0; i < 7; i++) {
 
