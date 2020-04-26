@@ -49,6 +49,7 @@ import javax.swing.JComponent;
 					exc.printStackTrace();
 				}
 			}*/
+			tempsEcoule = 0; 
 			deroulement = new Thread(this);
 			deroulement.start();
 		}

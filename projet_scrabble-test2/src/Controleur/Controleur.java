@@ -351,7 +351,7 @@ public class Controleur implements Observer{
 
 
 			int input2 = JOptionPane.showConfirmDialog(null, 
-					"temps écoulé c'est à " +nombre_joueur.nomjoueur.get(multi.ind_jr) +" de jouer", " ", 
+					"Temps écoulé !", " ", 
 					JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
 
 
