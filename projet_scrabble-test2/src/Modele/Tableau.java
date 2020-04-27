@@ -266,7 +266,7 @@ public class Tableau {
 					tableau[o+1][p].jouable=true;
 				}	
 			}
-			if (tableau[o-1][p].occupe==true) {
+			if (tableau[o+1][p].occupe==true) {
 				if (tableau[o][p+1].occupe==false) {
 					tableau[o][p+1].jouable=true;
 				}
