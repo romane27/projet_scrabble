@@ -325,7 +325,99 @@ public class Controleur implements Observer{
 
 	public void appuisfdt() {
 		vue.ajoutactlist((ActionEvent evt) -> {
-			fin_de_tour();
+			vue.chrono.chrono.arreter();
+			vue.melanger.setVisible(true);
+			// quand on clique sur fin de tour on redemarre le chrono
+			System.out.println(multi.joueur_act().size());
+			if (multi.joueur_act().size() == 7) {
+				System.out.println(multi.joueur_act().size());
+				multi.joueur_act().initTirage(pioche);
+				for (Lettre l : multi.joueur_act()) {
+					pioche.remettrepioche(l);
+				}
+				
+				vue.score.majscore(multi.joueur_act(), pioche);
+				multi.changer_joueur();
+				vue.majclavier(multi.joueur_act());
+
+				try {
+					Suggestion s = new Suggestion (multi.joueur_act());
+					System.out.println("eee");
+					vue.vuesuggestion(s);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if (nombre_joueur.nbrjoueur!=1) {
+					ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
+
+					int input2 = JOptionPane.showConfirmDialog(null, 
+							"c'est à "+nombre_joueur.nomjoueur.get(multi.ind_jr)+ " de jouer", " ", 
+							JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
+					/*if (input2==JOptionPane.OK_OPTION) {
+
+						vue.chrono.chrono.demarrer();
+
+
+					}*/
+				}
+				vue.tour.majtour(multi.ind_jr);
+				vue.chrono.chrono.demarrer();
+
+
+
+			} else {
+				Pair<Boolean, Integer[]> pair = tableau.comptescore();
+				if (pair.getKey() == false) {// si le mot est faux
+					System.out.println(multi.joueur_act());
+					System.out.println(listelettrejouee);
+					vue.resetclavier();
+					vue.plateau.resetplateau(listecasejouee);
+					tableau.majmauvaismot(listecasejouee);
+					multi.joueur_act().reset(listelettrejouee);
+					System.out.println(multi.joueur_act());
+					multi.changer_joueur();
+					vue.majclavier(multi.joueur_act());
+
+				} else {
+					multi.joueur_act().score += pair.getValue()[0];
+					multi.joueur_act().score += pair.getValue()[1];
+					System.out.println(multi.ind_jr+ " : "+ multi.joueur_act().score );
+					multi.joueur_act().tirage(pioche);
+					vue.score.majscore(multi.joueur_act(), pioche);
+					tableau.majbonmot(listecasejouee);
+					multi.changer_joueur();
+					vue.majclavier(multi.joueur_act());
+
+				}
+				try {
+					Suggestion s = new Suggestion (multi.joueur_act());
+					System.out.println("eee");
+					vue.vuesuggestion(s);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				// tableau.majbonmot(listecasejouee);
+				ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
+
+
+				int input = JOptionPane.showConfirmDialog(null, 
+						"c'est à "+nombre_joueur.nomjoueur.get(multi.ind_jr)+ " de jouer", " ", 
+						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
+				if (input==JOptionPane.OK_OPTION) {
+					vue.tour.majtour(multi.ind_jr);
+					vue.chrono.chrono.demarrer();
+
+
+				}
+				// 0=ok, 2=cancel
+				// System.out.println(input);
+				//	tableau.majjouabletour();
+				listecasejouee.clear();
+				listelettrejouee.clear();
+			}
 		});
 
 	}
