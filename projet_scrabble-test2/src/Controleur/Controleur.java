@@ -4,8 +4,12 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.OptionalInt;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -57,6 +61,7 @@ public class Controleur implements Observer{
 		appuisfdt();
 		melange_lettre();
 		verif();
+		fin();
 	}
 
 	/*
@@ -230,6 +235,84 @@ public class Controleur implements Observer{
 			}
 		});
 
+	}
+	public void fin() {
+		vue.fin_du_jeu((ActionEvent evt) -> {
+			ArrayList <Integer> daccord = new ArrayList<>();
+			for (Joueur j : multi.tab_joueurs) {
+				int n = JOptionPane.showConfirmDialog(null, nombre_joueur.nomjoueur.get(j.pos)+" Voulez-vous arreter la partie ?", "Et maintenant …", JOptionPane.YES_NO_OPTION);
+				// réponse oui du joueur
+				if (n==0) {
+					daccord.add(0);
+				}
+				else {
+					daccord.add(1);
+				}
+			}
+			int k=0;
+			System.out.println(daccord.size()+"la taille");
+			for (int i=0;i<daccord.size();i++) {
+				if (daccord.get(i)!=0) {
+					JOptionPane.showMessageDialog(null,
+						    "On continue la partie car un joueur souhaire continuer",
+						    "Attention",
+						    JOptionPane.WARNING_MESSAGE);
+					
+				}
+				else {
+					k+=1;
+				}
+				
+			}
+			System.out.println(k+"kkkk");
+			int egalite =0;
+			int [] score = new int [nombre_joueur.nbrjoueur];
+					ArrayList <Integer> égal = new ArrayList<>();
+			String nom = nombre_joueur.nomjoueur.get(0);
+			if (k==daccord.size()) {
+				for (int j=1;j<nombre_joueur.nbrjoueur;j++) {
+					score[j]=(multi.tab_joueurs[j].score);
+					if (multi.tab_joueurs[j].score>multi.tab_joueurs[j-1].score) {
+						nom = nombre_joueur.nomjoueur.get(j);
+					}
+					
+				}
+				
+				
+				ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
+				int input = JOptionPane.showConfirmDialog(null, 
+						nom + " à gagné la partie", " Gagnant", 
+						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
+				if (input==JOptionPane.OK_OPTION) {
+					vue.dispose();
+					// vue.chrono.chrono.reprendre();
+
+
+				}
+			}
+			
+			
+			/*while (daccord.get(i)==1 && i< daccord.size()) {
+				System.out.println("lalal"+daccord.get(i));
+				i=i+1;
+			}*/
+			
+			
+			/*if (i==daccord.size()-1) {
+				for (int j=1;j<nombre_joueur.nbrjoueur;j++) {
+					
+					if (multi.tab_joueurs[j].score>multi.tab_joueurs[j-1].score) {
+						nom = nombre_joueur.nomjoueur.get(j);
+					}
+				}
+			}
+			else {
+				JOptionPane.showMessageDialog(null,
+					    "On continue la partie car un joueur souhaire continuer",
+					    "Attention",
+					    JOptionPane.WARNING_MESSAGE);
+			}*/
+		});
 	}
 	// ce qu'il se passe quand on clic sur bouton melanger
 	public void melange_lettre() {

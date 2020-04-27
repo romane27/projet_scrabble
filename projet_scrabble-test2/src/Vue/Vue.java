@@ -34,6 +34,7 @@ public class Vue extends JFrame {
 	public JButton fdt;
 	public JButton melanger;
 	public JButton verifmot;
+	public JButton fin_jeu;
 	public Scores score;
 	public IHMChrono chrono;
 	public Suggestion sugges;
@@ -57,6 +58,8 @@ public class Vue extends JFrame {
 		tour.setBounds(640,10,250,40);
 		verifmot = new JButton("Vérification mot");
 		verifmot.setBounds(670, 650, 170, 30);
+		fin_jeu= new JButton("Arreter la partie");
+		fin_jeu.setBounds(670, 300, 170, 30);
 		initPanel();
 		this.add(clavier);
 		this.add(plateau);
@@ -71,6 +74,7 @@ public class Vue extends JFrame {
 		
 		this.getContentPane().setBackground(Color.white);
 		this.add(fdt);
+		this.add(fin_jeu);
 		this.add(verifmot);
 		this.add(score);
 		this.add(tour);
@@ -85,7 +89,9 @@ public class Vue extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
-
+	public void fin_du_jeu(ActionListener e) {
+		fin_jeu.addActionListener(e);
+	}
 	public void ajoutactlist(ActionListener e) {
 		fdt.addActionListener(e);
 	}

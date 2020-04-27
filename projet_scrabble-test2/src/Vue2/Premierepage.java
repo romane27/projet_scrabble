@@ -65,7 +65,7 @@ public class Premierepage extends Frame implements WindowListener, ActionListene
 		nbrjoueur = new nombre_joueur();
 		dureetour = new duree_tours();
 		JLabel b = new JLabel("                                                  Règle du jeu              ");
-		JLabel l = new JLabel("<html>  Déroulement d'une partie :  <br><br> - Le joueur 1 commence la partie 7 lettres au hasard lui sont attribué <br>  - Chaque joueur à un certain temps pour jouer temps choisit au début  <br> - il faut continuer les règles c est un test </html>");
+		JLabel l = new JLabel("<html>  Déroulement d'une partie :  <br><br> - Le joueur 1 commence la partie 7 lettres au hasard lui sont attribué <br>  - Chaque joueur à un certain temps pour jouer temps choisit maintenant <br> - Pour déplacer les lettres : on clic sur la lettre puis sur l'endroit du plateau <br> - Vous avez la possibilité de vérifier votre mot avec le bouton 'verifier mot' avant de changer de joueur <br> - attention une fois appuyer sur 'fin de tour' on passe directement au joueur suivant <br> - Si aucun joueur ne peux continuer appuyer sur Arrêter la partie <br> Bonne partie </html>");
 		//p.add(b,l);
 		b.setFont(font);
 		b.setBackground(new Color(173, 239, 200));
