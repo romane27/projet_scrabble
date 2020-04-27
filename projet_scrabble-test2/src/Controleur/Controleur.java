@@ -331,7 +331,7 @@ public class Controleur implements Observer{
 	}
 	
 	public void fin_de_tour() {
-		vue.chrono.chrono.arreter();
+		//vue.chrono.chrono.arreter();
 		vue.melanger.setVisible(true);
 		// quand on clique sur fin de tour on redemarre le chrono
 		System.out.println(multi.joueur_act().size());
