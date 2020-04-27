@@ -41,7 +41,7 @@ public class Pioche extends ArrayList<Lettre> {
 
 		for (int i = 0; i < 3; i++) {
 			this.add(new Lettre("D", 2,new ImageIcon("src/images/D.jpg"),new ImageIcon("src/images/Dgris.jpg")));
-			this.add(new Lettre("M", 3,new ImageIcon("src/images/M.jpg"),new ImageIcon("src/images/Mgris.jpg")));
+			this.add(new Lettre("M", 2,new ImageIcon("src/images/M.jpg"),new ImageIcon("src/images/Mgris.jpg")));
 
 		}
 
@@ -55,12 +55,12 @@ public class Pioche extends ArrayList<Lettre> {
 			this.add(new Lettre("V", 4,new ImageIcon("src/images/V.jpg"),new ImageIcon("src/images/Vgris.jpg")));
 			this.add(new Lettre(" ", 0,new ImageIcon("src/images/JOKER.jpg"),new ImageIcon("src/images/JOKERgris.jpg")));
 		}
-		this.add(new Lettre("W", 4,new ImageIcon("src/images/W.jpg"),new ImageIcon("src/images/Wgris.jpg")));
-		this.add(new Lettre("Y", 4,new ImageIcon("src/images/Y.jpg"),new ImageIcon("src/images/Ygris.jpg")));
-		this.add(new Lettre("K", 5,new ImageIcon("src/images/K.jpg"),new ImageIcon("src/images/Kgris.jpg")));
+		this.add(new Lettre("W", 10,new ImageIcon("src/images/W.jpg"),new ImageIcon("src/images/Wgris.jpg")));
+		this.add(new Lettre("Y", 10,new ImageIcon("src/images/Y.jpg"),new ImageIcon("src/images/Ygris.jpg")));
+		this.add(new Lettre("K", 10,new ImageIcon("src/images/K.jpg"),new ImageIcon("src/images/Kgris.jpg")));
 		this.add(new Lettre("J", 8,new ImageIcon("src/images/J.jpg"),new ImageIcon("src/images/Jgris.jpg")));
-		this.add(new Lettre("X", 8,new ImageIcon("src/images/X.jpg"),new ImageIcon("src/images/Xgris.jpg")));
-		this.add(new Lettre("Q", 10,new ImageIcon("src/images/Q.jpg"),new ImageIcon("src/images/Qgris.jpg")));
+		this.add(new Lettre("X", 10,new ImageIcon("src/images/X.jpg"),new ImageIcon("src/images/Xgris.jpg")));
+		this.add(new Lettre("Q", 8,new ImageIcon("src/images/Q.jpg"),new ImageIcon("src/images/Qgris.jpg")));
 		this.add(new Lettre("Z", 10,new ImageIcon("src/images/Z.jpg"),new ImageIcon("src/images/Zgris.jpg")));
 
 		/*
