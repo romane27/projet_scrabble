@@ -40,6 +40,7 @@ public class Vue extends JFrame {
 	public JList liste;
 	public JPanel panel ;
 	public Tour tour;
+	
 	public Vue(Tableau tableau, Multijoueur joueurs) throws IOException {
 		score = new Scores(joueurs.recupNbJ(),joueurs.joueur_act());
 		score.setBounds(670, 150, 150, 120);
