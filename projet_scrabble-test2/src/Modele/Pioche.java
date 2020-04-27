@@ -62,7 +62,7 @@ public class Pioche extends ArrayList<Lettre> {
 		this.add(new Lettre("X", 10,new ImageIcon("src/images/X.jpg"),new ImageIcon("src/images/Xgris.jpg")));
 		this.add(new Lettre("Q", 8,new ImageIcon("src/images/Q.jpg"),new ImageIcon("src/images/Qgris.jpg")));
 		this.add(new Lettre("Z", 10,new ImageIcon("src/images/Z.jpg"),new ImageIcon("src/images/Zgris.jpg")));
-
+		
 		/*
 		 * System.out.println(this.piocherLettre().nom); for (int i=0; i<this.size();
 		 * i++) { System.out.print(this.get(i).nom); }
