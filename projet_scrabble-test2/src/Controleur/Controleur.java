@@ -285,7 +285,7 @@ public class Controleur implements Observer{
 				}*/
 			}
 			vue.tour.majtour(multi.ind_jr);
-			vue.chrono.redemarrer();
+			vue.chrono.chrono.demarrer();
 
 
 
