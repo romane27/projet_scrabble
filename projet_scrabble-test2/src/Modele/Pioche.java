@@ -10,6 +10,7 @@ import javafx.application.Application;
 public class Pioche extends ArrayList<Lettre> {
 
 	public Pioche() {
+		// E=15
 		for (int i = 0; i < 15; i++) {
 			this.add((new Lettre("E", 1,new ImageIcon("src/images/E.jpg"),new ImageIcon("src/images/Egris.jpg"))));
 		}
@@ -18,12 +19,12 @@ public class Pioche extends ArrayList<Lettre> {
 			this.add((new Lettre("I", 1,new ImageIcon("src/images/I.jpg"),new ImageIcon("src/images/Igris.jpg"))));
 			
 		}
-
+		// A =9
 		for (int i = 0; i < 9; i++) {
 			this.add((new Lettre("A", 1,new ImageIcon("src/images/A.jpg"),new ImageIcon("src/images/A_gris.jpg"))));
 			
 		}
-
+		// i=6
 		for (int i = 0; i < 6; i++) {
 			this.add((new Lettre("O", 1,new ImageIcon("src/images/O.jpg"),new ImageIcon("src/images/Ogris.jpg"))));
 			

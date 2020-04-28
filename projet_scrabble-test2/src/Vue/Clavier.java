@@ -16,7 +16,9 @@ import Modele.Bouton;
 import Modele.Joueur;
 
 public class Clavier extends JPanel {
+	static Joueur j;
 	public Clavier(Joueur joueur) {
+		this.j=joueur;
 		this.setBackground(new Color (176, 198, 193));
 		this.setLayout(new GridLayout(0, 7));
 		for (int i = 0; i < joueur.size(); i++) {
@@ -39,7 +41,7 @@ public class Clavier extends JPanel {
 	// devrait peut etre pas etre la
 		public static int[] melangerlettre() {	
 		        ArrayList<Integer> list = new ArrayList<Integer>();
-		        for (int i = 0; i < 7; i++) {
+		        for (int i = 0; i < j.size(); i++) {
 		            list.add(i);
 		            
 		        }

@@ -21,6 +21,7 @@ import javax.swing.ScrollPaneConstants;
 import Modele.Bouton;
 import Modele.Joueur;
 import Modele.Multijoueur;
+import Modele.Pioche;
 import Modele.Suggestion;
 import Modele.Tableau;
 import Vue2.Photo;
@@ -148,21 +149,36 @@ public class Vue extends JFrame {
 
 
 	}
-	public void majclavier(Joueur joueur) {
-		Clavier claviertemp = new Clavier(joueur);
-
-		for (int i = 0; i < joueur.size(); i++) {
-			Bouton btn = (Bouton) claviertemp.getComponent(i);
-			Bouton btn2 = (Bouton) clavier.getComponent(i);
-			btn2.setIcon(btn.lettre.image);
-			// btn2.setText(btn.lettre.nom);
-			// btn2.setBackground(Color.white);
-			btn2.lettre = btn.lettre;
-			btn2.verrouille = false;
-			btn2.clique = false;
+	public void majclavier(Joueur joueur, Pioche p) {
+		if (p.size()>0) {
+		
+			for (int i = 0; i < 7; i++) {
+				
+				Bouton btn2 = (Bouton) clavier.getComponent(i);
+				Clavier claviertemp = new Clavier(joueur);
+						Bouton btn = (Bouton) claviertemp.getComponent(i);
+						btn2.setIcon(btn.lettre.image);
+						// btn2.setText(btn.lettre.nom);
+						// btn2.setBackground(Color.white);
+						btn2.lettre = btn.lettre;
+						btn2.verrouille = false;
+						btn2.clique = false;
+					}
+				
 		}
-
-	}
+		else {
+			for (int i = 0; i < 7; i++) {
+				
+				Bouton btn2 = (Bouton) clavier.getComponent(i);
+				//Clavier claviertemp = new Clavier(joueur);
+				//Bouton btn = (Bouton) claviertemp.getComponent(i);
+				if (btn2.verrouille==true) {
+					btn2.setVisible(false);
+				}
+			}
+		}
+	
+		}
 
 	public void melangeclavier(int[] emplacement, Joueur joueur) {
 		Clavier claviertemp = new Clavier(joueur);

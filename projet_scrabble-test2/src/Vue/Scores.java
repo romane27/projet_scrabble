@@ -18,7 +18,7 @@ import Vue2.nombre_joueur;
 
 public class Scores extends JPanel {
 	int i;
-
+	Pioche p = new Pioche();
 	public Scores(int i, Joueur jou) {
 		this.i = i;
 		
@@ -52,7 +52,7 @@ public class Scores extends JPanel {
 			this.add(label);
 		}
 		JLabel label = new JLabel();
-		label.setText("Lettres restantes : " + (102 - 7 * this.i));
+		label.setText("Lettres restantes : " + ((p.size() - jou.size() * this.i)));
 		label.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(label);
 	}
