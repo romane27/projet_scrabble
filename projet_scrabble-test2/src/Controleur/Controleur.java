@@ -254,11 +254,10 @@ public class Controleur implements Observer{
 		System.out.println(multi.joueur_act().size());
 		if (multi.joueur_act().size() == 7) {
 			System.out.println(multi.joueur_act().size());
-			multi.joueur_act().initTirage(pioche);
 			for (Lettre l : multi.joueur_act()) {
 				pioche.remettrepioche(l);
 			}
-			
+			multi.joueur_act().initTirage(pioche);
 			vue.score.majscore(multi.joueur_act(), pioche);
 			multi.changer_joueur();
 			vue.majclavier(multi.joueur_act());

@@ -145,7 +145,7 @@ public class Vue extends JFrame {
 	public void majclavier(Joueur joueur) {
 		Clavier claviertemp = new Clavier(joueur);
 
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < joueur.size(); i++) {
 			Bouton btn = (Bouton) claviertemp.getComponent(i);
 			Bouton btn2 = (Bouton) clavier.getComponent(i);
 			btn2.setIcon(btn.lettre.image);
@@ -160,7 +160,7 @@ public class Vue extends JFrame {
 
 	public void melangeclavier(int[] emplacement, Joueur joueur) {
 		Clavier claviertemp = new Clavier(joueur);
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < joueur.size(); i++) {
 			Bouton btn = (Bouton) claviertemp.getComponent(i);
 			Bouton btn2 = (Bouton) clavier.getComponent(emplacement[i]);
 			// btn2.place=emplacement[i];

@@ -19,7 +19,7 @@ public class Clavier extends JPanel {
 	public Clavier(Joueur joueur) {
 		this.setBackground(new Color (176, 198, 193));
 		this.setLayout(new GridLayout(0, 7));
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < joueur.size(); i++) {
 			Bouton boutton = new Bouton();
 			//boutton.setText(joueur.get(i).nom);
 			boutton.image=joueur.get(i).image;
