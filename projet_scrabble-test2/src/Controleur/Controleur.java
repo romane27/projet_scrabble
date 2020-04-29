@@ -236,67 +236,82 @@ public class Controleur implements Observer{
 		});
 
 	}
-	public void gagnant() {
-		ArrayList <Integer> daccord = new ArrayList<>();
-		for (Joueur j : multi.tab_joueurs) {
-			int n = JOptionPane.showConfirmDialog(null, nombre_joueur.nomjoueur.get(j.pos)+" Voulez-vous arreter la partie ?", "Et maintenant …", JOptionPane.YES_NO_OPTION);
-			// réponse oui du joueur
-			if (n==0) {
-				daccord.add(0);
+	public void fin() {
+		vue.fin_du_jeu((ActionEvent evt) -> {
+			ArrayList <Integer> daccord = new ArrayList<>();
+			for (Joueur j : multi.tab_joueurs) {
+				int n = JOptionPane.showConfirmDialog(null, nombre_joueur.nomjoueur.get(j.pos)+" Voulez-vous arreter la partie ?", "Et maintenant …", JOptionPane.YES_NO_OPTION);
+				// réponse oui du joueur
+				if (n==0) {
+					daccord.add(0);
+				}
+				else {
+					daccord.add(1);
+				}
+			}
+			int k=0;
+			System.out.println(daccord.size()+"la taille");
+			for (int i=0;i<daccord.size();i++) {
+				if (daccord.get(i)!=0) {
+					JOptionPane.showMessageDialog(null,
+						    "On continue la partie car un joueur souhaire continuer",
+						    "Attention",
+						    JOptionPane.WARNING_MESSAGE);
+					
+				}
+				else {
+					k+=1;
+				}
+				
+			}
+			System.out.println(k+"kkkk");
+			int egalite =0;
+			int [] score = new int [nombre_joueur.nbrjoueur];
+					ArrayList <Integer> égal = new ArrayList<>();
+			String nom = nombre_joueur.nomjoueur.get(0);
+			if (k==daccord.size()) {
+				for (int j=1;j<nombre_joueur.nbrjoueur;j++) {
+					score[j]=(multi.tab_joueurs[j].score);
+					if (multi.tab_joueurs[j].score>multi.tab_joueurs[j-1].score) {
+						nom = nombre_joueur.nomjoueur.get(j);
+					}
+					
+				}
+				
+				
+				ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
+				int input = JOptionPane.showConfirmDialog(null, 
+						nom + " à gagné la partie", " Gagnant", 
+						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
+				if (input==JOptionPane.OK_OPTION) {
+					vue.dispose();
+					// vue.chrono.chrono.reprendre();
+
+
+				}
+			}
+			
+			
+			/*while (daccord.get(i)==1 && i< daccord.size()) {
+				System.out.println("lalal"+daccord.get(i));
+				i=i+1;
+			}*/
+			
+			
+			/*if (i==daccord.size()-1) {
+				for (int j=1;j<nombre_joueur.nbrjoueur;j++) {
+					
+					if (multi.tab_joueurs[j].score>multi.tab_joueurs[j-1].score) {
+						nom = nombre_joueur.nomjoueur.get(j);
+					}
+				}
 			}
 			else {
-				daccord.add(1);
-			}
-		}
-		int k=0;
-		System.out.println(daccord.size()+"la taille");
-		for (int i=0;i<daccord.size();i++) {
-			if (daccord.get(i)!=0) {
 				JOptionPane.showMessageDialog(null,
 					    "On continue la partie car un joueur souhaire continuer",
 					    "Attention",
 					    JOptionPane.WARNING_MESSAGE);
-				
-			}
-			else {
-				k+=1;
-			}
-			
-		}
-		System.out.println(k+"kkkk");
-		int egalite =0;
-		int [] score = new int [nombre_joueur.nbrjoueur];
-				ArrayList <Integer> égal = new ArrayList<>();
-		String nom = nombre_joueur.nomjoueur.get(0);
-		if (k==daccord.size()) {
-			for (int j=1;j<nombre_joueur.nbrjoueur;j++) {
-				score[j]=(multi.tab_joueurs[j].score);
-				if (multi.tab_joueurs[j].score>multi.tab_joueurs[j-1].score) {
-					nom = nombre_joueur.nomjoueur.get(j);
-				}
-				
-			}
-			
-			
-			ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
-			int input = JOptionPane.showConfirmDialog(null, 
-					nom + " à gagné la partie", " Gagnant", 
-					JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
-			if (input==JOptionPane.OK_OPTION) {
-				vue.dispose();
-				// vue.chrono.chrono.reprendre();
-
-
-			}
-		}
-		
-	}
-	public void fin() {
-		vue.fin_du_jeu((ActionEvent evt) -> {
-			gagnant();
-		
-			
-			
+			}*/
 		});
 	}
 	// ce qu'il se passe quand on clic sur bouton melanger
@@ -309,35 +324,6 @@ public class Controleur implements Observer{
 
 
 	public void appuisfdt() {
-		ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
-		int [] score = new int [nombre_joueur.nbrjoueur];
-		ArrayList <Integer> égal = new ArrayList<>();
-		String nom = nombre_joueur.nomjoueur.get(0);
-		// si le joueur n'a plus de lettre
-		if (multi.joueur_act().size()==0) {
-			int input3 = JOptionPane.showConfirmDialog(null, 
-					nombre_joueur.nomjoueur.get(multi.joueur_act().pos)+ " à fini", " ", 
-					JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
-			if (input3==JOptionPane.OK_OPTION) {
-				for (int j=1;j<nombre_joueur.nbrjoueur;j++) {
-					score[j]=(multi.tab_joueurs[j].score);
-					if (multi.tab_joueurs[j].score>multi.tab_joueurs[j-1].score) {
-						nom = nombre_joueur.nomjoueur.get(j);
-					}
-					
-				}
-
-				int input = JOptionPane.showConfirmDialog(null, 
-						nom + " à gagné la partie", " Gagnant", 
-						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
-				if (input==JOptionPane.OK_OPTION) {
-					vue.dispose();
-					// vue.chrono.chrono.reprendre()
-
-				}
-				
-		}
-		}
 		vue.ajoutactlist((ActionEvent evt) -> {
 			vue.chrono.chrono.arreter();
 			vue.melanger.setVisible(true);
@@ -352,7 +338,7 @@ public class Controleur implements Observer{
 				
 				vue.score.majscore(multi.joueur_act(), pioche);
 				multi.changer_joueur();
-				vue.majclavier(multi.joueur_act(),pioche);
+				vue.majclavier(multi.joueur_act(), pioche);
 
 				try {
 					Suggestion s = new Suggestion (multi.joueur_act());
@@ -363,11 +349,11 @@ public class Controleur implements Observer{
 					e.printStackTrace();
 				}
 				if (nombre_joueur.nbrjoueur!=1) {
-					ImageIcon image2 = new ImageIcon("src/images/bonhomme1.png");
+					ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
 
 					int input2 = JOptionPane.showConfirmDialog(null, 
 							"c'est à "+nombre_joueur.nomjoueur.get(multi.ind_jr)+ " de jouer", " ", 
-							JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image2);
+							JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
 					/*if (input2==JOptionPane.OK_OPTION) {
 
 						vue.chrono.chrono.demarrer();
@@ -391,7 +377,7 @@ public class Controleur implements Observer{
 					multi.joueur_act().reset(listelettrejouee);
 					System.out.println(multi.joueur_act());
 					multi.changer_joueur();
-					vue.majclavier(multi.joueur_act(),pioche);
+					vue.majclavier(multi.joueur_act(), pioche);
 
 				} else {
 					multi.joueur_act().score += pair.getValue()[0];
@@ -401,7 +387,7 @@ public class Controleur implements Observer{
 					vue.score.majscore(multi.joueur_act(), pioche);
 					tableau.majbonmot(listecasejouee);
 					multi.changer_joueur();
-					vue.majclavier(multi.joueur_act(),pioche);
+					vue.majclavier(multi.joueur_act(), pioche);
 
 				}
 				try {
@@ -414,12 +400,12 @@ public class Controleur implements Observer{
 				}
 
 				// tableau.majbonmot(listecasejouee);
-				ImageIcon image3 = new ImageIcon("src/images/bonhomme1.png");
+				ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
 
 
 				int input = JOptionPane.showConfirmDialog(null, 
 						"c'est à "+nombre_joueur.nomjoueur.get(multi.ind_jr)+ " de jouer", " ", 
-						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image3);
+						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
 				if (input==JOptionPane.OK_OPTION) {
 					vue.tour.majtour(multi.ind_jr);
 					vue.chrono.chrono.demarrer();
@@ -441,7 +427,7 @@ public class Controleur implements Observer{
 		vue.melanger.setVisible(true);
 		// quand on clique sur fin de tour on redemarre le chrono
 		System.out.println(multi.joueur_act().size());
-		if (multi.joueur_act().size() == 7 && pioche.size()>=7) {
+		if (multi.joueur_act().size() == 7) {
 			System.out.println(multi.joueur_act().size());
 			for (Lettre l : multi.joueur_act()) {
 				pioche.remettrepioche(l);
@@ -449,7 +435,7 @@ public class Controleur implements Observer{
 			multi.joueur_act().initTirage(pioche);
 			vue.score.majscore(multi.joueur_act(), pioche);
 			multi.changer_joueur();
-			vue.majclavier(multi.joueur_act(),pioche);
+			vue.majclavier(multi.joueur_act(), pioche);
 
 			try {
 				Suggestion s = new Suggestion (multi.joueur_act());
@@ -488,27 +474,23 @@ public class Controleur implements Observer{
 				multi.joueur_act().reset(listelettrejouee);
 				System.out.println(multi.joueur_act());
 				multi.changer_joueur();
-				vue.majclavier(multi.joueur_act(),pioche);
+				vue.majclavier(multi.joueur_act(), pioche);
 
 			} else {
 				multi.joueur_act().score += pair.getValue()[0];
 				multi.joueur_act().score += pair.getValue()[1];
 				System.out.println(multi.ind_jr+ " : "+ multi.joueur_act().score );
-				if (pioche.size()>0) {
 				multi.joueur_act().tirage(pioche);
-				}
 				vue.score.majscore(multi.joueur_act(), pioche);
 				tableau.majbonmot(listecasejouee);
 				multi.changer_joueur();
-				vue.majclavier(multi.joueur_act(),pioche);
+				vue.majclavier(multi.joueur_act(), pioche);
 
 			}
 			try {
-				if (pioche.size()>0) {
 				Suggestion s = new Suggestion (multi.joueur_act());
 				System.out.println("eee");
 				vue.vuesuggestion(s);
-				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
