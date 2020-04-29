@@ -190,7 +190,7 @@ public class Controleur implements Observer{
 					vue.resetclavier();
 					vue.plateau.resetplateau(listecasejouee);
 					tableau.majmauvaismot(listecasejouee);
-
+					vue.melanger.setVisible(true);
 					int input = JOptionPane.showConfirmDialog(null, 
 							"le mot est faux", " ", 
 							JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
@@ -287,7 +287,7 @@ public class Controleur implements Observer{
 
 				vue.score.majscore(multi.joueur_act(), pioche);
 				multi.changer_joueur();
-				vue.majclavier(multi.joueur_act(), pioche);
+				
 
 				try {
 					Suggestion s = new Suggestion (multi.joueur_act());
@@ -297,14 +297,19 @@ public class Controleur implements Observer{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
 				if (nombre_joueur.nbrjoueur!=1) {
 					ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
-
+					
 					int input2 = JOptionPane.showConfirmDialog(null, 
 							"c'est à "+nombre_joueur.nomjoueur.get(multi.ind_jr)+ " de jouer", " ", 
 							JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
-
+					if (input2==JOptionPane.OK_OPTION) {
+						vue.majclavier(multi.joueur_act(), pioche);
+					}
 				}
+				//
+				
 				vue.tour.majtour(multi.ind_jr);
 				vue.chrono.chrono.demarrer();
 
@@ -326,7 +331,7 @@ public class Controleur implements Observer{
 					vue.score.majscore(multi.joueur_act(), pioche);
 					tableau.majbonmot(listecasejouee);
 					multi.changer_joueur();
-					vue.majclavier(multi.joueur_act(), pioche);
+					
 
 				}
 				try {
@@ -343,8 +348,9 @@ public class Controleur implements Observer{
 						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
 				if (input==JOptionPane.OK_OPTION) {
 					vue.tour.majtour(multi.ind_jr);
+					vue.majclavier(multi.joueur_act(), pioche);
 					vue.chrono.chrono.demarrer();
-
+					
 
 				}
 				// 0=ok, 2=cancel
@@ -368,7 +374,7 @@ public class Controleur implements Observer{
 			multi.joueur_act().initTirage(pioche);
 			vue.score.majscore(multi.joueur_act(), pioche);
 			multi.changer_joueur();
-			vue.majclavier(multi.joueur_act(), pioche);
+			
 
 			try {
 				Suggestion s = new Suggestion (multi.joueur_act());
@@ -378,14 +384,20 @@ public class Controleur implements Observer{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			///
+			
 			if (nombre_joueur.nbrjoueur!=1) {
 				ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
 
 				int input2 = JOptionPane.showConfirmDialog(null, 
 						"c'est à "+nombre_joueur.nomjoueur.get(multi.ind_jr)+ " de jouer", " ", 
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
+				if (input2==JOptionPane.OK_OPTION) {
+					vue.majclavier(multi.joueur_act(), pioche);
+				}
 
 			}
+			
 			vue.tour.majtour(multi.ind_jr);
 			vue.chrono.chrono.demarrer();
 		} else {
@@ -404,7 +416,7 @@ public class Controleur implements Observer{
 				vue.score.majscore(multi.joueur_act(), pioche);
 				tableau.majbonmot(listecasejouee);
 				multi.changer_joueur();
-				vue.majclavier(multi.joueur_act(), pioche);
+				
 
 			}
 			try {
@@ -415,6 +427,7 @@ public class Controleur implements Observer{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
 			int input = JOptionPane.showConfirmDialog(null, 
 					"c'est à "+nombre_joueur.nomjoueur.get(multi.ind_jr)+ " de jouer", " ", 
@@ -422,11 +435,11 @@ public class Controleur implements Observer{
 			if (input==JOptionPane.OK_OPTION) {
 				vue.tour.majtour(multi.ind_jr);
 				vue.chrono.chrono.demarrer();
-
+				vue.majclavier(multi.joueur_act(), pioche);
 
 			}
 			// 0=ok, 2=cancel
-
+			
 			listecasejouee.clear();
 			listelettrejouee.clear();
 		}

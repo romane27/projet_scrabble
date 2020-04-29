@@ -137,6 +137,7 @@ public class Vue extends JFrame {
 
 
 	}
+	
 	public void majclavier(Joueur joueur, Pioche p) {
 		if (p.size()>0) {
 
