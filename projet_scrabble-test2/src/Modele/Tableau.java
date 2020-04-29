@@ -446,24 +446,32 @@ public class Tableau {
 		boolean essai = verifPlacLettres(taille, i, j);
 		System.out.println("meme ligne ? : "+essai);
 		if (verifPlacLettres(taille, i, j)) {
-		String[] r1 = { "", "0"};
-		String[] r2 = { "", "0"};
+		ArrayList<String[]> liste_mots = new ArrayList<String[]>();
 		//if (i!=14) {
-		r1 = mot_vertical(i, j);
+		liste_mots.addAll(mot_vertical(i, j));
 		//}
 		System.out.println("c2 "+i + j);
 		//if (j!=14) {
-		r2 = mot_horizontal(i,j);
+		liste_mots.addAll(mot_horizontal(i,j));
 		//}
-		String mot1 = r1[0];
+		boolean valable = true;
+		Integer[] scores=new Integer[liste_mots.size()];
+		for (int ind=0; ind<liste_mots.size(); ind++) {
+			String[] el = liste_mots.get(ind);
+			System.out.println(el[0]);
+			valable = valable && dic.verifier_mot(el[0]);
+			scores[ind] = Integer.parseInt(el[1]);
+		}
+		System.out.print(valable);
+		/*String mot1 = r1[0];
 		String mot2 = r2[0];
 		int score_m1 = Integer.parseInt(r1[1]);
 		int score_m2 = Integer.parseInt(r2[1]);
 		Integer[] scores = {score_m1, score_m2};
 		System.out.println(mot1 + " " + score_m1 + " " + dic.verifier_mot(mot1));
 		System.out.println(mot2 + " " + score_m2 + " " + dic.verifier_mot(mot2));
-		Boolean b = dic.verifier_mot(mot1) && dic.verifier_mot(mot2);
-		Pair<Boolean, Integer[]> pair = new Pair<Boolean, Integer[]>(b, scores);
+		Boolean b = dic.verifier_mot(mot1) && dic.verifier_mot(mot2);*/
+		Pair<Boolean, Integer[]> pair = new Pair<Boolean, Integer[]>(valable, scores);
 		return pair;
 		} else {
 			Integer[] t = {0};
@@ -473,10 +481,11 @@ public class Tableau {
 
 	}
 	
-	public String[] mot_horizontal(int i, int j) {
+	public ArrayList<String[]> mot_horizontal(int i, int j) {
 		int score_m1=0;
 		int mults1 =1;
 		String mot1 = "";
+		ArrayList<String[]> liste_mots = new ArrayList<String[]>();
 		System.out.println("je passe par ici");
 		//if (tableau[i][j + 1].occupe == true || tableau[i][j - 1].occupe == true) {// de droite à gauche
 		if (j!=0) {
@@ -515,6 +524,13 @@ public class Tableau {
 				// tableau[i][j].verouillee = true;
 				mot1 += tableau[i][j].lettre.nom;
 				System.out.println("lettre lue : "+ tableau[i][j].lettre.nom);
+				if (tableau[i][j].jouee) {
+					ArrayList<String[]> test = mot_vertical(i, j);
+					for (String[] el : test) {
+						liste_mots.add(el);
+						System.out.println(el[0]);
+					}
+				}
 				j += 1;
 
 			//}
@@ -523,12 +539,15 @@ public class Tableau {
 		System.out.println("Le mot 1 est : " + mot1);
 		System.out.println("Le score pour le mot 1 est : " +score_m1*mults1);
 		String[] resultat = {mot1, String.valueOf(score_m1*mults1)};
-		return resultat;
+		liste_mots.add(resultat);
+		//System.out.println(resultat);
+		return liste_mots;
 	}
 	
-	public String[] mot_vertical(int i, int j) {
+	public ArrayList<String[]> mot_vertical(int i, int j) {
 		int score_m2=0;
 		int mults2 =1;
+		ArrayList<String[]> liste_mots = new ArrayList<String[]>();
 		String mot2 = "";
 		System.out.println("je passe par ici");
 		//if (tableau[i - 1][j].occupe == true || tableau[i + 1][j].occupe == true) {// de haut en bas
@@ -569,14 +588,22 @@ public class Tableau {
 				//tableau[i][j].jouee = false;
 				mot2 += tableau[i][j].lettre.nom;
 				System.out.println("lettre lue : "+ tableau[i][j].lettre.nom);
+				if (tableau[i][j].jouee) {
+					ArrayList<String[]> test = mot_horizontal(i, j);
+					for (String[] el : test) {
+						liste_mots.add(el);
+						System.out.println(el[0]);
+					}
+				}
 				i += 1;
 			}
 		}
 		System.out.println("Le mot 2 est : " + mot2);
 		System.out.println("Le score pour le mot 2 est : " +score_m2*mults2);
 		String[] resultat = {mot2, String.valueOf(score_m2*mults2)};
+		liste_mots.add(resultat);
 		//System.out.println(resultat);
-		return resultat;
+		return liste_mots;
 	}
 
 	public void majmauvaismot(ArrayList<Pair> listecasejouee) {
