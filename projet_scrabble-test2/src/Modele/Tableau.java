@@ -416,14 +416,14 @@ public class Tableau {
 		int a = i;
 		int cpt1 = 0;
 		int cpt2 = 0;
-		while (a<15 && tableau[a][j]!=null) {
+		while (a<15 && tableau[a][j].lettre!=null) {
 			if (tableau[a][j].jouee) {
 				cpt1 += 1;
 			}
 			a++;
 		}
 		a = j;
-		while (a<15 && tableau[i][a]!=null) {
+		while (a<15 && tableau[i][a].lettre!=null) {
 			if (tableau[i][a].jouee) {
 				cpt2 += 1;
 			}
