@@ -41,7 +41,7 @@ public class Dico extends HashMap<String, ArrayList<String>> {
 		}
 		lecteurAvecBuffer.close();
 	}
-
+	// on utilise pour clé les deux premieres lettres mot 
 	public boolean verifier_mot(String a) {
 		if (a == "") {
 			return true;
@@ -59,8 +59,5 @@ public class Dico extends HashMap<String, ArrayList<String>> {
 		}
 	}
 
-	/*
-	 * public static void main(String[] args) throws IOException { Dico d = new
-	 * Dico(); System.out.println(d.verifier_mot("LAG")); }
-	 */
+	
 }

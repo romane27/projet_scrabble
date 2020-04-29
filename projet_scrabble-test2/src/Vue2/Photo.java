@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 import javax.swing.Icon;
-
+// ajoute une photo 
 public class Photo extends Canvas{
 	Image img = null;
 	public int posx,posy, hauteur, largeur;
@@ -24,8 +24,8 @@ public class Photo extends Canvas{
 		}
 		else {
 			g.drawImage(img,posx,posy,this.hauteur, this.largeur,this);
-			
-			}
+
+		}
 	}
 
 }

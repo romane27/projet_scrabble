@@ -30,12 +30,6 @@ public class Plateau extends JPanel {
 					Bouton bouton = new Bouton();
 					bouton.image = new ImageIcon("src/images/LT.jpg");
 					bouton.setIcon(bouton.image);
-					//bouton.setText("LD");
-					// test mais lettre ecrit trop petit ...
-					
-					/*Font f = bouton.getFont().deriveFont(5.0f);
-					bouton.setFont(f);
-					bouton.setBackground(new Color(42, 125, 210));*/
 					bouton.caseass = plateau.tableau[i][j - 1];
 					this.add(bouton);
 				}
@@ -51,8 +45,6 @@ public class Plateau extends JPanel {
 				// couleur rouge
 				if (plateau.tableau[i][j - 1].bonus == 1) {
 					Bouton bouton = new Bouton();
-					//bouton.setText("MT");
-				//	bouton.setBackground(Color.red);
 					bouton.image=new ImageIcon("src/images/MT.jpg");
 					bouton.setIcon(bouton.image);
 					bouton.caseass = plateau.tableau[i][j - 1];
@@ -63,7 +55,6 @@ public class Plateau extends JPanel {
 					Bouton bouton = new Bouton();
 					bouton.image=new ImageIcon("src/images/LD.jpg");
 					bouton.setIcon(bouton.image);
-					//bouton.setBackground(Color.cyan);
 					bouton.caseass = plateau.tableau[i][j - 1];
 					this.add(bouton);
 				}
@@ -72,7 +63,7 @@ public class Plateau extends JPanel {
 					Bouton bouton = new Bouton();
 					bouton.image=new ImageIcon("src/images/MD.jpg");
 					bouton.setIcon(bouton.image);
-					
+
 					bouton.caseass = plateau.tableau[i][j - 1];
 					this.add(bouton);
 					// couleur vert
@@ -81,7 +72,7 @@ public class Plateau extends JPanel {
 					Bouton bouton = new Bouton();
 					bouton.image=new ImageIcon("src/images/VERT.jpg");
 					bouton.setIcon(bouton.image);
-					
+
 					bouton.caseass = plateau.tableau[i][j - 1];
 					this.add(bouton);
 
@@ -104,8 +95,7 @@ public class Plateau extends JPanel {
 
 			Bouton bouton = (Bouton) this
 					.getComponent((int) listecasejouee.get(k).getKey() * 15 + (int) listecasejouee.get(k).getValue());
-			// bouton.setBackground(Color.orange);
-			System.out.println(bouton.getBackground());
+
 			if (tableau.tableau[i][j].bonus == 2) {
 				bouton.setText("");
 				bouton.image = new ImageIcon("src/images/LT.jpg");

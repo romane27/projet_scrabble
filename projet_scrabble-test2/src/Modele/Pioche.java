@@ -10,26 +10,26 @@ import javafx.application.Application;
 public class Pioche extends ArrayList<Lettre> {
 
 	public Pioche() {
-		// E=15
+
 		for (int i = 0; i < 15; i++) {
 			this.add((new Lettre("E", 1,new ImageIcon("src/images/E.jpg"),new ImageIcon("src/images/Egris.jpg"))));
 		}
 
 		for (int i = 0; i < 8; i++) {
 			this.add((new Lettre("I", 1,new ImageIcon("src/images/I.jpg"),new ImageIcon("src/images/Igris.jpg"))));
-			
+
 		}
-		// A =9
+
 		for (int i = 0; i < 9; i++) {
 			this.add((new Lettre("A", 1,new ImageIcon("src/images/A.jpg"),new ImageIcon("src/images/A_gris.jpg"))));
-			
+
 		}
-		// i=6
+
 		for (int i = 0; i < 6; i++) {
 			this.add((new Lettre("O", 1,new ImageIcon("src/images/O.jpg"),new ImageIcon("src/images/Ogris.jpg"))));
-			
+
 			this.add((new Lettre("N", 1,new ImageIcon("src/images/N.jpg"),new ImageIcon("src/images/Ngris.jpg"))));
-			
+
 			this.add(new Lettre("R", 1,new ImageIcon("src/images/R.jpg"),new ImageIcon("src/images/Rgris.jpg")));
 			this.add(new Lettre("S", 1,new ImageIcon("src/images/S.jpg"),new ImageIcon("src/images/Sgris.jpg")));
 			this.add(new Lettre("U", 1,new ImageIcon("src/images/U.jpg"),new ImageIcon("src/images/Ugris.jpg")));
@@ -63,11 +63,8 @@ public class Pioche extends ArrayList<Lettre> {
 		this.add(new Lettre("X", 10,new ImageIcon("src/images/X.jpg"),new ImageIcon("src/images/Xgris.jpg")));
 		this.add(new Lettre("Q", 8,new ImageIcon("src/images/Q.jpg"),new ImageIcon("src/images/Qgris.jpg")));
 		this.add(new Lettre("Z", 10,new ImageIcon("src/images/Z.jpg"),new ImageIcon("src/images/Zgris.jpg")));
-		
-		/*
-		 * System.out.println(this.piocherLettre().nom); for (int i=0; i<this.size();
-		 * i++) { System.out.print(this.get(i).nom); }
-		 */
+
+
 	}
 
 	public Lettre piocherLettre() { // pioche une lettre et la supprime de la pioche
@@ -80,7 +77,5 @@ public class Pioche extends ArrayList<Lettre> {
 		this.add(l);
 	}
 
-	/*
-	 * public static void main(String[] args) { Pioche p = new Pioche(); }
-	 */
+
 }

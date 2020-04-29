@@ -7,7 +7,7 @@ import javafx.util.Pair;
 public class Joueur extends ArrayList<Lettre> {
 	public int score;
 	public int pos;
-	// public String nom;
+
 
 	public Joueur(Pioche pioche) {
 		score = 0;
@@ -22,15 +22,14 @@ public class Joueur extends ArrayList<Lettre> {
 			}
 		}
 		else {
-		for (int i = 0; i < k; i++) {
-			this.add(pioche.piocherLettre());
+			for (int i = 0; i < k; i++) {
+				this.add(pioche.piocherLettre());
+			}
 		}
-		}
-		for (int i = 0; i < this.size(); i++) {
+		/*for (int i = 0; i < this.size(); i++) {
 			System.out.print(this.get(i).nom);
-		}
-		System.out.println(this.size());
-		System.out.println("\n");
+		}*/
+
 	}
 
 	public void initTirage(Pioche pioche) {
@@ -38,11 +37,10 @@ public class Joueur extends ArrayList<Lettre> {
 		for (int i = 0; i < 7; i++) {
 			this.add(pioche.piocherLettre());
 		}
-		for (int i = 0; i < this.size(); i++) {
+		/*for (int i = 0; i < this.size(); i++) {
 			System.out.print(this.get(i).nom);
-		}
-		System.out.println(this.size());
-		System.out.println("\n");
+		}*/
+
 	}
 
 	public String toString() {

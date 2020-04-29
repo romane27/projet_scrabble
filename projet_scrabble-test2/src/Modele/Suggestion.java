@@ -57,8 +57,8 @@ public class Suggestion {
 		lettreetvaleurs.add(new Lettre("X", 8,new ImageIcon("src/images/X_joker.jpg"),new ImageIcon("src/images/Xgris.jpg")));
 		lettreetvaleurs.add(new Lettre("Q", 10,new ImageIcon("src/images/Q_joker.jpg"),new ImageIcon("src/images/Qgris.jpg")));
 		lettreetvaleurs.add(new Lettre("Z", 10,new ImageIcon("src/images/Z_joker.jpg"),new ImageIcon("src/images/Zgris.jpg")));
-		
-		
+
+
 		ArrayList<String> possibilitecles = new ArrayList<>();
 		ArrayList <String> lettreClavier = new ArrayList<>();
 		for (Lettre lettre :j) {
@@ -81,60 +81,54 @@ public class Suggestion {
 			}
 		}
 		// cas sans joker dans lettre joueurs
-			else {
-				for (int i = 0; i<j.size();i++) {
+		else {
+			for (int i = 0; i<j.size();i++) {
 
-					for (int k=0;k<j.size();k++) {
-						if(i!=k) {
-							possibilitecles.add(j.get(i).nom+j.get(k).nom);
-						}
+				for (int k=0;k<j.size();k++) {
+					if(i!=k) {
+						possibilitecles.add(j.get(i).nom+j.get(k).nom);
 					}
 				}
 			}
-
-			for (int k=0;k<possibilitecles.size();k++) {
-
-				String p=possibilitecles.get(k);			
-				if (dico.containsKey(p)) {
-					ArrayList<String> l=dico.get(p);
-
-					for (String mot : l) {
-						ArrayList <String> lettrecla = (ArrayList<String>)lettreClavier.clone();
-
-
-						Boolean motpos = true;
-
-						for (int i=0;i<mot.length();i++) {
-							// il faut supprimer la lettre du clavier; 
-							if (lettrecla.contains(Character.toString(mot.charAt(i)))==false && !lettrecla.contains(" ")) {
-								motpos=false;
-							}
-							if (lettrecla.contains(Character.toString(mot.charAt(i)))==false && lettrecla.contains(" ")) {
-								lettrecla.remove(" ");
-							}
-							else {
-								lettrecla.remove(Character.toString(mot.charAt(i)));
-							}
-						}
-						if (motpos==true && !motpossible.contains(mot)) {
-
-							motpossible.add(mot);
-
-						}
-					}
-
-
-				}
-			}
-			// on transforme l'arraylist de Suggestion en List pour l'utiliser dans un Jlist
-			motpossible.sort(null);
-			suggestionlist= new String[motpossible.size()];
-			suggestionlist=motpossible.toArray(suggestionlist);
-
-			System.out.println(motpossible);
-
-
-
-
 		}
+
+		for (int k=0;k<possibilitecles.size();k++) {
+
+			String p=possibilitecles.get(k);			
+			if (dico.containsKey(p)) {
+				ArrayList<String> l=dico.get(p);
+
+				for (String mot : l) {
+					ArrayList <String> lettrecla = (ArrayList<String>)lettreClavier.clone();
+
+
+					Boolean motpos = true;
+
+					for (int i=0;i<mot.length();i++) {
+						// il faut supprimer la lettre du clavier; 
+						if (lettrecla.contains(Character.toString(mot.charAt(i)))==false && !lettrecla.contains(" ")) {
+							motpos=false;
+						}
+						if (lettrecla.contains(Character.toString(mot.charAt(i)))==false && lettrecla.contains(" ")) {
+							lettrecla.remove(" ");
+						}
+						else {
+							lettrecla.remove(Character.toString(mot.charAt(i)));
+						}
+					}
+					if (motpos==true && !motpossible.contains(mot)) {
+
+						motpossible.add(mot);
+
+					}
+				}
+
+
+			}
+		}
+		// on transforme l'arraylist de Suggestion en List pour l'utiliser dans un Jlist
+		motpossible.sort(null);
+		suggestionlist= new String[motpossible.size()];
+		suggestionlist=motpossible.toArray(suggestionlist);
 	}
+}

@@ -9,9 +9,9 @@ public class duree_tours extends JComboBox<Integer> implements ActionListener {
 	public static int duree;
 
 	public duree_tours() {
-		duree = 30;
-		// this.setPreferredSize(new Dimension(100, 20));
-		this.addItem(30);
+		// la durée par défaut
+		duree = 60;
+		this.addItem(60);
 		this.addItem(120);
 		this.addItem(180);
 		this.addItem(210);

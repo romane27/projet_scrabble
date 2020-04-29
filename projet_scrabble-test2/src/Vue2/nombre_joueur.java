@@ -11,12 +11,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
+// initialise le choix du nombre de joueur par l'utilisateur avec une Jcombobox
 public class nombre_joueur extends JComboBox implements ActionListener {
 	public static int nbrjoueur = 0;
 	public static ArrayList <String> nomjoueur = new ArrayList<>();
 	public nombre_joueur() {
-		// combo.setPreferredSize(new Dimension(100, 20));
 
 		this.addItem("Choix");
 		this.addItem("1 joueur");
@@ -30,11 +29,8 @@ public class nombre_joueur extends JComboBox implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		// System.out.println("ActionListener : action sur " + combo.getSelectedItem());
 		Object str = this.getSelectedItem();
 		String o = "" + str;
-		// affiche nombre de joueurs qui jouent
-		System.out.println("Il y a " + o.charAt(0) + "joueur(s)");
 		// on transforme la chaine de caracteres en int pour récuperer le nbr de joueurs
 		char nbrj = o.charAt(0);
 		String nb = Character.toString(nbrj);
@@ -42,19 +38,18 @@ public class nombre_joueur extends JComboBox implements ActionListener {
 		int j=1;
 		for (int i=0 ; i<nbrjoueur;i++) {
 			ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
-			 String nom = JOptionPane.showInputDialog(null, "Entrez nom du joueur "+j+":", "Nom", JOptionPane.QUESTION_MESSAGE);
-			
-			 if (nom.isEmpty()) {
-				 System.out.println("le nom llll" +nom);
-				 nomjoueur.add("Joueur "+j);
-			 }
-			 else {
-				 nomjoueur.add(nom);
-			 }
-			
-			 j+=1;
-			 
+			String nom = JOptionPane.showInputDialog(null, "Entrez nom du joueur "+j+":", "Nom", JOptionPane.QUESTION_MESSAGE);
+
+			if (nom.isEmpty()) {
+				System.out.println("le nom llll" +nom);
+				nomjoueur.add("Joueur "+j);
+			}
+			else {
+				nomjoueur.add(nom);
+			}
+
+			j+=1;
+
 		}
-		// System.out.println(nbrjoueur);
 	}
 }
