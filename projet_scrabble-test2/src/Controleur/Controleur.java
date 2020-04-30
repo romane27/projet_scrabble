@@ -311,7 +311,7 @@ public class Controleur implements Observer{
 			} else {
 				Pair<Boolean, Integer[]> pair = tableau.comptescore(listelettrejouee.size());
 				if (pair.getKey() == false) {// si le mot est faux
-					if (pair.getValue().length==1) {
+					if (pair.getValue().length==0) {
 						int input = JOptionPane.showConfirmDialog(null, 
 								"Vous devez placer toutes les lettres sur la même ligne ou colonne !", " ", 
 								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
@@ -336,8 +336,11 @@ public class Controleur implements Observer{
 					vue.majclavier(multi.joueur_act(), pioche);
 					}
 				} else {
-					multi.joueur_act().score += pair.getValue()[0];
-					multi.joueur_act().score += pair.getValue()[1];
+					for(Integer sc : pair.getValue()) {
+						multi.joueur_act().score += sc;
+					}
+					/*multi.joueur_act().score += pair.getValue()[0];
+					multi.joueur_act().score += pair.getValue()[1];*/
 					multi.joueur_act().tirage(pioche);
 					vue.score.majscore(multi.joueur_act(), pioche);
 					tableau.majbonmot(listecasejouee);

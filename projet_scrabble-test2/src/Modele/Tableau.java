@@ -448,7 +448,7 @@ public class Tableau {
 		if (verifPlacLettres(taille, i, j)) {
 		ArrayList<String[]> liste_mots = new ArrayList<String[]>();
 		//if (i!=14) {
-		liste_mots.addAll(mot_vertical(i, j));
+		//liste_mots.addAll(mot_vertical(i, j));
 		//}
 		System.out.println("c2 "+i + j);
 		//if (j!=14) {
@@ -474,7 +474,7 @@ public class Tableau {
 		Pair<Boolean, Integer[]> pair = new Pair<Boolean, Integer[]>(valable, scores);
 		return pair;
 		} else {
-			Integer[] t = {0};
+			Integer[] t = {};
 			Pair<Boolean, Integer[]> pair = new Pair<Boolean, Integer[]>(false, t);
 			return pair;
 		}
@@ -491,6 +491,17 @@ public class Tableau {
 		if (j!=0) {
 			while (tableau[i][j - 1].occupe == true && j!=0) {// retrouve le debut du mot
 				j -= 1;
+			}
+		}
+		
+		if (j<14 && !tableau[i][j+1].occupe) {
+			if (tableau[i][j].jouee) {
+				tableau[i][j].jouee = false;
+				ArrayList<String[]> test = mot_vertical(i, j);
+				for (String[] el : test) {
+					liste_mots.add(el);
+					System.out.println(el[0]);
+				}
 			}
 		}
 		if (j<14 && tableau[i][j+1].occupe) {
@@ -525,6 +536,7 @@ public class Tableau {
 				mot1 += tableau[i][j].lettre.nom;
 				System.out.println("lettre lue : "+ tableau[i][j].lettre.nom);
 				if (tableau[i][j].jouee) {
+					tableau[i][j].jouee = false;
 					ArrayList<String[]> test = mot_vertical(i, j);
 					for (String[] el : test) {
 						liste_mots.add(el);
@@ -589,6 +601,7 @@ public class Tableau {
 				mot2 += tableau[i][j].lettre.nom;
 				System.out.println("lettre lue : "+ tableau[i][j].lettre.nom);
 				if (tableau[i][j].jouee) {
+					tableau[i][j].jouee=false;
 					ArrayList<String[]> test = mot_horizontal(i, j);
 					for (String[] el : test) {
 						liste_mots.add(el);
