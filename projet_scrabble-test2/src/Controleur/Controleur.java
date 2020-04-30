@@ -222,26 +222,26 @@ public class Controleur implements Observer{
 					daccord.add(1);
 				}
 			}
-			int k=0;
+			/*int k=0;
 			
-			for (int i=0;i<daccord.size();i++) {
-				if (daccord.get(i)!=0) {
+			for (int i=0;i<daccord.size();i++) {*/
+				if (daccord.contains(1)) {
 					JOptionPane.showMessageDialog(null,
 							"On continue la partie car un joueur souhaire continuer",
 							"Attention",
 							JOptionPane.WARNING_MESSAGE);
 
 				}
-				else {
+				/*else {
 					k+=1;
 				}
 
-			}
-
+			}*/
+			else {
 			int [] score = new int [nombre_joueur.nbrjoueur];
 			ArrayList <Integer> égal = new ArrayList<>();
 			String nom = nombre_joueur.nomjoueur.get(0);
-			if (k==daccord.size()) {
+			//if (k==daccord.size()) {
 				for (int j=1;j<nombre_joueur.nbrjoueur;j++) {
 					score[j]=(multi.tab_joueurs[j].score);
 					if (multi.tab_joueurs[j].score>multi.tab_joueurs[j-1].score) {
