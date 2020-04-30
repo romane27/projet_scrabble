@@ -283,6 +283,7 @@ public class Controleur implements Observer{
 		vue.ajoutactlist((ActionEvent evt) -> {
 			vue.chrono.chrono.arreter();
 			vue.melanger.setVisible(true);
+			System.out.println("s");
 			// quand on clique sur fin de tour on redemarre le chrono
 			
 			if (multi.joueur_act().size() == 7 && pioche.size()>=7) {
