@@ -494,7 +494,7 @@ public class Tableau {
 			}
 		}
 		
-		if (j<14 && !tableau[i][j+1].occupe) {
+		if ((j<14 && !tableau[i][j+1].occupe) || j==14) {
 			if (tableau[i][j].jouee) {
 				tableau[i][j].jouee = false;
 				ArrayList<String[]> test = mot_vertical(i, j);
@@ -618,13 +618,21 @@ public class Tableau {
 		//System.out.println(resultat);
 		return liste_mots;
 	}
+	
+	public void revalid(ArrayList<Pair> listecasejouee) {
+		for (int k = 0; k < listecasejouee.size(); k++) {
+			int i = (int) listecasejouee.get(k).getKey();
+			int j = (int) listecasejouee.get(k).getValue();
+			tableau[i][j].jouee = true;
+		}
+	}
 
 	public void majmauvaismot(ArrayList<Pair> listecasejouee) {
 		for (int k = 0; k < listecasejouee.size(); k++) {
 			int i = (int) listecasejouee.get(k).getKey();
 			int j = (int) listecasejouee.get(k).getValue();
 			tableau[i][j].occupe = false;
-			tableau[i][j].jouee = false;
+			//tableau[i][j].jouee = false;
 		}
 	}
 
@@ -634,7 +642,7 @@ public class Tableau {
 			int i = (int) listecasejouee.get(k).getKey();
 			int j = (int) listecasejouee.get(k).getValue();
 			tableau[i][j].bonus = 0;
-			tableau[i][j].jouee = false;
+			//tableau[i][j].jouee = false;
 			tableau[i][j].verouillee = true;
 			tableau[i][j].occupe = true;
 		}

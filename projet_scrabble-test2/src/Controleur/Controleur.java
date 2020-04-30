@@ -187,19 +187,26 @@ public class Controleur implements Observer{
 			else {
 				Pair<Boolean, Integer[]> pair = tableau.comptescore(listelettrejouee.size());
 				if (pair.getKey() == false) {// si le mot est faux
+					if (pair.getValue().length==0) {
+						int input = JOptionPane.showConfirmDialog(null, 
+								"Vous devez placer toutes les lettres sur la même ligne ou colonne !", " ", 
+								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+						if (input==JOptionPane.OK_OPTION) {
+						}
+					}else {
+						int input = JOptionPane.showConfirmDialog(null, 
+								"le mot est faux", " ", 
+								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
+						if (input==JOptionPane.OK_OPTION) {
+						}
+					}
 					vue.resetclavier();
 					vue.plateau.resetplateau(listecasejouee);
 					tableau.majmauvaismot(listecasejouee);
-
-					int input = JOptionPane.showConfirmDialog(null, 
-							"le mot est faux", " ", 
-							JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
-					if (input==JOptionPane.OK_OPTION) {
-					}
-
-
+					listelettrejouee.clear();
+					listecasejouee.clear();
 				} else  {
-
+					tableau.revalid(listecasejouee);
 					int input = JOptionPane.showConfirmDialog(null, 
 							"le mot est juste appuyer sur fin de tour pour valider", " ", 
 							JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
@@ -316,17 +323,16 @@ public class Controleur implements Observer{
 								"Vous devez placer toutes les lettres sur la même ligne ou colonne !", " ", 
 								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
 						if (input==JOptionPane.OK_OPTION) {
-							vue.resetclavier();
+							/*vue.resetclavier();
 							vue.plateau.resetplateau(listecasejouee);
 							tableau.majmauvaismot(listecasejouee);
 							multi.joueur_act().reset(listelettrejouee);
 							
 							multi.changer_joueur();
-							vue.majclavier(multi.joueur_act(), pioche);
+							vue.majclavier(multi.joueur_act(), pioche);*/
 						}
 						
 					}
-					else {
 					vue.resetclavier();
 					vue.plateau.resetplateau(listecasejouee);
 					tableau.majmauvaismot(listecasejouee);
@@ -334,7 +340,6 @@ public class Controleur implements Observer{
 					
 					multi.changer_joueur();
 					vue.majclavier(multi.joueur_act(), pioche);
-					}
 				} else {
 					for(Integer sc : pair.getValue()) {
 						multi.joueur_act().score += sc;
@@ -410,7 +415,7 @@ public class Controleur implements Observer{
 		} else {
 			Pair<Boolean, Integer[]> pair = tableau.comptescore(listelettrejouee.size());
 			if (pair.getKey() == false) {// si le mot est faux
-				if (pair.getValue().length==1) {
+				if (pair.getValue().length==0) {
 					int input = JOptionPane.showConfirmDialog(null, 
 							"Vous devez placer toutes les lettres sur la même ligne ou colonne !", " ", 
 							JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
@@ -433,8 +438,11 @@ public class Controleur implements Observer{
 					vue.majclavier(multi.joueur_act(), pioche);
 				}
 			} else {
-				multi.joueur_act().score += pair.getValue()[0];
-				multi.joueur_act().score += pair.getValue()[1];
+				for(Integer sc : pair.getValue()) {
+					multi.joueur_act().score += sc;
+				}
+				/*multi.joueur_act().score += pair.getValue()[0];
+				multi.joueur_act().score += pair.getValue()[1];*/
 				multi.joueur_act().tirage(pioche);
 				vue.score.majscore(multi.joueur_act(), pioche);
 				tableau.majbonmot(listecasejouee);
