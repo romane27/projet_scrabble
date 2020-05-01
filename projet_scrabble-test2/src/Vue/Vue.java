@@ -177,6 +177,7 @@ public class Vue extends JFrame {
 			motpossible.setFont(new Font("Arial", Font.PLAIN, 20));
 			panel.add(motpossible, BorderLayout.NORTH);
 			liste = new JList(sugges.suggestionlist);
+			meilleur_mot.setVisible(true);
 			//System.out.println(sugges.bestmot(sugges.motpossible));
 			// creer un ascenseur quand bcp de suggestions
 			JScrollPane ascenseur = new JScrollPane(liste);
