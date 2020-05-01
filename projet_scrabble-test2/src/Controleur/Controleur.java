@@ -64,6 +64,7 @@ public class Controleur implements Observer {
 		fin();
 		echanger2();
 		annuler();
+		meilleur();
 	}
 
 	public void ajoutactlist() {
@@ -189,7 +190,14 @@ public class Controleur implements Observer {
 			}
 		}
 	}
-
+	public void meilleur() {
+		vue.meilleur1((ActionEvent evt) -> {
+			vue.sugges.bestmot(vue.sugges.motpossible);
+			int input = JOptionPane.showConfirmDialog(null, "le meilleur mot possible avec vos lettres est " + vue.sugges.meilleur_mot+ " avec " + vue.sugges.meilleur+ " points", " ",
+					JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+		
+		});
+	}
 	// ce qu il se passe quand on appuie sur verification
 	public void verif() {
 		vue.verification_mots((ActionEvent evt) -> {
@@ -309,7 +317,7 @@ public class Controleur implements Observer {
 				if (nombre_joueur.nbrjoueur != 1) {
 					try {
 						Suggestion s = new Suggestion(multi.joueur_act());
-
+						
 						vue.vuesuggestion(s);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -368,7 +376,7 @@ public class Controleur implements Observer {
 				}
 				try {
 					Suggestion s = new Suggestion(multi.joueur_act());
-
+					
 					vue.vuesuggestion(s);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -401,6 +409,7 @@ public class Controleur implements Observer {
 
 		vue.echanger((ActionEvent evt) -> {
 			vue.majechclav(multi.joueur_act());
+			vue.meilleur_mot.setVisible(false);
 			ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
 			int input = JOptionPane.showConfirmDialog(null, "Veuillez sélectionner les lettres à échanger", " ",
 					JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
@@ -422,6 +431,7 @@ public class Controleur implements Observer {
 	public void annuler() {
 		vue.annuler((ActionEvent evt) -> {
 			vue.clavechange(true);
+			vue.melanger.setVisible(true);
 			vue.echanger.setVisible(true);
 			vue.echanger2.setVisible(false);
 			vue.annuler.setVisible(false);
@@ -447,6 +457,7 @@ public class Controleur implements Observer {
 			vue.clavechange(true);
 			vue.majclavier(multi.joueur_act(), pioche);
 			vue.fdt.setVisible(false);
+			
 			try {
 				Suggestion s = new Suggestion(multi.joueur_act());
 
@@ -455,6 +466,7 @@ public class Controleur implements Observer {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			vue.meilleur_mot.setVisible(true);
 			vue.majverrouille(true);
 			vue.fdt.setVisible(true);
 			listechange.clear();
@@ -474,7 +486,8 @@ public class Controleur implements Observer {
 			if (nombre_joueur.nbrjoueur != 1) {
 				try {
 					Suggestion s = new Suggestion(multi.joueur_act());
-
+					
+				
 					vue.vuesuggestion(s);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -531,7 +544,7 @@ public class Controleur implements Observer {
 			}
 			try {
 				Suggestion s = new Suggestion(multi.joueur_act());
-
+			
 				vue.vuesuggestion(s);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

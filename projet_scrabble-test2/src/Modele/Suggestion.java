@@ -10,10 +10,13 @@ import javax.swing.ImageIcon;
 
 import java.util.Set;
 
+
 public class Suggestion {
 	Dico dico;
 	Pioche p;
+	public static String meilleur_mot;
 	public static String suggestionlist[];
+	public static int meilleur;
 	public static ArrayList<String> motpossible;
 	public static String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P",
 			"Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
@@ -53,7 +56,7 @@ public class Suggestion {
 		lettreetvaleurs.add(
 				new Lettre("D", 2, new ImageIcon("src/images/D_joker.jpg"), new ImageIcon("src/images/Dgris.jpg")));
 		lettreetvaleurs.add(
-				new Lettre("M", 3, new ImageIcon("src/images/M_joker.jpg"), new ImageIcon("src/images/Mgris.jpg")));
+				new Lettre("M", 2, new ImageIcon("src/images/M_joker.jpg"), new ImageIcon("src/images/Mgris.jpg")));
 		lettreetvaleurs.add(
 				new Lettre("G", 2, new ImageIcon("src/images/G_joker.jpg"), new ImageIcon("src/images/Ggris.jpg")));
 		lettreetvaleurs.add(
@@ -70,17 +73,17 @@ public class Suggestion {
 				new Lettre("V", 4, new ImageIcon("src/images/V_joker.jpg"), new ImageIcon("src/images/Vgris.jpg")));
 
 		lettreetvaleurs.add(
-				new Lettre("W", 4, new ImageIcon("src/images/W_joker.jpg"), new ImageIcon("src/images/Wgris.jpg")));
+				new Lettre("W", 10, new ImageIcon("src/images/W_joker.jpg"), new ImageIcon("src/images/Wgris.jpg")));
 		lettreetvaleurs.add(
-				new Lettre("Y", 4, new ImageIcon("src/images/Y_joker.jpg"), new ImageIcon("src/images/Ygris.jpg")));
+				new Lettre("Y", 10, new ImageIcon("src/images/Y_joker.jpg"), new ImageIcon("src/images/Ygris.jpg")));
 		lettreetvaleurs.add(
-				new Lettre("K", 5, new ImageIcon("src/images/K_joker.jpg"), new ImageIcon("src/images/Kgris.jpg")));
+				new Lettre("K", 10, new ImageIcon("src/images/K_joker.jpg"), new ImageIcon("src/images/Kgris.jpg")));
 		lettreetvaleurs.add(
 				new Lettre("J", 8, new ImageIcon("src/images/J_joker.jpg"), new ImageIcon("src/images/Jgris.jpg")));
 		lettreetvaleurs.add(
-				new Lettre("X", 8, new ImageIcon("src/images/X_joker.jpg"), new ImageIcon("src/images/Xgris.jpg")));
+				new Lettre("X", 10, new ImageIcon("src/images/X_joker.jpg"), new ImageIcon("src/images/Xgris.jpg")));
 		lettreetvaleurs.add(
-				new Lettre("Q", 10, new ImageIcon("src/images/Q_joker.jpg"), new ImageIcon("src/images/Qgris.jpg")));
+				new Lettre("Q", 8, new ImageIcon("src/images/Q_joker.jpg"), new ImageIcon("src/images/Qgris.jpg")));
 		lettreetvaleurs.add(
 				new Lettre("Z", 10, new ImageIcon("src/images/Z_joker.jpg"), new ImageIcon("src/images/Zgris.jpg")));
 
@@ -153,5 +156,32 @@ public class Suggestion {
 		motpossible.sort(null);
 		suggestionlist = new String[motpossible.size()];
 		suggestionlist = motpossible.toArray(suggestionlist);
+	}
+	public void bestmot(ArrayList<String> mot) {
+		int score;
+		meilleur=0;
+		 meilleur_mot=mot.get(0);
+		for (String m : mot) {
+			
+			score=0;
+			for (int i=0;i<m.length();i++) {
+				
+				for (int j=0;j<lettreetvaleurs.size();j++) {
+					//System.out.println(lettreetvaleurs.get(j).nom+Character.toString(m.charAt(i)));
+					if (lettreetvaleurs.get(j).nom.contentEquals(Character.toString(m.charAt(i)))){
+						
+						score+=lettreetvaleurs.get(j).valeur;
+						System.out.println("d"+m+lettreetvaleurs.get(j).nom+score);
+					}
+									}
+				
+				}
+			if (score>meilleur) {
+				meilleur=score;
+				meilleur_mot=m;
+			}
+	}
+		System.out.println("le meilleur est "+ meilleur_mot + meilleur);
+		//return meilleur_mot + meilleur;
 	}
 }
