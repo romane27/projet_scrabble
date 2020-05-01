@@ -17,14 +17,15 @@ import Modele.Joueur;
 
 public class Clavier extends JPanel {
 	static Joueur j;
+
 	public Clavier(Joueur joueur) {
-		this.j=joueur;
-		this.setBackground(new Color (176, 198, 193));
+		this.j = joueur;
+		this.setBackground(new Color(176, 198, 193));
 		this.setLayout(new GridLayout(0, 7));
 		for (int i = 0; i < joueur.size(); i++) {
 			Bouton boutton = new Bouton();
 
-			boutton.image=joueur.get(i).image;
+			boutton.image = joueur.get(i).image;
 			boutton.setIcon(boutton.image);
 			boutton.lettre = joueur.get(i);
 			boutton.setBackground(Color.white);
@@ -39,7 +40,7 @@ public class Clavier extends JPanel {
 	}
 	// retourne une liste de nombre sans doublons = pour changer emplacement lettre
 
-	public static int[] melangerlettre() {	
+	public static int[] melangerlettre() {
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		for (int i = 0; i < j.size(); i++) {
 			list.add(i);

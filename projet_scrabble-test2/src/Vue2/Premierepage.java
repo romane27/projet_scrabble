@@ -45,10 +45,10 @@ public class Premierepage extends Frame implements WindowListener, ActionListene
 		// titre avec taille, police, positionnement
 		Font fonte, font;
 		this.setSize(670, 670);
-		Photo image = new Photo("src/images/image.jpg",0,0,this.getWidth(),this.getHeight());
+		Photo image = new Photo("src/images/image.jpg", 0, 0, this.getWidth(), this.getHeight());
 		fonte = new Font("Brush Script MT", Font.BOLD, 45);
 		font = new Font("Helvetica", Font.CENTER_BASELINE, 15);
-		
+
 		JLabel titre = new JLabel("Bienvenue dans le jeu du Scrabble \n");
 		titre.setHorizontalAlignment(JLabel.CENTER);
 		titre.setFont(fonte);
@@ -63,21 +63,22 @@ public class Premierepage extends Frame implements WindowListener, ActionListene
 		nbrjoueur = new nombre_joueur();
 		dureetour = new duree_tours();
 		JLabel b = new JLabel("                                                  Règle du jeu              ");
-		JLabel l = new JLabel("<html>  Déroulement d'une partie :  <br><br> - Le joueur 1 commence la partie 7 lettres au hasard lui sont attribué <br>  - Chaque joueur à un certain temps pour jouer temps choisit maintenant <br> - Pour déplacer les lettres : on clic sur la lettre puis sur l'endroit du plateau <br> - Vous avez la possibilité de vérifier votre mot avec le bouton 'verifier mot' avant de changer de joueur <br> - attention une fois appuyer sur 'fin de tour' on passe directement au joueur suivant <br> - Si aucun joueur ne peux continuer appuyer sur Arrêter la partie <br><br> Bonne partie </html>");
+		JLabel l = new JLabel(
+				"<html>  Déroulement d'une partie :  <br><br> - Le joueur 1 commence la partie 7 lettres au hasard lui sont attribué <br>  - Chaque joueur à un certain temps pour jouer temps choisit maintenant <br> - Pour déplacer les lettres : on clic sur la lettre puis sur l'endroit du plateau <br> - Vous avez la possibilité de vérifier votre mot avec le bouton 'verifier mot' avant de changer de joueur <br> - Vous pouvez échanger le nombre désiré de lettres une fois par tour (votre tour se fini) <br> - attention une fois appuyer sur 'fin de tour' on passe directement au joueur suivant <br> - Si aucun joueur ne peux continuer appuyer sur Arrêter la partie <br><br> Bonne partie </html>");
 		b.setFont(font);
 		b.setBackground(new Color(173, 239, 200));
 		l.setBackground(new Color(173, 239, 200));
 		l.setOpaque(true);
 		b.setOpaque(true);
-		b.setBounds(100, 300, 500,30);
-		l.setBounds(100, 330, 500,200);	
+		b.setBounds(100, 300, 500, 30);
+		l.setBounds(100, 330, 500, 200);
 		this.add(b);
 		this.add(l);
 		this.add(bouton_executer, BorderLayout.SOUTH);
 		this.add(titre2);
 		this.add(titre3);
 		titre2.setFont(font);
-		titre3.setFont(font);		
+		titre3.setFont(font);
 		titre2.setBounds(100, 155, 150, 40);
 		titre3.setBounds(100, 200, 200, 40);
 		// ajout menu deroulant
@@ -87,7 +88,7 @@ public class Premierepage extends Frame implements WindowListener, ActionListene
 		this.add(nbrjoueur);
 		this.add(image);
 		this.setTitle("Jeu du Scrabble");
-		Image icone = Toolkit.getDefaultToolkit().getImage("src/images/S.jpg"); 
+		Image icone = Toolkit.getDefaultToolkit().getImage("src/images/S.jpg");
 		this.setIconImage(icone);
 		this.setLocationRelativeTo(null);
 		this.addWindowListener(this);
@@ -144,7 +145,7 @@ public class Premierepage extends Frame implements WindowListener, ActionListene
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-	
+
 	}
 
 }
