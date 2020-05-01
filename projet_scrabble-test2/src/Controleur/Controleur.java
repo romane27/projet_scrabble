@@ -226,7 +226,7 @@ public class Controleur implements Observer {
 						if (input == JOptionPane.OK_OPTION) {
 						}
 					}
-					vue.resetclavier();
+					vue.resetclavier(multi.joueur_act());
 					vue.plateau.resetplateau(listecasejouee);
 					tableau.majmauvaismot(listecasejouee);
 					listelettrejouee.clear();
@@ -356,7 +356,7 @@ public class Controleur implements Observer {
 						}
 
 					}
-					vue.resetclavier();
+					vue.resetclavier(multi.joueur_act());
 					vue.plateau.resetplateau(listecasejouee);
 					tableau.majmauvaismot(listecasejouee);
 					multi.joueur_act().reset(listelettrejouee);
@@ -419,7 +419,7 @@ public class Controleur implements Observer {
 					JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
 
 			if (input == 0) {
-				vue.resetclavier();
+				vue.resetclavier(multi.joueur_act());
 
 				vue.melanger.setVisible(false);
 				vue.clavechange(false);
@@ -515,7 +515,7 @@ public class Controleur implements Observer {
 							"Vous devez placer toutes les lettres sur la même ligne ou colonne !", " ",
 							JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
 					if (input == JOptionPane.OK_OPTION) {
-						vue.resetclavier();
+						vue.resetclavier(multi.joueur_act());
 						vue.plateau.resetplateau(listecasejouee);
 						tableau.majmauvaismot(listecasejouee);
 						multi.joueur_act().reset(listelettrejouee);

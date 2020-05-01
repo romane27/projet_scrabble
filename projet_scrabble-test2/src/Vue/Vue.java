@@ -69,37 +69,37 @@ public class Vue extends JFrame {
 		fin_jeu.setBounds(670, 300, 170, 30);
 		ImageIcon echanger3 = new ImageIcon("src/images/echanger.png");
 		echanger = new JButton(echanger3);
-		//echanger.setIcon(echanger3);
-		//echanger.setForeground(echanger3);
-		//echanger.setText("Echanger");
-		echanger.setBounds(30, 650, echanger3.getIconWidth(),echanger3.getIconHeight()+10);
-		//echanger.setBounds(30, 650,100,60);
+		// echanger.setIcon(echanger3);
+		// echanger.setForeground(echanger3);
+		// echanger.setText("Echanger");
+		echanger.setBounds(30, 650, echanger3.getIconWidth(), echanger3.getIconHeight() + 10);
+		// echanger.setBounds(30, 650,100,60);
 		echanger.setToolTipText("Echanger");
 		echanger.setBorderPainted(false);
 		echanger.setFocusPainted(false);
 		echanger.setOpaque(true);
 		echanger2 = new JButton(echanger3);
-		echanger2.setBounds(30, 650, echanger3.getIconWidth(),echanger3.getIconHeight()+10);
+		echanger2.setBounds(30, 650, echanger3.getIconWidth(), echanger3.getIconHeight() + 10);
 		echanger2.setToolTipText("Echanger");
 		echanger2.setBorderPainted(false);
 		echanger2.setFocusPainted(false);
 		echanger2.setVisible(false);
-		
+
 		ImageIcon annule = new ImageIcon("src/images/annuler.png");
 		annuler = new JButton(annule);
 		annuler.setBorderPainted(false);
 		annuler.setFocusPainted(false);
-		annuler.setBounds(95, 650, annule.getIconWidth(),annule.getIconHeight());
+		annuler.setBounds(95, 650, annule.getIconWidth(), annule.getIconHeight());
 		annuler.setToolTipText("Annuler");
 		annuler.setVisible(false);
 		ImageIcon meilleur = new ImageIcon("src/images/meilleur.png");
-		meilleur_mot = new JButton(meilleur );
+		meilleur_mot = new JButton(meilleur);
 		meilleur_mot.setBorderPainted(false);
 		meilleur_mot.setFocusPainted(false);
-		meilleur_mot.setBounds(550, 650, meilleur.getIconWidth(),meilleur.getIconHeight());
+		meilleur_mot.setBounds(550, 650, meilleur.getIconWidth(), meilleur.getIconHeight());
 		meilleur_mot.setToolTipText("meilleur mot possible");
 		initPanel();
-		//this.add(echan);
+		// this.add(echan);
 		this.add(meilleur_mot);
 		this.add(echanger);
 		this.add(echanger2);
@@ -127,9 +127,11 @@ public class Vue extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
+
 	public void meilleur1(ActionListener e) {
 		meilleur_mot.addActionListener(e);
 	}
+
 	public void fin_du_jeu(ActionListener e) {
 		fin_jeu.addActionListener(e);
 	}
@@ -178,7 +180,7 @@ public class Vue extends JFrame {
 			panel.add(motpossible, BorderLayout.NORTH);
 			liste = new JList(sugges.suggestionlist);
 			meilleur_mot.setVisible(true);
-			//System.out.println(sugges.bestmot(sugges.motpossible));
+			// System.out.println(sugges.bestmot(sugges.motpossible));
 			// creer un ascenseur quand bcp de suggestions
 			JScrollPane ascenseur = new JScrollPane(liste);
 			ascenseur.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -234,8 +236,8 @@ public class Vue extends JFrame {
 		}
 	}
 
-	public void resetclavier() {
-		for (int i = 0; i < 7; i++) {
+	public void resetclavier(Joueur j) {
+		for (int i = 0; i < j.size(); i++) {
 			Bouton btn = (Bouton) clavier.getComponent(i);
 			btn.setIcon(btn.lettre.image);
 			btn.verrouille = false;
@@ -278,6 +280,5 @@ public class Vue extends JFrame {
 		}
 
 	}
-	
 
 }
