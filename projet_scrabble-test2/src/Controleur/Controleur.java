@@ -229,8 +229,14 @@ public class Controleur implements Observer {
 					vue.resetclavier(multi.joueur_act());
 					vue.plateau.resetplateau(listecasejouee);
 					tableau.majmauvaismot(listecasejouee);
+					multi.joueur_act().reset(listelettrejouee);
+
+					//multi.changer_joueur();
+					vue.majclavier(multi.joueur_act(), pioche);			
+					
 					listelettrejouee.clear();
 					listecasejouee.clear();
+					
 				} else {
 					tableau.revalid(listecasejouee);
 					int input = JOptionPane.showConfirmDialog(null,
@@ -275,7 +281,7 @@ public class Controleur implements Observer {
 			else {
 				int[] score = new int[nombre_joueur.nbrjoueur];
 				ArrayList<Integer> égal = new ArrayList<>();
-				String nom = nombre_joueur.nomjoueur.get(0);
+				String nom = nombre_joueur.nomjoueur.get(0)+ "a ";
 				// if (k==daccord.size()) {
 				for (int j = 1; j < nombre_joueur.nbrjoueur; j++) {
 					score[j] = (multi.tab_joueurs[j].score);
