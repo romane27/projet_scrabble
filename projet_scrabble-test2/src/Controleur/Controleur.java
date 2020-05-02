@@ -190,14 +190,18 @@ public class Controleur implements Observer {
 			}
 		}
 	}
+
 	public void meilleur() {
 		vue.meilleur1((ActionEvent evt) -> {
 			vue.sugges.bestmot(vue.sugges.motpossible);
-			int input = JOptionPane.showConfirmDialog(null, "le meilleur mot possible avec vos lettres est " + vue.sugges.meilleur_mot+ " avec " + vue.sugges.meilleur+ " points", " ",
-					JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
-		
+			int input = JOptionPane.showConfirmDialog(null,
+					"le meilleur mot possible avec vos lettres est " + vue.sugges.meilleur_mot + " avec "
+							+ vue.sugges.meilleur + " points",
+					" ", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+
 		});
 	}
+
 	// ce qu il se passe quand on appuie sur verification
 	public void verif() {
 		vue.verification_mots((ActionEvent evt) -> {
@@ -222,11 +226,17 @@ public class Controleur implements Observer {
 						if (input == JOptionPane.OK_OPTION) {
 						}
 					}
-					vue.resetclavier();
+					vue.resetclavier(multi.joueur_act());
 					vue.plateau.resetplateau(listecasejouee);
 					tableau.majmauvaismot(listecasejouee);
+					multi.joueur_act().reset(listelettrejouee);
+
+					//multi.changer_joueur();
+					vue.majclavier(multi.joueur_act(), pioche);			
+					
 					listelettrejouee.clear();
 					listecasejouee.clear();
+					
 				} else {
 					tableau.revalid(listecasejouee);
 					int input = JOptionPane.showConfirmDialog(null,
@@ -271,7 +281,7 @@ public class Controleur implements Observer {
 			else {
 				int[] score = new int[nombre_joueur.nbrjoueur];
 				ArrayList<Integer> égal = new ArrayList<>();
-				String nom = nombre_joueur.nomjoueur.get(0);
+				String nom = nombre_joueur.nomjoueur.get(0)+ "a ";
 				// if (k==daccord.size()) {
 				for (int j = 1; j < nombre_joueur.nbrjoueur; j++) {
 					score[j] = (multi.tab_joueurs[j].score);
@@ -317,7 +327,7 @@ public class Controleur implements Observer {
 				if (nombre_joueur.nbrjoueur != 1) {
 					try {
 						Suggestion s = new Suggestion(multi.joueur_act());
-						
+
 						vue.vuesuggestion(s);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -352,7 +362,7 @@ public class Controleur implements Observer {
 						}
 
 					}
-					vue.resetclavier();
+					vue.resetclavier(multi.joueur_act());
 					vue.plateau.resetplateau(listecasejouee);
 					tableau.majmauvaismot(listecasejouee);
 					multi.joueur_act().reset(listelettrejouee);
@@ -376,7 +386,7 @@ public class Controleur implements Observer {
 				}
 				try {
 					Suggestion s = new Suggestion(multi.joueur_act());
-					
+
 					vue.vuesuggestion(s);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -415,8 +425,8 @@ public class Controleur implements Observer {
 					JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
 
 			if (input == 0) {
-				vue.resetclavier();
-				
+				vue.resetclavier(multi.joueur_act());
+
 				vue.melanger.setVisible(false);
 				vue.clavechange(false);
 				vue.echanger.setVisible(false);
@@ -457,7 +467,7 @@ public class Controleur implements Observer {
 			vue.clavechange(true);
 			vue.majclavier(multi.joueur_act(), pioche);
 			vue.fdt.setVisible(false);
-			
+
 			try {
 				Suggestion s = new Suggestion(multi.joueur_act());
 
@@ -470,7 +480,8 @@ public class Controleur implements Observer {
 			vue.majverrouille(true);
 			vue.fdt.setVisible(true);
 			listechange.clear();
-			
+			vue.echanger.setVisible(true);
+			fin_de_tour();
 		});
 	}
 
@@ -486,8 +497,7 @@ public class Controleur implements Observer {
 			if (nombre_joueur.nbrjoueur != 1) {
 				try {
 					Suggestion s = new Suggestion(multi.joueur_act());
-					
-				
+
 					vue.vuesuggestion(s);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -511,7 +521,7 @@ public class Controleur implements Observer {
 							"Vous devez placer toutes les lettres sur la même ligne ou colonne !", " ",
 							JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
 					if (input == JOptionPane.OK_OPTION) {
-						vue.resetclavier();
+						vue.resetclavier(multi.joueur_act());
 						vue.plateau.resetplateau(listecasejouee);
 						tableau.majmauvaismot(listecasejouee);
 						multi.joueur_act().reset(listelettrejouee);
@@ -544,7 +554,7 @@ public class Controleur implements Observer {
 			}
 			try {
 				Suggestion s = new Suggestion(multi.joueur_act());
-			
+
 				vue.vuesuggestion(s);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
