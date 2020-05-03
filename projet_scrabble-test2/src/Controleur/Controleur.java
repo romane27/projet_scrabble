@@ -67,7 +67,7 @@ public class Controleur implements Observer {
 		meilleur();
 	}
 
-	public void ajoutactlist() {
+	public void ajoutactlist() { // quand on pose une lettre
 		ArrayList<Lettre> liste = new ArrayList();
 		ArrayList<Bouton> list = new ArrayList();
 		listecasejouee = new ArrayList<Pair>();
@@ -191,7 +191,7 @@ public class Controleur implements Observer {
 		}
 	}
 
-	public void meilleur() {
+	public void meilleur() { //récupère le meilleur mot (vaut le plus de points)
 		vue.meilleur1((ActionEvent evt) -> {
 			vue.sugges.bestmot(vue.sugges.motpossible);
 			int input = JOptionPane.showConfirmDialog(null,
@@ -203,7 +203,7 @@ public class Controleur implements Observer {
 	}
 
 	// ce qu il se passe quand on appuie sur verification
-	public void verif() {
+	public void verif() { // vérifie si un mot est correct
 		vue.verification_mots((ActionEvent evt) -> {
 			ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
 			if (multi.joueur_act().size() == 7) {
@@ -249,7 +249,7 @@ public class Controleur implements Observer {
 
 	}
 
-	public void fin() {
+	public void fin() { // quand on appuie sur Arreter la partie
 		vue.fin_du_jeu((ActionEvent evt) -> {
 			ArrayList<Integer> daccord = new ArrayList<>();
 			for (Joueur j : multi.tab_joueurs) {
@@ -306,14 +306,14 @@ public class Controleur implements Observer {
 	}
 
 	// ce qu'il se passe quand on clic sur bouton melanger
-	public void melange_lettre() {
+	public void melange_lettre() { // réorganise les lettres du clavier
 		vue.emplacement_lettre((ActionEvent evt) -> {
 
 			vue.melangeclavier(Clavier.melangerlettre(), multi.joueur_act());
 		});
 	}
 
-	public void appuisfdt() {
+	public void appuisfdt() { // quand on appuie sur fin_de_tour -> lance la vérif du mot puis change de joueur
 		vue.ajoutactlist((ActionEvent evt) -> {
 			vue.chrono.chrono.arreter();
 			vue.melanger.setVisible(true);
@@ -416,7 +416,7 @@ public class Controleur implements Observer {
 
 	}
 
-	public void echanger() {
+	public void echanger() { // permet d'échanger les lettres de son clavier
 
 		vue.echanger((ActionEvent evt) -> {
 			vue.majechclav(multi.joueur_act());
@@ -486,7 +486,7 @@ public class Controleur implements Observer {
 		});
 	}
 
-	public void fin_de_tour() {
+	public void fin_de_tour() { // relié au chrono
 		vue.melanger.setVisible(true);
 		// quand on clique sur fin de tour on redemarre le chrono
 
@@ -580,7 +580,7 @@ public class Controleur implements Observer {
 
 	// quand le temps est fini on utilise observeur/ observable
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update(Observable o, Object arg) { // quand le chrono est terminé
 
 		Boolean etat = (Boolean) arg;
 		int input2 = JOptionPane.showConfirmDialog(null, "Temps écoulé !", " ", JOptionPane.DEFAULT_OPTION,

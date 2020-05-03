@@ -88,7 +88,7 @@ public class Plateau extends JPanel {
 		btn.addActionListener(l);
 	}
 
-	public void resetplateau(ArrayList<Pair> listecasejouee) {
+	public void resetplateau(ArrayList<Pair> listecasejouee) { // redessine le plateau
 		for (int k = 0; k < listecasejouee.size(); k++) {
 			int i = (int) listecasejouee.get(k).getKey();
 			int j = (int) listecasejouee.get(k).getValue();

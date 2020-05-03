@@ -34,13 +34,13 @@ public class Clavier extends JPanel {
 		}
 	}
 
-	public void ajoutactionlistner(int i, ActionListener l) {
+	public void ajoutactionlistner(int i, ActionListener l) { // crée un bouton pour chaque lettre du clavier du joueur
 		Bouton btn = (Bouton) this.getComponent(i);
 		btn.addActionListener(l);
 	}
 	// retourne une liste de nombre sans doublons = pour changer emplacement lettre
 
-	public static int[] melangerlettre() {
+	public static int[] melangerlettre() { // mélange toutes les lettres du clavier
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		for (int i = 0; i < j.size(); i++) {
 			list.add(i);

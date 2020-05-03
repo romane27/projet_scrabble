@@ -40,7 +40,7 @@ public class Scores extends JPanel {
 		this.add(label);
 	}
 
-	public void majscore(Joueur joueur, Pioche pioche) {
+	public void majscore(Joueur joueur, Pioche pioche) { // met à jour le score de chaque joueur et le nombre de lettres de la pioche
 		JLabel label = (JLabel) this.getComponent(joueur.pos);
 		label.setText(nombre_joueur.nomjoueur.get(joueur.pos)  + " : " + joueur.score);
 		label = (JLabel) this.getComponent(i);

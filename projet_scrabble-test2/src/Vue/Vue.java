@@ -128,6 +128,7 @@ public class Vue extends JFrame {
 		this.setVisible(true);
 	}
 
+	// ajoute des action listener à tous les boutons
 	public void meilleur1(ActionListener e) {
 		meilleur_mot.addActionListener(e);
 	}
@@ -158,7 +159,7 @@ public class Vue extends JFrame {
 		melanger.addActionListener(e);
 	}
 
-	public void initPanel() {
+	public void initPanel() { // initialisation de la vue
 
 		this.panel = new JPanel();
 		this.panel.setBackground(new Color(220, 233, 230));
@@ -171,7 +172,7 @@ public class Vue extends JFrame {
 
 	}
 
-	public void vuesuggestion(Suggestion s) {
+	public void vuesuggestion(Suggestion s) { // ajoute les suggestions
 		this.panel.removeAll();
 		this.sugges = s;
 		if (this.sugges.suggestionlist.length != 0) {
@@ -201,7 +202,7 @@ public class Vue extends JFrame {
 
 	}
 
-	public void majclavier(Joueur joueur, Pioche p) {
+	public void majclavier(Joueur joueur, Pioche p) { // met à jour le clavier avec les nouvelles lettres
 
 		for (int i = 0; i < joueur.size(); i++) {
 
@@ -226,7 +227,7 @@ public class Vue extends JFrame {
 
 	}
 
-	public void melangeclavier(int[] emplacement, Joueur joueur) {
+	public void melangeclavier(int[] emplacement, Joueur joueur) { // mélange le clavier
 		Clavier claviertemp = new Clavier(joueur);
 		for (int i = 0; i < joueur.size(); i++) {
 			Bouton btn = (Bouton) claviertemp.getComponent(i);
@@ -236,7 +237,7 @@ public class Vue extends JFrame {
 		}
 	}
 
-	public void resetclavier(Joueur j) {
+	public void resetclavier(Joueur j) { // remet toutes les lettres dans le clavier
 		for (int i = 0; i < j.size(); i++) {
 			Bouton btn = (Bouton) clavier.getComponent(i);
 			btn.setIcon(btn.lettre.image);
@@ -245,7 +246,7 @@ public class Vue extends JFrame {
 		}
 	}
 
-	public void majplateau(int k, ImageIcon nom) {
+	public void majplateau(int k, ImageIcon nom) { // met à jour le plateau
 		Bouton bouton = (Bouton) plateau.getComponent(k);
 		bouton.setIcon(nom);
 	}

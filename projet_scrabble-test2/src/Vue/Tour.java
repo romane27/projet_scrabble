@@ -23,7 +23,7 @@ public class Tour extends JPanel{
 
 
 
-	public void majtour(int joueur) {
+	public void majtour(int joueur) { // affiche le joueur dont c'est le tour de jouer
 		Tour t = new Tour(joueur);
 		JLabel label1;
 		if (nombre_joueur.nbrjoueur==2) {
