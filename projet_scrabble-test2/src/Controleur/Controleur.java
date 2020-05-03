@@ -280,19 +280,33 @@ public class Controleur implements Observer {
 			 */
 			else {
 				vue.chrono.chrono.arreter();
+				int score_max = 0;
 				int[] score = new int[nombre_joueur.nbrjoueur];
-				ArrayList<Integer> égal = new ArrayList<>();
-				String nom = nombre_joueur.nomjoueur.get(0)+ "a ";
+				ArrayList<Integer> egal = new ArrayList<>();
+				String nom = "";
 				// if (k==daccord.size()) {
-				for (int j = 1; j < nombre_joueur.nbrjoueur; j++) {
-					score[j] = (multi.tab_joueurs[j].score);
-					if (multi.tab_joueurs[j].score > multi.tab_joueurs[j - 1].score) {
-						nom = nombre_joueur.nomjoueur.get(j) + " a ";
+				for (int j = 0; j < nombre_joueur.nbrjoueur; j++) {
+					//score[j] = (multi.tab_joueurs[j].score);
+					if (multi.tab_joueurs[j].score > score_max) { //multi.tab_joueurs[j - 1].score) {
+						egal.clear();
+						egal.add(j);
+						//nom = nombre_joueur.nomjoueur.get(j) + " a ";
 					}
-					if (multi.tab_joueurs[j].score == multi.tab_joueurs[j - 1].score) {
-						nom = nombre_joueur.nomjoueur.get(j - 1) + " et " + nombre_joueur.nomjoueur.get(j) + " ont ";
+					if (multi.tab_joueurs[j].score == score_max) {
+						egal.add(j);
+						//nom = nombre_joueur.nomjoueur.get(j - 1) + " et " + nombre_joueur.nomjoueur.get(j) + " ont ";
 					}
 
+				}
+				
+				if (egal.size() == 1) {
+					nom = nombre_joueur.nomjoueur.get(egal.get(0)) + " a ";
+				}
+				else {
+					for (int ind=0; ind< egal.size()-1; ind++) {
+					nom += nombre_joueur.nomjoueur.get(egal.get(ind))+" et ";
+					}
+					nom += nombre_joueur.nomjoueur.get(egal.size()-1) + " ont ";
 				}
 				// quand on dit le gagnant on ferme la fenetre
 				ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
