@@ -7,10 +7,11 @@ import javafx.util.Pair;
 public class Joueur extends ArrayList<Lettre> {
 	public int score;
 	public int pos;
-
+	public ArrayList<String> mot;
 	public Joueur(Pioche pioche) {
 		score = 0;
 		initTirage(pioche);
+		mot = new ArrayList<>();
 	}
 
 	public void tirage(Pioche pioche) { // tire le nombre de lettres qu'il manque au joueur

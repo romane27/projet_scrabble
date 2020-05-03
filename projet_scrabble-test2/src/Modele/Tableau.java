@@ -22,6 +22,7 @@ public class Tableau {
 	 * int mot_triple = 1; int lettre_triple = 2; int mot_double = 5; int
 	 * lettre_double = 3; int sans_bonus = 0;
 	 */
+	public ArrayList<String> mot_valide;
 	public ArrayList<Case> casejouables;
 	//public Color[] couleur = { new Color(13, 173, 31), Color.red, new Color(42, 125, 210), Color.cyan, null,
 	//		new Color(240, 175, 234), Color.pink };
@@ -447,6 +448,7 @@ public class Tableau {
 		System.out.println("meme ligne ? : "+essai);
 		if (verifPlacLettres(taille, i, j)) {
 		ArrayList<String[]> liste_mots = new ArrayList<String[]>();
+		 mot_valide =  new ArrayList<String>();
 		//if (i!=14) {
 		//liste_mots.addAll(mot_vertical(i, j));
 		//}
@@ -460,6 +462,10 @@ public class Tableau {
 			String[] el = liste_mots.get(ind);
 			System.out.println(el[0]);
 			valable = valable && dic.verifier_mot(el[0]);
+			if (dic.verifier_mot(el[0])==true && el[0]!="") {
+				//System.out.println(el[0]);
+				mot_valide.add(el[0]);
+			}
 			scores[ind] = Integer.parseInt(el[1]);
 		}
 		if (taille==7) {

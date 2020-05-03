@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -28,7 +30,7 @@ import Vue2.Photo;
 import Vue2.duree_tours;
 import Vue2.nombre_joueur;
 
-public class Vue extends JFrame {
+public class Vue extends JFrame implements WindowListener {
 	public Clavier clavier;
 	public Clavier clavierech;
 	public Plateau plateau;
@@ -40,6 +42,7 @@ public class Vue extends JFrame {
 	public JButton echanger2;
 	public JButton meilleur_mot;
 	public JButton annuler;
+	public JButton historique1;
 	public Scores score;
 	public IHMChrono chrono;
 	public Suggestion sugges;
@@ -61,12 +64,21 @@ public class Vue extends JFrame {
 		clavier.setBounds((640 - (640 / 15) * 7) / 2, 640 + 10, 640 / 15 * 7, 640 / 15);
 		clavierech.setBounds((640 - (640 / 15) * 7) / 2, 640 + 10, 640 / 15 * 7, 640 / 15);
 		fdt = new JButton("Fin de Tour");
-		fdt.setBounds(670, 600, 170, 30);
+		fdt.setBounds(670, 550, 170, 30);
 		tour.setBounds(640, 10, 250, 40);
 		verifmot = new JButton("Vérification mot");
-		verifmot.setBounds(670, 650, 170, 30);
+		verifmot.setBounds(670, 600, 170, 30);
 		fin_jeu = new JButton("Arrêter la partie");
 		fin_jeu.setBounds(670, 300, 170, 30);
+		ImageIcon stat = new ImageIcon("src/images/Statistique1.png");
+		historique1 = new JButton(stat);
+		
+		historique1.setBounds(620, 650, stat.getIconWidth(),stat.getIconHeight());
+		historique1.setToolTipText("Historique");
+		
+		this.add(historique1);
+		
+		
 		ImageIcon echanger3 = new ImageIcon("src/images/echanger.png");
 		echanger = new JButton(echanger3);
 		// echanger.setIcon(echanger3);
@@ -100,6 +112,7 @@ public class Vue extends JFrame {
 		meilleur_mot.setToolTipText("Meilleur mot possible");
 		initPanel();
 		// this.add(echan);
+		
 		this.add(meilleur_mot);
 		this.add(echanger);
 		this.add(echanger2);
@@ -124,11 +137,15 @@ public class Vue extends JFrame {
 		this.setTitle("Jeu du Scrabble");
 		Image icone = Toolkit.getDefaultToolkit().getImage("src/images/S.jpg");
 		this.setIconImage(icone);
+		this.addWindowListener(this);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 
 	// ajoute des action listener à tous les boutons
+	public void hist1(ActionListener e) {
+		historique1.addActionListener(e);
+	}
 	public void meilleur1(ActionListener e) {
 		meilleur_mot.addActionListener(e);
 	}
@@ -280,6 +297,48 @@ public class Vue extends JFrame {
 			btn.verrouille = b;
 		}
 
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		// TODO Auto-generated method stub
+		System.exit(0);
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

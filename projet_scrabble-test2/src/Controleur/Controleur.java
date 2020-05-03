@@ -65,6 +65,7 @@ public class Controleur implements Observer {
 		echanger2();
 		annuler();
 		meilleur();
+		historique1();
 	}
 
 	public void ajoutactlist() { // quand on pose une lettre
@@ -190,7 +191,78 @@ public class Controleur implements Observer {
 			}
 		}
 	}
+	public void historique1() {
+		
+		vue.hist1((ActionEvent evt) -> {
+			if (multi.tab_joueurs[0].mot.isEmpty()==false ) {
+			ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
+			String[] nom = new String [nombre_joueur.nbrjoueur];
 
+			;
+			if (nombre_joueur.nbrjoueur==1) {
+				nom[0]=nombre_joueur.nomjoueur.get(0);
+				
+			}
+			if (nombre_joueur.nbrjoueur==2) {
+				nom[0]=nombre_joueur.nomjoueur.get(0);
+				
+					nom[1]=nombre_joueur.nomjoueur.get(1);
+				
+				
+				
+			}
+			if (nombre_joueur.nbrjoueur==3) {
+				nom[0]=nombre_joueur.nomjoueur.get(0);
+				
+					nom[1]=nombre_joueur.nomjoueur.get(1);
+				
+				
+					nom[2]=nombre_joueur.nomjoueur.get(1);
+				
+				
+				
+			}
+			if (nombre_joueur.nbrjoueur==4) {
+				nom[0]=nombre_joueur.nomjoueur.get(0);
+				
+					nom[1]=nombre_joueur.nomjoueur.get(1);
+				
+				
+					nom[2]=nombre_joueur.nomjoueur.get(1);
+				
+				
+					nom[3]=nombre_joueur.nomjoueur.get(1);
+				
+				
+			}
+			
+			
+			 JOptionPane jop = new JOptionPane(), jop2 = new JOptionPane();
+			    int rang = jop.showOptionDialog(null, 
+			      "Veuillez choisir l'historique que vous souhaitez voir !",
+			      "Historique !",
+			      JOptionPane.YES_NO_CANCEL_OPTION,
+			      JOptionPane.QUESTION_MESSAGE,
+			      null,
+			      nom,
+			      nom[nombre_joueur.nbrjoueur-1]);
+			    jop2.showMessageDialog(null, "les mots jouer par " +  nombre_joueur.nomjoueur.get(rang) + " sont "+multi.tab_joueurs[rang].mot.toString(), "Historique", JOptionPane.INFORMATION_MESSAGE);
+			/*int input = JOptionPane.showConfirmDialog(null,
+					"l'historique de " + nombre_joueur.nomjoueur.get(0) + multi.tab_joueurs[0].mot.toString(), " ",
+					JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);*/
+			
+			}
+			else {
+				int input = JOptionPane.showConfirmDialog(null,
+						"Aucun mot sur le plateau"
+								,
+						" ", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+
+			}
+	});
+	}
+
+	
 	public void meilleur() { //récupère le meilleur mot (vaut le plus de points)
 		vue.meilleur1((ActionEvent evt) -> {
 			vue.sugges.bestmot(vue.sugges.motpossible);
@@ -393,6 +465,10 @@ public class Controleur implements Observer {
 					 * pair.getValue()[1];
 					 */
 					multi.joueur_act().tirage(pioche);
+					for (String n : tableau.mot_valide) {					
+						multi.joueur_act().mot.add(n);
+						
+				}
 					vue.score.majscore(multi.joueur_act(), pioche);
 					tableau.majbonmot(listecasejouee);
 					multi.changer_joueur();
