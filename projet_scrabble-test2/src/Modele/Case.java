@@ -22,7 +22,7 @@ public class Case {
 
 	}
 
-	public void reset() {
+	public void reset() { // réinitialse la case
 		occupe = false;
 		jouable = false;
 		jouee = false;

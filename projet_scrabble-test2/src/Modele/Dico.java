@@ -42,7 +42,7 @@ public class Dico extends HashMap<String, ArrayList<String>> {
 		lecteurAvecBuffer.close();
 	}
 	// on utilise pour clé les deux premieres lettres mot 
-	public boolean verifier_mot(String a) {
+	public boolean verifier_mot(String a) { // vérifie que le mot a appartient au dictionnaire
 		if (a == "") {
 			return true;
 		}

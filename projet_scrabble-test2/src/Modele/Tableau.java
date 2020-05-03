@@ -138,7 +138,7 @@ public class Tableau {
 		}
 	}*/
 
-	public void resetjouable() {
+	public void resetjouable() { // réinitialise le plateau
 		for (int i = 0; i < 15; i++) {
 			for (int j = 0; j < 15; j++) {
 				tableau[i][j].jouable = false;
@@ -146,7 +146,7 @@ public class Tableau {
 		}
 	}
 
-	public void posee(int o, int p, Bouton btn) {
+	public void posee(int o, int p, Bouton btn) { // définit sur quelles cases on peut poser
 		if (o == 7 && p == 7) {
 			tableau[o + 1][p].jouable = true;
 			tableau[o - 1][p].jouable = true;
@@ -404,7 +404,7 @@ public class Tableau {
 
 	}
 
-	public void retiree(int o, int p, Bouton btn) {
+	public void retiree(int o, int p, Bouton btn) { // lorsqu'on enlève une lettre du plateau
 		
 		tableau[o][p].jouee = false;
 		tableau[o][p].occupe = false;
@@ -412,7 +412,7 @@ public class Tableau {
 		
 	}
 	
-	public boolean verifPlacLettres(int taille, int i, int j) {
+	public boolean verifPlacLettres(int taille, int i, int j) { // vérfie que toutes les lettres sont sur la même ligne ou colonne
 		int a = i;
 		int cpt1 = 0;
 		int cpt2 = 0;
@@ -432,7 +432,7 @@ public class Tableau {
 		return (cpt1==taille || cpt2==taille);
 	}
 
-	public Pair<Boolean, Integer[]> comptescore(int taille) {
+	public Pair<Boolean, Integer[]> comptescore(int taille) { // lit tous les mots et vérifie qu'ils existent
 		int i = 0;
 		int j = 0;
 		while (tableau[i][j].jouee == false) {
@@ -455,12 +455,18 @@ public class Tableau {
 		liste_mots.addAll(mot_horizontal(i,j));
 		//}
 		boolean valable = true;
-		Integer[] scores=new Integer[liste_mots.size()];
+		Integer[] scores=new Integer[liste_mots.size()+1];
 		for (int ind=0; ind<liste_mots.size(); ind++) {
 			String[] el = liste_mots.get(ind);
 			System.out.println(el[0]);
 			valable = valable && dic.verifier_mot(el[0]);
 			scores[ind] = Integer.parseInt(el[1]);
+		}
+		if (taille==7) {
+			scores[scores.length-1] = 50; // correspond au bonus si on place toutes ses lettres
+		}
+		else {
+			scores[scores.length-1] = 0;
 		}
 		System.out.print(valable);
 		/*String mot1 = r1[0];
@@ -481,7 +487,7 @@ public class Tableau {
 
 	}
 	
-	public ArrayList<String[]> mot_horizontal(int i, int j) {
+	public ArrayList<String[]> mot_horizontal(int i, int j) { // lit un mot horizontal à partir des coordonnées (i, j)
 		int score_m1=0;
 		int mults1 =1;
 		String mot1 = "";
@@ -556,7 +562,7 @@ public class Tableau {
 		return liste_mots;
 	}
 	
-	public ArrayList<String[]> mot_vertical(int i, int j) {
+	public ArrayList<String[]> mot_vertical(int i, int j) { // lit un mot vertical à partir des coordonnées (i, j)
 		int score_m2=0;
 		int mults2 =1;
 		ArrayList<String[]> liste_mots = new ArrayList<String[]>();
@@ -619,7 +625,7 @@ public class Tableau {
 		return liste_mots;
 	}
 	
-	public void revalid(ArrayList<Pair> listecasejouee) {
+	public void revalid(ArrayList<Pair> listecasejouee) { // repasse toutes les cases à jouee après vérification
 		for (int k = 0; k < listecasejouee.size(); k++) {
 			int i = (int) listecasejouee.get(k).getKey();
 			int j = (int) listecasejouee.get(k).getValue();
@@ -627,7 +633,7 @@ public class Tableau {
 		}
 	}
 
-	public void majmauvaismot(ArrayList<Pair> listecasejouee) {
+	public void majmauvaismot(ArrayList<Pair> listecasejouee) { // ce qui se passe lorsque le mot est incorrect
 		for (int k = 0; k < listecasejouee.size(); k++) {
 			int i = (int) listecasejouee.get(k).getKey();
 			int j = (int) listecasejouee.get(k).getValue();
@@ -636,7 +642,7 @@ public class Tableau {
 		}
 	}
 
-	public void majbonmot(ArrayList<Pair> listecasejouee) {
+	public void majbonmot(ArrayList<Pair> listecasejouee) { // ce qui se passe lorsque le mot est correct
 		System.out.print(listecasejouee);
 		for (int k = 0; k < listecasejouee.size(); k++) {
 			int i = (int) listecasejouee.get(k).getKey();
@@ -649,7 +655,7 @@ public class Tableau {
 
 	}
 	
-	public void afficher_matrice() {
+	public void afficher_matrice() { // permet d'afficher les éléments du tableau
 		for(int i=0; i<15; i++) {
 			for (int j=0; j<15; j++) {
 				System.out.print(tableau[i][j].lettre + " ");
@@ -659,23 +665,4 @@ public class Tableau {
 		System.out.print("\n");
 	}
 
-	/*public boolean jouable(int o, int p) {
-		if (o == 7 && p == 7) {
-			return true;
-		}
-		if (tableau[o - 1][p].occupe == true && o != 14) {
-			return true;
-		}
-		if (o != 0 && tableau[o + 1][p].occupe == true) {
-			return true;
-		}
-		if (tableau[o][p - 1].occupe == true && p != 0) {
-			return true;
-		}
-		if (tableau[o][p + 1].occupe == true && p != 14) {
-			return true;
-
-		}
-		return false;
-	}*/
 }

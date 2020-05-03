@@ -65,7 +65,7 @@ public class Vue extends JFrame {
 		tour.setBounds(640, 10, 250, 40);
 		verifmot = new JButton("Vérification mot");
 		verifmot.setBounds(670, 650, 170, 30);
-		fin_jeu = new JButton("Arreter la partie");
+		fin_jeu = new JButton("Arrêter la partie");
 		fin_jeu.setBounds(670, 300, 170, 30);
 		ImageIcon echanger3 = new ImageIcon("src/images/echanger.png");
 		echanger = new JButton(echanger3);
@@ -74,13 +74,13 @@ public class Vue extends JFrame {
 		// echanger.setText("Echanger");
 		echanger.setBounds(30, 650, echanger3.getIconWidth(), echanger3.getIconHeight() + 10);
 		// echanger.setBounds(30, 650,100,60);
-		echanger.setToolTipText("Echanger");
+		echanger.setToolTipText("Échanger");
 		echanger.setBorderPainted(false);
 		echanger.setFocusPainted(false);
 		echanger.setOpaque(true);
 		echanger2 = new JButton(echanger3);
 		echanger2.setBounds(30, 650, echanger3.getIconWidth(), echanger3.getIconHeight() + 10);
-		echanger2.setToolTipText("Echanger");
+		echanger2.setToolTipText("Échanger");
 		echanger2.setBorderPainted(false);
 		echanger2.setFocusPainted(false);
 		echanger2.setVisible(false);
@@ -97,7 +97,7 @@ public class Vue extends JFrame {
 		meilleur_mot.setBorderPainted(false);
 		meilleur_mot.setFocusPainted(false);
 		meilleur_mot.setBounds(550, 650, meilleur.getIconWidth(), meilleur.getIconHeight());
-		meilleur_mot.setToolTipText("meilleur mot possible");
+		meilleur_mot.setToolTipText("Meilleur mot possible");
 		initPanel();
 		// this.add(echan);
 		this.add(meilleur_mot);

@@ -40,7 +40,7 @@ public class Bouton extends JButton implements MouseListener {
 		return clique;
 	}
 
-	public void associe(Bouton bouton) {
+	public void associe(Bouton bouton) { // associe une lettre à un bouton
 		boutonass = bouton;
 		bouton.boutonass = this;
 		lettre = bouton.boutonass.lettre;
@@ -48,7 +48,7 @@ public class Bouton extends JButton implements MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void mouseClicked(MouseEvent e) { // définit si le bouton est sélectionné ou non
 		clique = !clique;
 	}
 

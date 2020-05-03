@@ -56,22 +56,22 @@ public class Premierepage extends Frame implements WindowListener, ActionListene
 
 		this.add(titre, BorderLayout.NORTH);
 		JLabel titre2 = new JLabel(" Nombre de joueurs :");
-		JLabel titre3 = new JLabel(" Durée de jeu par tours :");
+		JLabel titre3 = new JLabel(" Durée de jeu par tours (en s.) :");
 
 		bouton_executer = new Boutonexec("Nouvelle partie");
 		bouton_executer.addActionListener(this);
 		nbrjoueur = new nombre_joueur();
 		dureetour = new duree_tours();
-		JLabel b = new JLabel("                                                  Règle du jeu              ");
+		JLabel b = new JLabel("                                                  Règles du jeu              ");
 		JLabel l = new JLabel(
-				"<html>  Déroulement d'une partie :  <br><br> - Le joueur 1 commence la partie 7 lettres au hasard lui sont attribué <br>  - Chaque joueur à un certain temps pour jouer temps choisit maintenant <br> - Pour déplacer les lettres : on clic sur la lettre puis sur l'endroit du plateau <br> - Vous avez la possibilité de vérifier votre mot avec le bouton 'verifier mot' avant de changer de joueur <br> - Vous pouvez échanger le nombre désiré de lettres une fois par tour (votre tour se fini) <br> - attention une fois appuyer sur 'fin de tour' on passe directement au joueur suivant <br> - Si aucun joueur ne peux continuer appuyer sur Arrêter la partie <br><br> Bonne partie </html>");
+				"<html>  Déroulement d'une partie :  <br><br> - Le premier joueur commence la partie : 7 lettres au hasard lui sont attribuées. <br>  - Chaque joueur est limité par le temps pour jouer : la durée de jeu par joueur peut être choisie ci-dessus. <br> - Pour déplacer les lettres : on clique sur la lettre choisie puis sur l'endroit du plateau où on veut la poser. <br> - Le joueur a la possibilité de vérifier son mot avec le bouton 'verifier mot' avant de finir son tour. <br> - Le joueur peut échanger le nombre désiré de lettres une fois par tour auquel cas il ne pourra pas jouer pour ce tour. <br> - Attention, une fois que le joueur aura appuyé sur 'fin de tour', on passe directement au joueur suivant. <br> - Si aucun joueur ne peut ou ne veut continuer, appuyer sur le bouton Arrêter la partie. <br><br> Bonne partie ! ;) </html>");
 		b.setFont(font);
 		b.setBackground(new Color(173, 239, 200));
 		l.setBackground(new Color(173, 239, 200));
 		l.setOpaque(true);
 		b.setOpaque(true);
 		b.setBounds(100, 300, 500, 30);
-		l.setBounds(100, 330, 500, 200);
+		l.setBounds(100, 330, 500, 260);
 		this.add(b);
 		this.add(l);
 		this.add(bouton_executer, BorderLayout.SOUTH);
@@ -80,7 +80,7 @@ public class Premierepage extends Frame implements WindowListener, ActionListene
 		titre2.setFont(font);
 		titre3.setFont(font);
 		titre2.setBounds(100, 155, 150, 40);
-		titre3.setBounds(100, 200, 200, 40);
+		titre3.setBounds(100, 200, 220, 40);
 		// ajout menu deroulant
 		nbrjoueur.setBounds(360, 160, 100, 30);
 		dureetour.setBounds(360, 200, 100, 30);
@@ -145,7 +145,7 @@ public class Premierepage extends Frame implements WindowListener, ActionListene
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-
+		this.setVisible(false);
 	}
 
 }

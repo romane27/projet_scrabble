@@ -13,7 +13,7 @@ public class Joueur extends ArrayList<Lettre> {
 		initTirage(pioche);
 	}
 
-	public void tirage(Pioche pioche) {
+	public void tirage(Pioche pioche) { // tire le nombre de lettres qu'il manque au joueur
 		int k = 7 - this.size();
 		if (pioche.size() < k) {
 			while (pioche.size() > 0) {
@@ -30,7 +30,7 @@ public class Joueur extends ArrayList<Lettre> {
 
 	}
 
-	public void initTirage(Pioche pioche) {
+	public void initTirage(Pioche pioche) { // initialise le tirage
 		this.clear();
 		for (int i = 0; i < 7; i++) {
 			this.add(pioche.piocherLettre());
@@ -50,13 +50,13 @@ public class Joueur extends ArrayList<Lettre> {
 
 	}
 
-	public void reset(ArrayList<Lettre> listelettrejouee) {
+	public void reset(ArrayList<Lettre> listelettrejouee) { // remet les lettres dans le clavier du joueur
 		for (int i = 0; i < listelettrejouee.size(); i++) {
 			this.add(listelettrejouee.get(i));
 		}
 	}
 
-	public void echange(ArrayList<Integer> l) {
+	public void echange(ArrayList<Integer> l) { // permet l'échange des lettres
 		for (int i = 0; i < l.size(); i++) {
 			this.remove((int) l.get(i));
 		}

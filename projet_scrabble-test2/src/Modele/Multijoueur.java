@@ -17,16 +17,16 @@ public class Multijoueur {
 
 	}
 
-	public Joueur joueur_act() {
+	public Joueur joueur_act() { // récupère le joueur en train de jouer
 		return this.tab_joueurs[this.ind_jr];
 	}
 
-	public void changer_joueur() {
+	public void changer_joueur() { // passe au joueur suivant
 		this.ind_jr = (this.ind_jr + 1) % nombre_joueur.nbrjoueur;
 
 	}
 
-	public int recupNbJ() {
+	public int recupNbJ() { // renvoie le nombre total de joueur
 		return nombre_joueur.nbrjoueur;
 	}
 

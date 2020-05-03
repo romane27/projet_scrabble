@@ -27,7 +27,7 @@ public class duree_tours extends JComboBox<Integer> implements ActionListener {
 		duree = (int) str;
 
 		// affiche nombre de joueurs qui jouent
-		System.out.println("le tours durera " + str + " secondes");
+		System.out.println("le tour durera " + str + " secondes");
 		// on transforme la chaine de caracteres en int pour récuperer le nbr de joueurs
 
 	}

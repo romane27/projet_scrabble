@@ -74,7 +74,7 @@ public class Pioche extends ArrayList<Lettre> {
 		return l;
 	}
 
-	public void remettrepioche(Lettre l) {
+	public void remettrepioche(Lettre l) { // remet une lettre dans la pioche
 		this.add(l);
 	}
 

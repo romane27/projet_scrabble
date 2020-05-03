@@ -31,6 +31,7 @@ public class nombre_joueur extends JComboBox implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		nomjoueur.clear();
 		Object str = this.getSelectedItem();
 		String o = "" + str;
 		// on transforme la chaine de caracteres en int pour récuperer le nbr de joueurs

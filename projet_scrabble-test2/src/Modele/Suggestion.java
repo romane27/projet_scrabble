@@ -157,7 +157,8 @@ public class Suggestion {
 		suggestionlist = new String[motpossible.size()];
 		suggestionlist = motpossible.toArray(suggestionlist);
 	}
-	public void bestmot(ArrayList<String> mot) {
+	
+	public void bestmot(ArrayList<String> mot) { // récupère le mot qui rapporte le plus de points parmi tous ceux suggérés
 		int score;
 		meilleur=0;
 		 meilleur_mot=mot.get(0);

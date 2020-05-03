@@ -15,7 +15,7 @@ public class Tour extends JPanel{
 	// permet d'afficher qui est en train de jouer
 	public Tour (int j ) {
 		JLabel label1 = new JLabel();		
-		label1.setText( "Actuellement "+nombre_joueur.nomjoueur.get(j)+ " joue");		
+		label1.setText( "Actuellement, "+nombre_joueur.nomjoueur.get(j)+ " joue.");		
 		label1.setFont(new Font("Helvetica", Font.CENTER_BASELINE, 13));		
 		this.add(label1);		
 		this.setVisible(true);
@@ -35,7 +35,7 @@ public class Tour extends JPanel{
 
 				label1 = (JLabel) this.getComponent(joueur);
 			}
-			label1.setText( "Actuellement "+nombre_joueur.nomjoueur.get(joueur)+ " joue");
+			label1.setText( "Actuellement, "+nombre_joueur.nomjoueur.get(joueur)+ " joue.");
 
 		}
 		if (nombre_joueur.nbrjoueur==3) {
@@ -43,12 +43,12 @@ public class Tour extends JPanel{
 			if (joueur ==1 ) {
 
 				label1 = (JLabel) this.getComponent(joueur-1);
-				label1.setText( "Actuellement "+nombre_joueur.nomjoueur.get(joueur)+ " joue");
+				label1.setText( "Actuellement, "+nombre_joueur.nomjoueur.get(joueur)+ " joue.");
 			}
 			else {
 
 				label1 = (JLabel) this.getComponent(0);
-				label1.setText( "Actuellement "+nombre_joueur.nomjoueur.get(joueur)+ " joue");
+				label1.setText( "Actuellement, "+nombre_joueur.nomjoueur.get(joueur)+ " joue.");
 			}
 
 
@@ -58,17 +58,17 @@ public class Tour extends JPanel{
 			if (joueur ==1 ) {
 
 				label1 = (JLabel) this.getComponent(joueur-1);
-				label1.setText( "actuellement "+nombre_joueur.nomjoueur.get(joueur)+ " joue");
+				label1.setText( "Actuellement, "+nombre_joueur.nomjoueur.get(joueur)+ " joue.");
 			}
 			if (joueur ==2 ) {
 
 				label1 = (JLabel) this.getComponent(joueur-2);
-				label1.setText( "actuellement "+nombre_joueur.nomjoueur.get(joueur)+ " joue");
+				label1.setText( "Actuellement, "+nombre_joueur.nomjoueur.get(joueur)+ " joue.");
 			}
 			else {
 
 				label1 = (JLabel) this.getComponent(0);
-				label1.setText( "actuellement "+nombre_joueur.nomjoueur.get(joueur)+ " joue");
+				label1.setText( "Actuellement, "+nombre_joueur.nomjoueur.get(joueur)+ " joue.");
 
 			}
 

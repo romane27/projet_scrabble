@@ -139,7 +139,7 @@ public class Controleur implements Observer {
 								JOptionPane jop = new JOptionPane(), jop2 = new JOptionPane();
 
 								String joker = (String) jop.showInputDialog(null,
-										"Par quelle lettre voulait vous remplacer le joker?", "Joker",
+										"Par quelle lettre voulez-vous remplacer le joker ?", "Joker",
 										JOptionPane.DEFAULT_OPTION, null, Suggestion.alphabet, Suggestion.alphabet[0]);
 								lettrejokerchoisi = joker;
 								if (joker == null) {
@@ -195,7 +195,7 @@ public class Controleur implements Observer {
 		vue.meilleur1((ActionEvent evt) -> {
 			vue.sugges.bestmot(vue.sugges.motpossible);
 			int input = JOptionPane.showConfirmDialog(null,
-					"le meilleur mot possible avec vos lettres est " + vue.sugges.meilleur_mot + " avec "
+					"Le meilleur mot possible avec vos lettres est " + vue.sugges.meilleur_mot + " avec "
 							+ vue.sugges.meilleur + " points",
 					" ", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
 
@@ -207,7 +207,7 @@ public class Controleur implements Observer {
 		vue.verification_mots((ActionEvent evt) -> {
 			ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
 			if (multi.joueur_act().size() == 7) {
-				int input = JOptionPane.showConfirmDialog(null, "veuillez placer des lettres sur le plateau", " ",
+				int input = JOptionPane.showConfirmDialog(null, "Veuillez placer des lettres sur le plateau", " ",
 						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
 				if (input == JOptionPane.OK_OPTION) {
 				}
@@ -221,7 +221,7 @@ public class Controleur implements Observer {
 						if (input == JOptionPane.OK_OPTION) {
 						}
 					} else {
-						int input = JOptionPane.showConfirmDialog(null, "le mot est faux", " ",
+						int input = JOptionPane.showConfirmDialog(null, "Le mot est incorrect !", " ",
 								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
 						if (input == JOptionPane.OK_OPTION) {
 						}
@@ -240,7 +240,7 @@ public class Controleur implements Observer {
 				} else {
 					tableau.revalid(listecasejouee);
 					int input = JOptionPane.showConfirmDialog(null,
-							"le mot est juste appuyer sur fin de tour pour valider", " ", JOptionPane.DEFAULT_OPTION,
+							"Le mot est correct ! Appuyez sur fin de tour pour valider.", " ", JOptionPane.DEFAULT_OPTION,
 							JOptionPane.INFORMATION_MESSAGE, image);
 
 				}
@@ -254,7 +254,7 @@ public class Controleur implements Observer {
 			ArrayList<Integer> daccord = new ArrayList<>();
 			for (Joueur j : multi.tab_joueurs) {
 				int n = JOptionPane.showConfirmDialog(null,
-						nombre_joueur.nomjoueur.get(j.pos) + " Voulez-vous arreter la partie ?", "Et maintenant …",
+						nombre_joueur.nomjoueur.get(j.pos) + ", voulez-vous arrêter la partie ?", "Et maintenant …",
 						JOptionPane.YES_NO_OPTION);
 				// réponse oui du joueur
 				if (n == 0) {
@@ -269,7 +269,7 @@ public class Controleur implements Observer {
 			 * for (int i=0;i<daccord.size();i++) {
 			 */
 			if (daccord.contains(1)) {
-				JOptionPane.showMessageDialog(null, "On continue la partie car un joueur souhaire continuer",
+				JOptionPane.showMessageDialog(null, "On continue la partie car au moins un joueur souhaite continuer !",
 						"Attention", JOptionPane.WARNING_MESSAGE);
 
 			}
@@ -279,6 +279,7 @@ public class Controleur implements Observer {
 			 * }
 			 */
 			else {
+				vue.chrono.chrono.arreter();
 				int[] score = new int[nombre_joueur.nbrjoueur];
 				ArrayList<Integer> égal = new ArrayList<>();
 				String nom = nombre_joueur.nomjoueur.get(0)+ "a ";
@@ -295,7 +296,7 @@ public class Controleur implements Observer {
 				}
 				// quand on dit le gagnant on ferme la fenetre
 				ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
-				int input = JOptionPane.showConfirmDialog(null, nom + "gagné la partie", " Gagnant",
+				int input = JOptionPane.showConfirmDialog(null, nom + "gagné la partie. Bien joué !", " Gagnant",
 						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
 				if (input == JOptionPane.OK_OPTION) {
 					vue.dispose();
@@ -337,7 +338,7 @@ public class Controleur implements Observer {
 					ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
 
 					int input2 = JOptionPane.showConfirmDialog(null,
-							"c'est à " + nombre_joueur.nomjoueur.get(multi.ind_jr) + " de jouer", " ",
+							"C'est à " + nombre_joueur.nomjoueur.get(multi.ind_jr) + " de jouer.", " ",
 							JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
 
 				}
@@ -394,7 +395,7 @@ public class Controleur implements Observer {
 				}
 				ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
 				int input = JOptionPane.showConfirmDialog(null,
-						"c'est à " + nombre_joueur.nomjoueur.get(multi.ind_jr) + " de jouer", " ",
+						"C'est à " + nombre_joueur.nomjoueur.get(multi.ind_jr) + " de jouer.", " ",
 						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
 				if (input == JOptionPane.OK_OPTION) {
 					vue.tour.majtour(multi.ind_jr);
@@ -421,7 +422,7 @@ public class Controleur implements Observer {
 			vue.majechclav(multi.joueur_act());
 			vue.meilleur_mot.setVisible(false);
 			ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
-			int input = JOptionPane.showConfirmDialog(null, "Veuillez sélectionner les lettres à échanger", " ",
+			int input = JOptionPane.showConfirmDialog(null, "Veuillez sélectionner les lettres à échanger.", " ",
 					JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
 
 			if (input == 0) {
@@ -507,7 +508,7 @@ public class Controleur implements Observer {
 				ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
 
 				int input2 = JOptionPane.showConfirmDialog(null,
-						"c'est à " + nombre_joueur.nomjoueur.get(multi.ind_jr) + " de jouer", " ",
+						"C'est à " + nombre_joueur.nomjoueur.get(multi.ind_jr) + " de jouer", " ",
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
 
 			}
@@ -562,7 +563,7 @@ public class Controleur implements Observer {
 			}
 			ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
 			int input = JOptionPane.showConfirmDialog(null,
-					"c'est à " + nombre_joueur.nomjoueur.get(multi.ind_jr) + " de jouer", " ",
+					"C'est à " + nombre_joueur.nomjoueur.get(multi.ind_jr) + " de jouer", " ",
 					JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);
 			if (input == JOptionPane.OK_OPTION) {
 				vue.tour.majtour(multi.ind_jr);
