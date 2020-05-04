@@ -47,7 +47,7 @@ public class Tableau {
 			fis2.close();
 
 		} catch (IOException | ClassNotFoundException e) {
-			System.out.println("yolo");
+			//System.out.println("yolo");
 			casejouables = new ArrayList<Case>();
 			this.tableau = new Case[15][15];
 			// this.dico = new Dico().dico;
@@ -467,7 +467,7 @@ public class Tableau {
 	public Pair<Boolean, Integer[]> comptescore(int taille) { // lit tous les mots et vérifie qu'ils existent
 		int i = 0;
 		int j = 0;
-		while (tableau[i][j].jouee == false) {
+		while (i< 15 && tableau[i][j].jouee == false) {
 			j++;
 			if (j == 15) {
 				i += 1;
@@ -475,15 +475,15 @@ public class Tableau {
 			}
 		}
 		System.out.println("coordonnées : " + i + ", " + j);
-		boolean essai = verifPlacLettres(taille, i, j);
-		System.out.println("meme ligne ? : " + essai);
+		/*boolean essai = verifPlacLettres(taille, i, j);
+		System.out.println("meme ligne ? : " + essai);*/
 		if (verifPlacLettres(taille, i, j)) {
 			ArrayList<String[]> liste_mots = new ArrayList<String[]>();
 			mot_valide = new ArrayList<String>();
 			// if (i!=14) {
 			// liste_mots.addAll(mot_vertical(i, j));
 			// }
-			System.out.println("c2 " + i + j);
+			//System.out.println("c2 " + i + j);
 			// if (j!=14) {
 			liste_mots.addAll(mot_horizontal(i, j));
 			// }
