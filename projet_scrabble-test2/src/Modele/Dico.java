@@ -43,6 +43,7 @@ public class Dico extends HashMap<String, ArrayList<String>> {
 	}
 	// on utilise pour clé les deux premieres lettres mot 
 	public boolean verifier_mot(String a) { // vérifie que le mot a appartient au dictionnaire
+		a = a.toUpperCase();
 		if (a == "") {
 			return true;
 		}
@@ -50,11 +51,13 @@ public class Dico extends HashMap<String, ArrayList<String>> {
 
 			String cle = a.substring(0, 2);
 			ArrayList<String> l = this.get(cle);
+			//System.out.println("cle " + cle);
+			//System.out.println(l);
 			if (l.contains(a)) {
 				return true;
 			}
 			return false;
-		} catch (NullPointerException exp) {
+		} catch (Exception exp) {
 			return false;
 		}
 	}
