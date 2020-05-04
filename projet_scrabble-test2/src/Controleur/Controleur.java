@@ -1,7 +1,9 @@
 package Controleur;
 
 import java.awt.Color;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -78,7 +80,7 @@ public class Controleur implements Observer {
 
 			Bouton btn = (Bouton) vue.clavier.getComponent(i);
 			vue.clavier.ajoutactionlistner(i, (ActionEvent evt) -> {
-				// vue.melanger.setVisible(false);
+				 vue.melanger.setVisible(false);
 				if (!btn.isclicked() && btn.verrouille == false) {
 					btn.setIcon(btn.lettre.image_gris);
 
@@ -132,6 +134,7 @@ public class Controleur implements Observer {
 					try {
 						if (tableau.tableau[o][p].occupe == false && !liste.isEmpty()
 								&& tableau.tableau[o][p].jouable == true) {
+							vue.melanger.setVisible(false);
 							btn.setIcon(btn.image);
 							vue.majplateau(k, liste.get(0).image);
 							// si la lettre posée est un joker on fait choisir à l'utilisateur la lettre
@@ -194,7 +197,8 @@ public class Controleur implements Observer {
 	public void historique1() {
 		
 		vue.hist1((ActionEvent evt) -> {
-			if (multi.tab_joueurs[0].mot.isEmpty()==false ) {
+			
+			
 			ImageIcon image = new ImageIcon("src/images/bonhomme1.png");
 			String[] nom = new String [nombre_joueur.nbrjoueur];
 
@@ -206,7 +210,7 @@ public class Controleur implements Observer {
 			if (nombre_joueur.nbrjoueur==2) {
 				nom[0]=nombre_joueur.nomjoueur.get(0);
 				
-					nom[1]=nombre_joueur.nomjoueur.get(1);
+				nom[1]=nombre_joueur.nomjoueur.get(1);
 				
 				
 				
@@ -217,7 +221,7 @@ public class Controleur implements Observer {
 					nom[1]=nombre_joueur.nomjoueur.get(1);
 				
 				
-					nom[2]=nombre_joueur.nomjoueur.get(1);
+					nom[2]=nombre_joueur.nomjoueur.get(2);
 				
 				
 				
@@ -228,10 +232,10 @@ public class Controleur implements Observer {
 					nom[1]=nombre_joueur.nomjoueur.get(1);
 				
 				
-					nom[2]=nombre_joueur.nomjoueur.get(1);
+					nom[2]=nombre_joueur.nomjoueur.get(2);
 				
 				
-					nom[3]=nombre_joueur.nomjoueur.get(1);
+					nom[3]=nombre_joueur.nomjoueur.get(3);
 				
 				
 			}
@@ -246,19 +250,32 @@ public class Controleur implements Observer {
 			      null,
 			      nom,
 			      nom[nombre_joueur.nbrjoueur-1]);
-			    jop2.showMessageDialog(null, "les mots jouer par " +  nombre_joueur.nomjoueur.get(rang) + " sont "+multi.tab_joueurs[rang].mot.toString(), "Historique", JOptionPane.INFORMATION_MESSAGE);
-			/*int input = JOptionPane.showConfirmDialog(null,
-					"l'historique de " + nombre_joueur.nomjoueur.get(0) + multi.tab_joueurs[0].mot.toString(), " ",
+			    if (multi.tab_joueurs[rang].mot.isEmpty()==false) {
+			    	 jop2.showMessageDialog(null, "les mots jouer par " +  nombre_joueur.nomjoueur.get(rang) + " sont "+multi.tab_joueurs[rang].mot.toString(), "Historique", JOptionPane.NO_OPTION);
+			    }
+			    else {
+			    	 jop2.showMessageDialog(null,  nombre_joueur.nomjoueur.get(rang) + " a joué aucun mot", "Historique", JOptionPane.INFORMATION_MESSAGE);
+			    }
+			   
+		                if (JOptionPane.VALUE_PROPERTY.equals(jop2.CLOSED_OPTION)) {
+		                   
+		                    System.exit(0);
+		                }
+		                if (JOptionPane.VALUE_PROPERTY.equals(jop.CLOSED_OPTION)) {
+			                   
+		                    System.exit(0);
+		                }
+
+		            
+		       
+			    
+			  			/*int input = JOptionPane.showConfirmDialog(null,
+					"l'historique
+ de " + nombre_joueur.nomjoueur.get(0) + multi.tab_joueurs[0].mot.toString(), " ",
 					JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, image);*/
 			
-			}
-			else {
-				int input = JOptionPane.showConfirmDialog(null,
-						"Aucun mot sur le plateau"
-								,
-						" ", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
-
-			}
+			
+			
 	});
 	}
 

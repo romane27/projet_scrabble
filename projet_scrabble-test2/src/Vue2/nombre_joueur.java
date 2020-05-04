@@ -52,7 +52,7 @@ public class nombre_joueur extends JComboBox implements ActionListener {
 			}
 
 			j += 1;
-
+			 
 		}
 	}
 }
