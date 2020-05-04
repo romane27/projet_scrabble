@@ -1,13 +1,15 @@
 package Modele;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javafx.util.Pair;
 
-public class Joueur extends ArrayList<Lettre> {
+public class Joueur extends ArrayList<Lettre> implements Serializable {
 	public int score;
 	public int pos;
 	public ArrayList<String> mot;
+
 	public Joueur(Pioche pioche) {
 		score = 0;
 		initTirage(pioche);
@@ -16,8 +18,8 @@ public class Joueur extends ArrayList<Lettre> {
 
 	public void tirage(Pioche pioche) { // tire le nombre de lettres qu'il manque au joueur
 		int k = 7 - this.size();
-		if (pioche.size() < k) {
-			while (pioche.size() > 0) {
+		if (pioche.pioche.size() < k) {
+			while (pioche.pioche.size() > 0) {
 				this.add(pioche.piocherLettre());
 			}
 		} else {

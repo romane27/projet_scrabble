@@ -24,61 +24,13 @@ public class Plateau extends JPanel {
 		tableau = plateau;
 		this.setLayout(new GridLayout(15, 15));
 		for (int i = 0; i < 15; i++) {
-			for (int j = 1; j < 16; j++) {
-				// couleur bleu
-				if (plateau.tableau[i][j - 1].bonus == 2) {
-					Bouton bouton = new Bouton();
-					bouton.image = new ImageIcon("src/images/LT.jpg");
-					bouton.setIcon(bouton.image);
-					bouton.caseass = plateau.tableau[i][j - 1];
-					this.add(bouton);
-				}
-				// milieu
-				if (plateau.tableau[i][j - 1].bonus == 6) {
-					Bouton bouton = new Bouton();
-					bouton.image=new ImageIcon("src/images/MILIEU.jpg");
-					bouton.setIcon(bouton.image);
-					bouton.caseass = plateau.tableau[i][j - 1];
-					this.add(bouton);
-				}
-
-				// couleur rouge
-				if (plateau.tableau[i][j - 1].bonus == 1) {
-					Bouton bouton = new Bouton();
-					bouton.image=new ImageIcon("src/images/MT.jpg");
-					bouton.setIcon(bouton.image);
-					bouton.caseass = plateau.tableau[i][j - 1];
-					this.add(bouton);
-				}
-				// couleur cyan
-				if (plateau.tableau[i][j - 1].bonus == 3) {
-					Bouton bouton = new Bouton();
-					bouton.image=new ImageIcon("src/images/LD.jpg");
-					bouton.setIcon(bouton.image);
-					bouton.caseass = plateau.tableau[i][j - 1];
-					this.add(bouton);
-				}
-				// couleur beige
-				if (plateau.tableau[i][j - 1].bonus == 5) {
-					Bouton bouton = new Bouton();
-					bouton.image=new ImageIcon("src/images/MD.jpg");
-					bouton.setIcon(bouton.image);
-
-					bouton.caseass = plateau.tableau[i][j - 1];
-					this.add(bouton);
-					// couleur vert
-				}
-				if (plateau.tableau[i][j - 1].bonus == 0) {
-					Bouton bouton = new Bouton();
-					bouton.image=new ImageIcon("src/images/VERT.jpg");
-					bouton.setIcon(bouton.image);
-
-					bouton.caseass = plateau.tableau[i][j - 1];
-					this.add(bouton);
-
-				}
+			for (int j = 0; j < 15; j++) {
+				Bouton bouton = new Bouton();
+				bouton.image = plateau.tableau[i][j].image;
+				bouton.setIcon(bouton.image);
+				bouton.caseass = plateau.tableau[i][j];
+				this.add(bouton);
 			}
-
 		}
 		this.setVisible(true);
 	}
@@ -105,7 +57,7 @@ public class Plateau extends JPanel {
 			// milieu
 			if (tableau.tableau[i][j].bonus == 6) {
 				bouton.setText("");
-				bouton.image=new ImageIcon("src/images/MILIEU.jpg");
+				bouton.image = new ImageIcon("src/images/MILIEU.jpg");
 				bouton.setIcon(bouton.image);
 				bouton.caseass = tableau.tableau[i][j];
 			}
@@ -113,28 +65,28 @@ public class Plateau extends JPanel {
 			// couleur rouge
 			if (tableau.tableau[i][j].bonus == 1) {
 				bouton.setText("");
-				bouton.image=new ImageIcon("src/images/MT.jpg");
+				bouton.image = new ImageIcon("src/images/MT.jpg");
 				bouton.setIcon(bouton.image);
 				bouton.caseass = tableau.tableau[i][j];
 			}
 			// couleur cyan
 			if (tableau.tableau[i][j].bonus == 3) {
 				bouton.setText("");
-				bouton.image=new ImageIcon("src/images/LD.jpg");
+				bouton.image = new ImageIcon("src/images/LD.jpg");
 				bouton.setIcon(bouton.image);
 				bouton.caseass = tableau.tableau[i][j];
 			}
 			// couleur beige
 			if (tableau.tableau[i][j].bonus == 5) {
 				bouton.setText("");
-				bouton.image=new ImageIcon("src/images/MD.jpg");
+				bouton.image = new ImageIcon("src/images/MD.jpg");
 				bouton.setIcon(bouton.image);
 				bouton.caseass = tableau.tableau[i][j];
 				// couleur vert
 			}
 			if (tableau.tableau[i][j].bonus == 0) {
 				bouton.setText("");
-				bouton.image=new ImageIcon("src/images/VERT.jpg");
+				bouton.image = new ImageIcon("src/images/VERT.jpg");
 				bouton.setIcon(bouton.image);
 				bouton.caseass = tableau.tableau[i][j];
 

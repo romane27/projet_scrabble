@@ -95,11 +95,6 @@ public class Premierepage extends Frame implements WindowListener, ActionListene
 		this.setVisible(true);
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new Premierepage();
-	}
-
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub

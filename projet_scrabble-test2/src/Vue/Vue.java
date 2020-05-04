@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -41,6 +42,7 @@ public class Vue extends JFrame implements WindowListener {
 	public JButton echanger;
 	public JButton echanger2;
 	public JButton meilleur_mot;
+	public JButton sauvegarder;
 	public JButton annuler;
 	public JButton historique1;
 	public Scores score;
@@ -50,15 +52,18 @@ public class Vue extends JFrame implements WindowListener {
 	public JLabel echan;
 	public JPanel panel;
 	public Tour tour;
+	public Tableau tableau;
+	public Multijoueur joueurs;
 
 	public Vue(Tableau tableau, Multijoueur joueurs) throws IOException {
-		score = new Scores(joueurs.recupNbJ(), joueurs.joueur_act());
+		this.tableau = tableau;
+		score = new Scores(joueurs.recupNbJ(), joueurs.joueur_act(), joueurs);
 		score.setBounds(670, 160, 150, 120);
 		score.setVisible(true);
 		plateau = new Plateau(tableau);
 		clavier = new Clavier(joueurs.joueur_act());
 		clavierech = new Clavier(joueurs.joueur_act());
-		tour = new Tour(joueurs.ind_jr);
+		tour = new Tour(joueurs.ind_jr, joueurs);
 		sugges = new Suggestion(joueurs.joueur_act());
 		plateau.setBounds(0, 0, 640, 640);
 		clavier.setBounds((640 - (640 / 15) * 7) / 2, 640 + 10, 640 / 15 * 7, 640 / 15);
@@ -67,18 +72,20 @@ public class Vue extends JFrame implements WindowListener {
 		fdt.setBounds(670, 550, 170, 30);
 		tour.setBounds(640, 10, 250, 40);
 		verifmot = new JButton("Vérification mot");
-		verifmot.setBounds(670, 600, 170, 30);
+		verifmot.setBounds(670, 585, 170, 30);
+		sauvegarder = new JButton("Sauver la partie");
+		sauvegarder.setBounds(670, 335, 170, 30);
+
 		fin_jeu = new JButton("Arrêter la partie");
 		fin_jeu.setBounds(670, 300, 170, 30);
 		ImageIcon stat = new ImageIcon("src/images/Statistique1.png");
 		historique1 = new JButton(stat);
-		
-		historique1.setBounds(620, 650, stat.getIconWidth(),stat.getIconHeight());
+
+		historique1.setBounds(620, 650, stat.getIconWidth(), stat.getIconHeight());
 		historique1.setToolTipText("Historique");
-		
+		this.add(sauvegarder);
 		this.add(historique1);
-		
-		
+
 		ImageIcon echanger3 = new ImageIcon("src/images/echanger.png");
 		echanger = new JButton(echanger3);
 		// echanger.setIcon(echanger3);
@@ -112,7 +119,7 @@ public class Vue extends JFrame implements WindowListener {
 		meilleur_mot.setToolTipText("Meilleur mot possible");
 		initPanel();
 		// this.add(echan);
-		
+
 		this.add(meilleur_mot);
 		this.add(echanger);
 		this.add(echanger2);
@@ -132,7 +139,7 @@ public class Vue extends JFrame implements WindowListener {
 		this.add(verifmot);
 		this.add(score);
 		this.add(tour);
-		chrono = new IHMChrono(duree_tours.duree);
+		chrono = new IHMChrono(joueurs.duree);
 		this.add(chrono);
 		this.setTitle("Jeu du Scrabble");
 		Image icone = Toolkit.getDefaultToolkit().getImage("src/images/S.jpg");
@@ -146,6 +153,7 @@ public class Vue extends JFrame implements WindowListener {
 	public void hist1(ActionListener e) {
 		historique1.addActionListener(e);
 	}
+
 	public void meilleur1(ActionListener e) {
 		meilleur_mot.addActionListener(e);
 	}
@@ -302,43 +310,49 @@ public class Vue extends JFrame implements WindowListener {
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowClosing(WindowEvent e) {
 		// TODO Auto-generated method stub
+		// this.tableau.enregistrer();
 		System.exit(0);
 	}
 
 	@Override
 	public void windowClosed(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowIconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowActivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	public void sauvegarder(ActionListener e) {
+		sauvegarder.addActionListener(e);
+
 	}
 
 }

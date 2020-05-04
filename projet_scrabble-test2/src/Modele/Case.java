@@ -1,6 +1,10 @@
 package Modele;
 
-public class Case {
+import java.io.Serializable;
+
+import javax.swing.ImageIcon;
+
+public class Case implements Serializable {
 	public boolean occupe; // si la case a une lettre
 	public boolean jouable;
 	public boolean jouee;// si on peut poser une lettre dessus pdnt le tour
@@ -9,6 +13,7 @@ public class Case {
 	public int bonus;
 	public int x;
 	public int y;
+	public ImageIcon image;
 
 	public Case() {
 		x = 0;
@@ -19,6 +24,8 @@ public class Case {
 		lettre = null;
 		bonus = 0;
 		verouillee = false;
+		image = new ImageIcon("src/images/VERT.jpg");
+		;
 
 	}
 
