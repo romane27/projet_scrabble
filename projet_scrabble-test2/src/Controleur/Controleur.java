@@ -301,7 +301,7 @@ public class Controleur implements Observer {
 
 					// multi.changer_joueur();
 					vue.majclavier(multi.joueur_act(), pioche);
-
+					vue.melanger.setVisible(true);
 					listelettrejouee.clear();
 					listecasejouee.clear();
 
@@ -437,7 +437,9 @@ public class Controleur implements Observer {
 				if (multi.nbrjoueur != 1) {
 					try {
 						Suggestion s = new Suggestion(multi.joueur_act());
-
+						if (s.motpossible.isEmpty()) {
+							vue.meilleur_mot.setVisible(false);
+						}
 						vue.vuesuggestion(s);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -500,7 +502,9 @@ public class Controleur implements Observer {
 				}
 				try {
 					Suggestion s = new Suggestion(multi.joueur_act());
-
+					if (s.motpossible.isEmpty()) {
+						vue.meilleur_mot.setVisible(false);
+					}
 					vue.vuesuggestion(s);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -584,7 +588,9 @@ public class Controleur implements Observer {
 
 			try {
 				Suggestion s = new Suggestion(multi.joueur_act());
-
+				if (s.motpossible.isEmpty()) {
+					vue.meilleur_mot.setVisible(false);
+				}
 				vue.vuesuggestion(s);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -611,7 +617,9 @@ public class Controleur implements Observer {
 			if (multi.nbrjoueur != 1) {
 				try {
 					Suggestion s = new Suggestion(multi.joueur_act());
-
+					if (s.motpossible.isEmpty()) {
+						vue.meilleur_mot.setVisible(false);
+					}
 					vue.vuesuggestion(s);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -668,7 +676,9 @@ public class Controleur implements Observer {
 			}
 			try {
 				Suggestion s = new Suggestion(multi.joueur_act());
-
+				if (s.motpossible.isEmpty()) {
+					vue.meilleur_mot.setVisible(false);
+				}
 				vue.vuesuggestion(s);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

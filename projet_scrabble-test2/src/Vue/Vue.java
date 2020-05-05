@@ -69,10 +69,10 @@ public class Vue extends JFrame implements WindowListener {
 		clavier.setBounds((640 - (640 / 15) * 7) / 2, 640 + 10, 640 / 15 * 7, 640 / 15);
 		clavierech.setBounds((640 - (640 / 15) * 7) / 2, 640 + 10, 640 / 15 * 7, 640 / 15);
 		fdt = new JButton("Fin de Tour");
-		fdt.setBounds(670, 550, 170, 30);
+		fdt.setBounds(670, 585, 170, 30);
 		tour.setBounds(640, 10, 250, 40);
 		verifmot = new JButton("Vérification mot");
-		verifmot.setBounds(670, 585, 170, 30);
+		verifmot.setBounds(670, 620, 170, 30);
 		sauvegarder = new JButton("Sauver la partie");
 		sauvegarder.setBounds(670, 335, 170, 30);
 
@@ -83,6 +83,8 @@ public class Vue extends JFrame implements WindowListener {
 
 		historique1.setBounds(620, 650, stat.getIconWidth(), stat.getIconHeight());
 		historique1.setToolTipText("Historique");
+		historique1.setBorderPainted(false);
+		historique1.setFocusPainted(false);
 		this.add(sauvegarder);
 		this.add(historique1);
 
@@ -218,8 +220,8 @@ public class Vue extends JFrame implements WindowListener {
 		}
 
 		else {
-			JLabel motpossible = new JLabel("Pas\n de\n suggestions");
-			motpossible.setFont(new Font("Arial", Font.PLAIN, 20));
+			JLabel motpossible = new JLabel("<html> Pas de <br> suggestions </html>");
+			motpossible.setFont(new Font("Arial", Font.PLAIN, 15));
 			panel.add(motpossible, BorderLayout.NORTH);
 		}
 
