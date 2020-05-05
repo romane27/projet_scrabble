@@ -241,14 +241,14 @@ public class Controleur implements Observer {
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 
-			if (JOptionPane.VALUE_PROPERTY.equals(jop2.CLOSED_OPTION)) {
+			/*if (JOptionPane.VALUE_PROPERTY.equals(jop2.CLOSED_OPTION)) {
 
 				System.exit(0);
 			}
 			if (JOptionPane.VALUE_PROPERTY.equals(jop.CLOSED_OPTION)) {
 
 				System.exit(0);
-			}
+			}*/
 
 			/*
 			 * int input = JOptionPane.showConfirmDialog(null, "l'historique de
