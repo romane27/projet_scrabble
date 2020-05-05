@@ -234,10 +234,10 @@ public class Controleur implements Observer {
 					"Historique !", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, nom,
 					nom[multi.nbrjoueur - 1]);
 			if (multi.tab_joueurs[rang].mot.isEmpty() == false) {
-				jop2.showMessageDialog(null, "les mots jouer par " + multi.nomjoueur.get(rang) + " sont "
+				jop2.showMessageDialog(null, "Les mots joués par " + multi.nomjoueur.get(rang) + " sont "
 						+ multi.tab_joueurs[rang].mot.toString(), "Historique", JOptionPane.NO_OPTION);
 			} else {
-				jop2.showMessageDialog(null, multi.nomjoueur.get(rang) + " a joué aucun mot", "Historique",
+				jop2.showMessageDialog(null, multi.nomjoueur.get(rang) + " n'a joué aucun mot", "Historique",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 
