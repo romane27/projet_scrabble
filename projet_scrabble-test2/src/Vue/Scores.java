@@ -18,9 +18,10 @@ import Modele.Pioche;
 
 public class Scores extends JPanel {
 	int i;
-	Pioche p = new Pioche();
+	Pioche p;
 
-	public Scores(int i, Joueur jou, Multijoueur multi) {
+	public Scores(int i, Joueur jou, Multijoueur multi, Pioche p) {
+		this.p = p;
 		this.i = i;
 
 		this.setBackground(new Color(220, 233, 230));
@@ -36,7 +37,7 @@ public class Scores extends JPanel {
 			this.add(label);
 		}
 		JLabel label = new JLabel();
-		label.setText("Lettres restantes : " + ((p.pioche.size() - jou.size() * this.i)));
+		label.setText("Lettres restantes : " + p.pioche.size());
 		label.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(label);
 	}
@@ -44,6 +45,7 @@ public class Scores extends JPanel {
 	public void majscore(Joueur joueur, Pioche pioche, Multijoueur multi) { // met à jour le score de chaque joueur et
 																			// le nombre de lettres
 		// de la pioche
+		this.p = p;
 		JLabel label = (JLabel) this.getComponent(joueur.pos);
 		label.setText(multi.nomjoueur.get(joueur.pos) + " : " + joueur.score);
 		label = (JLabel) this.getComponent(i);

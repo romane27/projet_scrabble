@@ -15,7 +15,6 @@ public class Joueur extends ArrayList<Lettre> implements Serializable {
 		initTirage(pioche);
 		mot = new ArrayList<>();
 	}
-
 	public void tirage(Pioche pioche) { // tire le nombre de lettres qu'il manque au joueur
 		int k = 7 - this.size();
 		if (pioche.pioche.size() < k) {
@@ -27,10 +26,6 @@ public class Joueur extends ArrayList<Lettre> implements Serializable {
 				this.add(pioche.piocherLettre());
 			}
 		}
-		/*
-		 * for (int i = 0; i < this.size(); i++) { System.out.print(this.get(i).nom); }
-		 */
-
 	}
 
 	public void initTirage(Pioche pioche) { // initialise le tirage
@@ -38,10 +33,6 @@ public class Joueur extends ArrayList<Lettre> implements Serializable {
 		for (int i = 0; i < 7; i++) {
 			this.add(pioche.piocherLettre());
 		}
-		/*
-		 * for (int i = 0; i < this.size(); i++) { System.out.print(this.get(i).nom); }
-		 */
-
 	}
 
 	public String toString() {

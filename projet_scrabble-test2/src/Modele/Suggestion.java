@@ -168,11 +168,8 @@ public class Suggestion {
 			for (int i=0;i<m.length();i++) {
 				
 				for (int j=0;j<lettreetvaleurs.size();j++) {
-					//System.out.println(lettreetvaleurs.get(j).nom+Character.toString(m.charAt(i)));
 					if (lettreetvaleurs.get(j).nom.contentEquals(Character.toString(m.charAt(i)))){
-						
 						score+=lettreetvaleurs.get(j).valeur;
-						System.out.println("d"+m+lettreetvaleurs.get(j).nom+score);
 					}
 									}
 				
@@ -182,7 +179,5 @@ public class Suggestion {
 				meilleur_mot=m;
 			}
 	}
-		System.out.println("le meilleur est "+ meilleur_mot + meilleur);
-		//return meilleur_mot + meilleur;
 	}
 }

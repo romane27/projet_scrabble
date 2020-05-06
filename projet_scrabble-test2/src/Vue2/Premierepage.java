@@ -44,7 +44,7 @@ public class Premierepage extends Frame implements WindowListener, ActionListene
 	public Premierepage() {
 		// titre avec taille, police, positionnement
 		Font fonte, font;
-		this.setSize(670, 670);
+		this.setSize(800, 800);
 		Photo image = new Photo("src/images/image.jpg", 0, 0, this.getWidth(), this.getHeight());
 		fonte = new Font("Brush Script MT", Font.BOLD, 45);
 		font = new Font("Helvetica", Font.CENTER_BASELINE, 15);

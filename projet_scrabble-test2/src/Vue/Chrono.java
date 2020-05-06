@@ -84,7 +84,6 @@ public class Chrono extends Observable implements Runnable {
 	/* Retourne true si le chronometre est en fonctionnement,  eventuellement suspendu 
 	 * et false si le chronometre n'est pas demarre, ou bien a ete arrete, ou bien a fini de tourner*/
 	public boolean enFonctionnement() {
-		System.out.println(deroulement.isAlive());
 		return (deroulement!=null) && (deroulement.isAlive());
 	}
 

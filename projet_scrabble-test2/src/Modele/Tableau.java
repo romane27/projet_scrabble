@@ -47,10 +47,8 @@ public class Tableau {
 			fis2.close();
 
 		} catch (IOException | ClassNotFoundException e) {
-			//System.out.println("yolo");
 			casejouables = new ArrayList<Case>();
 			this.tableau = new Case[15][15];
-			// this.dico = new Dico().dico;
 			for (int i = 0; i < 15; i++) { // initialisation du tableau
 				for (int j = 0; j < 15; j++) {
 					tableau[i][j] = new Case();
@@ -166,9 +164,6 @@ public class Tableau {
 			tableau[7][7].bonus = 6;
 			tableau[7][7].image = new ImageIcon("src/images/MILIEU.jpg");
 			tableau[7][7].jouable = true;
-			// afficher_matrice();
-			// System.out.println("test 1 : " + tableau[0][14].bonus);
-			// System.out.println("test 2 : " + tableau[14][0].bonus);
 		}
 	}
 
@@ -474,27 +469,17 @@ public class Tableau {
 				j = 0;
 			}
 		}
-		System.out.println("coordonnées : " + i + ", " + j);
-		/*boolean essai = verifPlacLettres(taille, i, j);
-		System.out.println("meme ligne ? : " + essai);*/
+
 		if (verifPlacLettres(taille, i, j)) {
 			ArrayList<String[]> liste_mots = new ArrayList<String[]>();
 			mot_valide = new ArrayList<String>();
-			// if (i!=14) {
-			// liste_mots.addAll(mot_vertical(i, j));
-			// }
-			//System.out.println("c2 " + i + j);
-			// if (j!=14) {
 			liste_mots.addAll(mot_horizontal(i, j));
-			// }
 			boolean valable = true;
 			Integer[] scores = new Integer[liste_mots.size() + 1];
 			for (int ind = 0; ind < liste_mots.size(); ind++) {
 				String[] el = liste_mots.get(ind);
-				System.out.println(el[0]);
 				valable = valable && dic.verifier_mot(el[0]);
 				if (dic.verifier_mot(el[0]) == true && el[0] != "") {
-					// System.out.println(el[0]);
 					mot_valide.add(el[0]);
 				}
 				scores[ind] = Integer.parseInt(el[1]);
@@ -504,15 +489,6 @@ public class Tableau {
 			} else {
 				scores[scores.length - 1] = 0;
 			}
-			System.out.print(valable);
-			/*
-			 * String mot1 = r1[0]; String mot2 = r2[0]; int score_m1 =
-			 * Integer.parseInt(r1[1]); int score_m2 = Integer.parseInt(r2[1]); Integer[]
-			 * scores = {score_m1, score_m2}; System.out.println(mot1 + " " + score_m1 + " "
-			 * + dic.verifier_mot(mot1)); System.out.println(mot2 + " " + score_m2 + " " +
-			 * dic.verifier_mot(mot2)); Boolean b = dic.verifier_mot(mot1) &&
-			 * dic.verifier_mot(mot2);
-			 */
 			Pair<Boolean, Integer[]> pair = new Pair<Boolean, Integer[]>(valable, scores);
 			return pair;
 		} else {
@@ -528,9 +504,6 @@ public class Tableau {
 		int mults1 = 1;
 		String mot1 = "";
 		ArrayList<String[]> liste_mots = new ArrayList<String[]>();
-		System.out.println("je passe par ici");
-		// if (tableau[i][j + 1].occupe == true || tableau[i][j - 1].occupe == true) {//
-		// de droite à gauche
 		if (j != 0) {
 			while (tableau[i][j - 1].occupe == true && j != 0) {// retrouve le debut du mot
 				j -= 1;
@@ -543,7 +516,6 @@ public class Tableau {
 				ArrayList<String[]> test = mot_vertical(i, j);
 				for (String[] el : test) {
 					liste_mots.add(el);
-					System.out.println(el[0]);
 				}
 			}
 		}
@@ -573,29 +545,22 @@ public class Tableau {
 				if (tableau[i][j].bonus == 2) {// lettre triple
 					score_m1 += tableau[i][j].lettre.valeur * 3;
 				}
-				// tableau[i][j].bonus = 0;
-				// tableau[i][j].jouee = false;
-				// tableau[i][j].verouillee = true;
+
 				mot1 += tableau[i][j].lettre.nom;
-				System.out.println("lettre lue : " + tableau[i][j].lettre.nom);
 				if (tableau[i][j].jouee) {
 					tableau[i][j].jouee = false;
 					ArrayList<String[]> test = mot_vertical(i, j);
 					for (String[] el : test) {
 						liste_mots.add(el);
-						System.out.println(el[0]);
 					}
 				}
 				j += 1;
 
-				// }
 			}
 		}
-		System.out.println("Le mot 1 est : " + mot1);
-		System.out.println("Le score pour le mot 1 est : " + score_m1 * mults1);
 		String[] resultat = { mot1, String.valueOf(score_m1 * mults1) };
 		liste_mots.add(resultat);
-		// System.out.println(resultat);
+
 		return liste_mots;
 	}
 
@@ -604,7 +569,6 @@ public class Tableau {
 		int mults2 = 1;
 		ArrayList<String[]> liste_mots = new ArrayList<String[]>();
 		String mot2 = "";
-		System.out.println("je passe par ici");
 		// if (tableau[i - 1][j].occupe == true || tableau[i + 1][j].occupe == true) {//
 		// de haut en bas
 		if (i != 0) {
@@ -643,23 +607,18 @@ public class Tableau {
 				// tableau[i][j].bonus = 0;
 				// tableau[i][j].jouee = false;
 				mot2 += tableau[i][j].lettre.nom;
-				System.out.println("lettre lue : " + tableau[i][j].lettre.nom);
 				if (tableau[i][j].jouee) {
 					tableau[i][j].jouee = false;
 					ArrayList<String[]> test = mot_horizontal(i, j);
 					for (String[] el : test) {
 						liste_mots.add(el);
-						System.out.println(el[0]);
 					}
 				}
 				i += 1;
 			}
 		}
-		System.out.println("Le mot 2 est : " + mot2);
-		System.out.println("Le score pour le mot 2 est : " + score_m2 * mults2);
 		String[] resultat = { mot2, String.valueOf(score_m2 * mults2) };
 		liste_mots.add(resultat);
-		// System.out.println(resultat);
 		return liste_mots;
 	}
 
@@ -682,12 +641,10 @@ public class Tableau {
 	}
 
 	public void majbonmot(ArrayList<Pair> listecasejouee) { // ce qui se passe lorsque le mot est correct
-		System.out.print(listecasejouee);
 		for (int k = 0; k < listecasejouee.size(); k++) {
 			int i = (int) listecasejouee.get(k).getKey();
 			int j = (int) listecasejouee.get(k).getValue();
 			tableau[i][j].bonus = 0;
-			// tableau[i][j].jouee = false;
 			tableau[i][j].verouillee = true;
 			tableau[i][j].occupe = true;
 		}
@@ -697,11 +654,8 @@ public class Tableau {
 	public void afficher_matrice() { // permet d'afficher les éléments du tableau
 		for (int i = 0; i < 15; i++) {
 			for (int j = 0; j < 15; j++) {
-				System.out.print(tableau[i][j].lettre + " ");
 			}
-			System.out.print("\n");
 		}
-		System.out.print("\n");
 	}
 
 	public void enregistrer() {

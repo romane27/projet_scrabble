@@ -1,4 +1,7 @@
+package Main;
+
 import java.io.File;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -33,7 +36,6 @@ public class Main {
 				ArrayList<String> list = new ArrayList<String>();
 				for (File f : l) {
 					list.add(f.getName());
-					System.out.println(list.get(0));
 				}
 				Object[] fichier = list.toArray();
 				JOptionPane jop = new JOptionPane();

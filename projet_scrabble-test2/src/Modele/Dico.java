@@ -51,8 +51,6 @@ public class Dico extends HashMap<String, ArrayList<String>> {
 
 			String cle = a.substring(0, 2);
 			ArrayList<String> l = this.get(cle);
-			//System.out.println("cle " + cle);
-			//System.out.println(l);
 			if (l.contains(a)) {
 				return true;
 			}

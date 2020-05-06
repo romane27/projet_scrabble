@@ -35,7 +35,6 @@ public class Multijoueur {
 			FileInputStream fis1 = new FileInputStream(fichierj);
 			ObjectInputStream ois1 = new ObjectInputStream(fis1);
 			this.ind_jr = (int) ois1.readObject();
-			System.out.println(this.ind_jr);
 			ois1.close();
 			fis1.close();
 			FileInputStream fis3 = new FileInputStream(fichiernbrj);

@@ -51,7 +51,7 @@ public class Controleur implements Observer {
 		pioche = new Pioche();
 		multi = new Multijoueur(pioche);
 		tableau = new Tableau();
-		vue = new Vue(tableau, multi);
+		vue = new Vue(tableau, multi, pioche);
 		mot = new Case[15];
 		vue.chrono.chrono.addObserver(this);
 		ajoutactlist();
@@ -241,14 +241,13 @@ public class Controleur implements Observer {
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 
-			/*if (JOptionPane.VALUE_PROPERTY.equals(jop2.CLOSED_OPTION)) {
-
-				System.exit(0);
-			}
-			if (JOptionPane.VALUE_PROPERTY.equals(jop.CLOSED_OPTION)) {
-
-				System.exit(0);
-			}*/
+			/*
+			 * if (JOptionPane.VALUE_PROPERTY.equals(jop2.CLOSED_OPTION)) {
+			 * 
+			 * System.exit(0); } if (JOptionPane.VALUE_PROPERTY.equals(jop.CLOSED_OPTION)) {
+			 * 
+			 * System.exit(0); }
+			 */
 
 			/*
 			 * int input = JOptionPane.showConfirmDialog(null, "l'historique de
@@ -325,6 +324,7 @@ public class Controleur implements Observer {
 				f = new File("Sauvegardes/" + nom);
 				while (f.exists()) {
 					nom = JOptionPane.showInputDialog(null, "Ce nom est déjà pris, veuillez en choisir un autre");
+					f = new File("Sauvegardes/" + nom);
 				}
 				multi.enregistrer();
 				pioche.enregistrer();

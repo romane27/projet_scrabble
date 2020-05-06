@@ -55,9 +55,9 @@ public class Vue extends JFrame implements WindowListener {
 	public Tableau tableau;
 	public Multijoueur joueurs;
 
-	public Vue(Tableau tableau, Multijoueur joueurs) throws IOException {
+	public Vue(Tableau tableau, Multijoueur joueurs, Pioche p) throws IOException {
 		this.tableau = tableau;
-		score = new Scores(joueurs.recupNbJ(), joueurs.joueur_act(), joueurs);
+		score = new Scores(joueurs.recupNbJ(), joueurs.joueur_act(), joueurs, p);
 		score.setBounds(670, 160, 150, 120);
 		score.setVisible(true);
 		plateau = new Plateau(tableau);
@@ -208,8 +208,6 @@ public class Vue extends JFrame implements WindowListener {
 			panel.add(motpossible, BorderLayout.NORTH);
 			liste = new JList(sugges.suggestionlist);
 			meilleur_mot.setVisible(true);
-			// System.out.println(sugges.bestmot(sugges.motpossible));
-			// creer un ascenseur quand bcp de suggestions
 			JScrollPane ascenseur = new JScrollPane(liste);
 			ascenseur.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			ascenseur.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);

@@ -25,8 +25,6 @@ class DicoTest {
 
 	@Test
 	void testVerifier_mot() {
-		//System.out.println(d);
-		//System.out.println("cdsfsf");
 		assertFalse(d.verifier_mot("dsqfdfsf"));
 		assertFalse(d.verifier_mot("a"));
 		assertTrue(d.verifier_mot(""));
